@@ -1,14 +1,13 @@
 
 const webpack = require('webpack')
 const path =  require('path')
-const merge = require('ramda').merge
 
 const env = process.env.NODE_ENV || 'development';
 
 module.exports = {
   context: path.join(__dirname, './client'),
   node: { fs: 'empty' },
-  entry: merge({
+  entry: Object.assign({
       jsx: './index.js',
       vendor: ['react']
     },

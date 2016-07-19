@@ -1,6 +1,3 @@
-
-import { merge } from 'ramda';
-
 const newState = {
   position: 'relative',
   margin: 0,
@@ -22,12 +19,13 @@ const newState = {
 
 export default {
 
-  'new': merge(newState, {
+  'new': {
+    ...newState,
     padding: '16px 16px 16px 60px',
     border: 'none',
     background: 'rgba(0, 0, 0, 0.003)',
     boxShadow: 'inset 0 -2px 1px rgba(0, 0, 0, 0.03)',
-  }),
+  },
 
   edit: newState,
 

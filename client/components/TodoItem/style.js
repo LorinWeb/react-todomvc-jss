@@ -1,6 +1,4 @@
-
 import shared from './../../shared/style'
-import { mergeAll } from 'ramda';
 
 export default {
 
@@ -22,7 +20,9 @@ export default {
     display: 'none',
   },
 
-  toggle: mergeAll([shared.formEl, {
+  toggle: {
+    ...shared.formEl,
+
     textAlign: 'center',
     width: '40px',
     /* auto, since non-WebKit browsers doesn't support input styling */
@@ -42,7 +42,7 @@ export default {
     '&:checked:after': {
       content: 'url(\'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>\')',
     },
-  }]),
+  },
 
   label: {
     whiteSpace: 'pre-line',
@@ -54,7 +54,10 @@ export default {
     transition: 'color 0.4s',
   },
 
-  destroy: mergeAll([shared.button, shared.formEl, {
+  destroy: {
+    ...shared.button,
+    ...shared.formEl,
+
     display: 'none',
     position: 'absolute',
     top: 0,
@@ -75,7 +78,7 @@ export default {
     '&:after': {
       content: '"×"',
     },
-  }]),
+  },
 
   editing: {
     borderBottom: 'none',

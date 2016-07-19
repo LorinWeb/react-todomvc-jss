@@ -1,9 +1,6 @@
-
 import shared from './../../shared/style'
-import { merge } from 'ramda';
 
 export default {
-
   main: {
     position: 'relative',
     zIndex: 2,
@@ -16,7 +13,9 @@ export default {
     listStyle: 'none',
   },
 
-  toggleAll: merge(shared.formEl, {
+  toggleAll: {
+    ...shared.formEl,
+
     position: 'absolute',
     top: '-55px',
     left: '-12px',
@@ -35,7 +34,7 @@ export default {
     '&:checked:before': {
       color: '#737373',
     },
-  }),
+  },
 
   /*
     Hack to remove background from Mobile Safari.

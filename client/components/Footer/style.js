@@ -1,13 +1,10 @@
-
 import shared from './../../shared/style'
-import { mergeAll } from 'ramda';
 
 const filterLinkHighlight = {
   borderColor: 'rgba(175, 47, 47, 0.1)',
 }
 
 export default {
-
   normal: {
     color: '#777',
     padding: '10px 15px',
@@ -74,7 +71,10 @@ export default {
     fontWeight: 300,
   },
 
-  clearCompleted: mergeAll([shared.button, shared.formEl, {
+  clearCompleted: {
+    ...shared.button,
+    ...shared.formEl,
+
     float: 'right',
     position: 'relative',
     lineHeight: '20px',
@@ -106,6 +106,6 @@ export default {
         textDecoration: 'underline',
       },
     },
-  }]),
+  },
 
 }
