@@ -1,6 +1,5 @@
 
-import R, { merge } from 'ramda';
-import { StyleSheet } from 'aphrodite';
+import { merge } from 'ramda';
 
 const newState = {
   position: 'relative',
@@ -21,7 +20,7 @@ const newState = {
 }
 
 
-export default StyleSheet.create({
+export default {
 
   'new': merge(newState, {
     padding: '16px 16px 16px 60px',
@@ -39,4 +38,4 @@ export default StyleSheet.create({
     margin: '0 0 0 43px',
   },
 
-})
+}

@@ -1,20 +1,19 @@
 
 import shared from './../../shared/style'
-import R, { mergeAll } from 'ramda';
-import { StyleSheet } from 'aphrodite';
+import { mergeAll } from 'ramda';
 
-export default StyleSheet.create({
+export default {
 
   normal: {
     position: 'relative',
     fontSize: '24px',
     borderBottom: '1px solid #ededed',
 
-    ':last-child': {
+    '&:last-child': {
       borderBottom: 'none',
     },
 
-    ':hover .destroy': {
+    '&:hover .destroy': {
       display: 'block',
     },
   },
@@ -36,11 +35,11 @@ export default StyleSheet.create({
     appearance: 'none',
     '-webkit-appearance': 'none',
 
-    ':after': {
+    '&:after': {
       content: 'url(\'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#ededed" stroke-width="3"/></svg>\')',
     },
 
-    ':checked:after': {
+    '&:checked:after': {
       content: 'url(\'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>\')',
     },
   }]),
@@ -69,11 +68,11 @@ export default StyleSheet.create({
     marginBottom: '11px',
     transition: 'color 0.2s ease-out',
 
-    ':hover': {
+    '&:hover': {
       color: '#af5b5e',
     },
 
-    ':after': {
+    '&:after': {
       content: '"×"',
     },
   }]),
@@ -83,7 +82,7 @@ export default StyleSheet.create({
     padding: 0,
     composes: 'normal',
 
-    ':last-child': {
+    '&:last-child': {
       marginBottom: '-1px',
     },
   },
@@ -93,11 +92,11 @@ export default StyleSheet.create({
     textDecoration: 'line-through',
   },
 
-  toggleDevice: {
-    '@media screen and (-webkit-min-device-pixel-ratio:0)': {
+  '@media screen and (-webkit-min-device-pixel-ratio:0)': {
+    toggleDevice: {
       background: 'none',
       height: '40px',
     },
   },
 
-})
+}

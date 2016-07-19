@@ -1,6 +1,4 @@
-
 export default {
-
   button: {
     margin: 0,
     padding: 0,
@@ -17,5 +15,5 @@ export default {
 
   formEl: {
     outline: 'none',
-  }
+  },
 }

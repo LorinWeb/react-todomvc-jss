@@ -1,6 +1,8 @@
-# Aphrodite Todomvc Example
+# JSS Todomvc Example
 
-Most of this code was lifted from [TJ's Frontend Boilerplate](https://github.com/tj/frontend-boilerplate). I replaced CSS Modules with [Aphrodite](https://github.com/Khan/aphrodite) inline styles. I also added a build step which creates a static version of the app and inlines the Aphrodite styles into the html.
+Most of this code was lifted from [Matt Delambo's Aphrodite Todomvc Example](https://github.com/delambo/react-todomvc-aphrodite) (which in turn is lifted from [TJ's Frontend Boilerplate](https://github.com/tj/frontend-boilerplate)).
+
+I replaced [Aphrodite](https://github.com/Khan/aphrodite) inline styles with [JSS](https://github.com/jsstyles/jss).
 
 ## Development
 
@@ -10,7 +12,7 @@ npm start
 
 ## Production Build and Run
 
-The following commands will build the app to `static/` with the aphrodite styles dehydrated and included inline in the html, and run it:
+The following commands will build the app to `static/` with the styles dehydrated and included inline in the html, and run it:
 
 ```
 npm run build

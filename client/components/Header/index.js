@@ -1,9 +1,10 @@
 
 import React, { Component } from 'react'
 import TodoTextInput from '../TodoTextInput'
-import { css } from 'aphrodite';
+import useSheet from 'react-jss'
 import styles from './style'
 
+@useSheet(styles)
 class Header extends Component {
   handleSave(text) {
     if (text.length) {
@@ -12,9 +13,10 @@ class Header extends Component {
   }
 
   render() {
+    const {classes} = this.props.sheet
     return (
       <header>
-        <h1 className={css(styles.h1)}>Todos</h1>
+        <h1 className={classes.h1}>Todos</h1>
         <TodoTextInput
           newTodo
           onSave={::this.handleSave}

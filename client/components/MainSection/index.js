@@ -3,8 +3,9 @@ import React, { Component } from 'react'
 import TodoItem from '../TodoItem'
 import Footer from '../Footer'
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../../constants/filters'
-import { css } from 'aphrodite';
 import styles from './style'
+import useSheet from 'react-jss'
+import classnames from 'classnames'
 
 const TODO_FILTERS = {
   [SHOW_ALL]: () => true,
@@ -12,6 +13,7 @@ const TODO_FILTERS = {
   [SHOW_COMPLETED]: todo => todo.completed
 }
 
+@useSheet(styles)
 class MainSection extends Component {
   constructor(props, context) {
     super(props, context)
@@ -30,10 +32,10 @@ class MainSection extends Component {
   }
 
   renderToggleAll(completedCount) {
-    const { todos, actions } = this.props
+    const { todos, actions, sheet: {classes} } = this.props
     if (todos.length > 0) {
       return <input
-        className={css(styles.toggleAll, styles.toggleDevice)}
+        className={classnames(classes.toggleAll, classes.toggleDevice)}
         type="checkbox"
         checked={completedCount === todos.length}
         onChange={actions.completeAll} />
@@ -57,7 +59,7 @@ class MainSection extends Component {
   }
 
   render() {
-    const { todos, actions } = this.props
+    const { todos, actions, sheet: {classes} } = this.props
     const { filter } = this.state
 
     const filteredTodos = todos.filter(TODO_FILTERS[filter])
@@ -66,9 +68,9 @@ class MainSection extends Component {
     }, 0)
 
     return (
-      <section className={css(styles.main)}>
+      <section className={classes.main}>
         {this.renderToggleAll(completedCount)}
-        <ul className={css(styles.normal)}>
+        <ul className={classes.normal}>
           {filteredTodos.map(todo =>
             <TodoItem key={todo.id} todo={todo} {...actions} />
           )}

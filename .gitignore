@@ -35,3 +35,7 @@ node_modules
 # OS-specific temporary files
 Thumbs.db
 .DS_Store
+
+# Ignore build files
+static/bundle.js
+static/vendor.bundle.js

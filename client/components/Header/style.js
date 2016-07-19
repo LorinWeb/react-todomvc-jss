@@ -1,7 +1,4 @@
-
-import { StyleSheet } from 'aphrodite';
-
-export default StyleSheet.create({
+export default {
 
   h1: {
     position: 'absolute',
@@ -14,4 +11,4 @@ export default StyleSheet.create({
     color: 'rgba(175, 47, 47, 0.15)',
   },
 
-})
+}

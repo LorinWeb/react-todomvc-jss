@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../../constants/filters'
 import classnames from 'classnames'
-import { css } from 'aphrodite';
+import useSheet from 'react-jss'
 import styles from './style'
 
 const FILTER_TITLES = {
@@ -11,24 +11,25 @@ const FILTER_TITLES = {
   [SHOW_COMPLETED]: 'Completed',
 }
 
+@useSheet(styles)
 class Footer extends Component {
   renderTodoCount() {
-    const { activeCount } = this.props
+    const { activeCount, sheet: {classes} } = this.props
     const itemWord = activeCount === 1 ? 'item' : 'items'
 
     return (
-      <span className={css(styles.count)}>
-        <strong className={css(styles.strong)}>{activeCount || 'No'}</strong> {itemWord} left
+      <span className={classes.count}>
+        <strong className={classes.strong}>{activeCount || 'No'}</strong> {itemWord} left
       </span>
     )
   }
 
   renderFilterLink(filter) {
     const title = FILTER_TITLES[filter]
-    const { filter: selectedFilter, onShow } = this.props
+    const { filter: selectedFilter, onShow, sheet: {classes} } = this.props
 
     return (
-      <a className={classnames(css(styles.filterLink), { [css(styles.filterLinkHighlight)]: filter === selectedFilter })}
+      <a className={classnames(classes.filterLink, { [classes.filterLinkHighlight]: filter === selectedFilter })}
          style={{ cursor: 'pointer' }}
          onClick={() => onShow(filter)}>
         {title}
@@ -37,10 +38,10 @@ class Footer extends Component {
   }
 
   renderClearButton() {
-    const { completedCount, onClearCompleted } = this.props
+    const { completedCount, onClearCompleted, sheet: {classes} } = this.props
     if (completedCount > 0) {
       return (
-        <button className={css(styles.clearCompleted)} onClick={onClearCompleted}>
+        <button className={classes.clearCompleted} onClick={onClearCompleted}>
           Clear completed
         </button>
       )
@@ -48,12 +49,13 @@ class Footer extends Component {
   }
 
   render() {
+    const {classes} = this.props.sheet;
     return (
-      <footer className={css(styles.normal, styles.smallNormal)}>
+      <footer className={classnames(classes.normal, classes.smallNormal)}>
         {this.renderTodoCount()}
-        <ul className={css(styles.filters, styles.smallFilters)}>
+        <ul className={classnames(classes.filters, classes.smallFilters)}>
           {[SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED].map(filter =>
-            <li className={css(styles.filtersItem)} key={filter}>
+            <li className={classes.filtersItem} key={filter}>
               {this.renderFilterLink(filter)}
             </li>
           )}

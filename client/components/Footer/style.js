@@ -1,13 +1,12 @@
 
 import shared from './../../shared/style'
-import R, { mergeAll } from 'ramda';
-import { StyleSheet } from 'aphrodite';
+import { mergeAll } from 'ramda';
 
 const filterLinkHighlight = {
   borderColor: 'rgba(175, 47, 47, 0.1)',
 }
 
-export default StyleSheet.create({
+export default {
 
   normal: {
     color: '#777',
@@ -16,7 +15,7 @@ export default StyleSheet.create({
     textAlign: 'center',
     borderTop: '1px solid #e6e6e6',
 
-    ':before': {
+    '&:before': {
       content: '""',
       position: 'absolute',
       right: 0,
@@ -28,8 +27,8 @@ export default StyleSheet.create({
     },
   },
 
-  smallNormal: {
-    '@media (max-width: 430px)': {
+  '@media (max-width: 430px)': {
+    smallNormal: {
       height: '50px',
     },
   },
@@ -43,8 +42,8 @@ export default StyleSheet.create({
     left: 0,
   },
 
-  smallFilters: {
-    '@media (max-width: 430px)': {
+  '@media (max-width: 430px)': {
+    smallFilters: {
       bottom: '10px',
     },
   },
@@ -61,7 +60,7 @@ export default StyleSheet.create({
     border: '1px solid transparent',
     borderRadius: '3px',
 
-    ':hover': filterLinkHighlight
+    '&:hover': filterLinkHighlight
   },
 
   filterLinkHighlight: filterLinkHighlight,
@@ -84,7 +83,7 @@ export default StyleSheet.create({
     visibility: 'hidden',
     position: 'relative',
 
-    ':active': {
+    '&:active': {
       float: 'right',
       position: 'relative',
       lineHeight: '20px',
@@ -94,7 +93,7 @@ export default StyleSheet.create({
       position: 'relative',
     },
 
-    ':after': {
+    '&:after': {
       visibility: 'visible',
       content: '"Clear completed"',
       position: 'absolute',
@@ -102,11 +101,11 @@ export default StyleSheet.create({
       whiteSpace: 'nowrap',
     },
 
-    ':hover': {
-      ':after': {
+    '&:hover': {
+      '&:after': {
         textDecoration: 'underline',
       },
     },
   }]),
 
-})
+}

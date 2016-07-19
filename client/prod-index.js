@@ -10,19 +10,19 @@
 
 import React from 'react';
 import { renderToString } from 'react-dom/server'
-import { StyleSheetServer } from 'aphrodite';
 import App from './containers/App/'
+import jss from 'jss'
 import fs from 'fs'
 
 import { Provider } from 'react-redux'
 import configure from './store'
 const store = configure()
 
-// Render the app to extract the css and html.
-let {html, css} = StyleSheetServer.renderStatic(() => {
-  return renderToString(<Provider store={store}><App/></Provider>);
-});
- 
+// Render the app to generate the css and html.
+const html = renderToString(<Provider store={store}><App/></Provider>);
+
+console.log(jss.sheets);
+
 fs.writeFile('./static/index.html', `
 
 <!doctype html>
@@ -52,10 +52,12 @@ fs.writeFile('./static/index.html', `
         font-weight: 300;
       }
     </style>
-    <style data-aphrodite>${css.content}</style>
+    <style type="text/css" id="server-side-styles">
+      ${jss.sheets.toString()}
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">${html}</div>
     <!-- This script adds the Roboto font to our project. For more detail go to this site:  http://www.google.com/fonts#UsePlace:use/Collection:Roboto:400,300,500 -->
     <script>
       var WebFontConfig = {
@@ -70,10 +72,6 @@ fs.writeFile('./static/index.html', `
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(wf, s);
       })();
-    </script>
-
-    <script>
-      window.styles = ${JSON.stringify(css.renderedClassNames)};
     </script>
 
     <script src="/vendor.bundle.js"></script>

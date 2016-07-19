@@ -11,9 +11,6 @@ import configure from './store'
 const store = configure()
 const history = syncHistoryWithStore(browserHistory, store)
 
-// Rehydrate the styles when in production.
-if (process.env === 'production') StyleSheet.rehydrate(window.styles)
-
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
@@ -21,5 +18,12 @@ ReactDOM.render(
       </Route>
     </Router>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('root'), () => {
+      if (process.env === 'production') {
+        // In production, remove the server-side generated styles and let
+        // the live app take over (for auto-mount/unmount and lazy-loading)
+        const ssStyles = document.getElementById('server-side-styles')
+        ssStyles.parentNode.removeChild(ssStyles)
+      }
+  }
 )

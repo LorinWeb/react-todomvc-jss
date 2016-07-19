@@ -1,9 +1,8 @@
 
 import shared from './../../shared/style'
-import R, { merge } from 'ramda';
-import { StyleSheet } from 'aphrodite';
+import { merge } from 'ramda';
 
-export default StyleSheet.create({
+export default {
 
   main: {
     position: 'relative',
@@ -26,14 +25,14 @@ export default StyleSheet.create({
     textAlign: 'center',
     border: 'none', /* Mobile Safari */
 
-    ':before': {
+    '&:before': {
       content: '"❯"',
       fontSize: '22px',
       color: '#e6e6e6',
       padding: '10px 27px 10px 27px',
     },
 
-    ':checked:before': {
+    '&:checked:before': {
       color: '#737373',
     },
   }),
@@ -42,12 +41,12 @@ export default StyleSheet.create({
     Hack to remove background from Mobile Safari.
     Can't use it globally since it destroys checkboxes in Firefox
   */
-  toggleDevice: {
     '@media screen and (-webkit-min-device-pixel-ratio:0)': {
-      transform: 'rotate(90deg)',
-      appearance: 'none',
-      '-webkit-appearance': 'none',
+      toggleDevice: {
+        transform: 'rotate(90deg)',
+        appearance: 'none',
+        '-webkit-appearance': 'none',
+      },
     },
-  },
 
-})
+}

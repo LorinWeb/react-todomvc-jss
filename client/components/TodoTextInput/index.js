@@ -1,9 +1,10 @@
 
 import React, { Component } from 'react'
 import classnames from 'classnames'
-import { css } from 'aphrodite';
 import styles from './style'
+import useSheet from 'react-jss'
 
+@useSheet(styles)
 class TodoTextInput extends Component {
   constructor(props, context) {
     super(props, context)
@@ -34,13 +35,15 @@ class TodoTextInput extends Component {
   }
 
   render() {
-    const classes = classnames({
-      [css(styles.edit)]: this.props.editing,
-      [css(styles.new)]: this.props.newTodo
+    const {classes} = this.props.sheet
+
+    const cls = classnames({
+      [classes.edit]: this.props.editing,
+      [classes.new]: this.props.newTodo
     })
 
     return (
-      <input className={classes}
+      <input className={cls}
         type="text"
         autoFocus="true"
         placeholder={this.props.placeholder}
