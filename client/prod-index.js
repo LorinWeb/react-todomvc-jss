@@ -13,15 +13,13 @@ import { renderToString } from 'react-dom/server'
 import App from './containers/App/'
 import jss from 'jss'
 import fs from 'fs'
-
+import cleancss from 'clean-css'
 import { Provider } from 'react-redux'
 import configure from './store'
 const store = configure()
 
 // Render the app to generate the css and html.
 const html = renderToString(<Provider store={store}><App/></Provider>);
-
-console.log(jss.sheets);
 
 fs.writeFile('./static/index.html', `
 
@@ -53,7 +51,7 @@ fs.writeFile('./static/index.html', `
       }
     </style>
     <style type="text/css" id="server-side-styles">
-      ${jss.sheets.toString()}
+      ${new cleancss().minify(jss.sheets.toString()).styles}
     </style>
   </head>
   <body>

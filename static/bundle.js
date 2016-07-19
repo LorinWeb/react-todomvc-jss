@@ -12134,7 +12134,6 @@ webpackJsonp([0],[
 	  value: true
 	});
 	exports.default = {
-
 	  button: {
 	    margin: 0,
 	    padding: 0,
