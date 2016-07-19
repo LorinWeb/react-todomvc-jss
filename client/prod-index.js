@@ -55,7 +55,7 @@ fs.writeFile('./static/index.html', `
     </style>
   </head>
   <body>
-    <div id="root">${html}</div>
+    <div id="root"></div>
     <!-- This script adds the Roboto font to our project. For more detail go to this site:  http://www.google.com/fonts#UsePlace:use/Collection:Roboto:400,300,500 -->
     <script>
       var WebFontConfig = {

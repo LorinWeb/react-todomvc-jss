@@ -42,7 +42,7 @@ webpackJsonp([0],[
 	    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _App2.default })
 	  )
 	), document.getElementById('root'), function () {
-	  if (({"NODE_ENV":"production"}) === 'production') {
+	  if (true) {
 	    // In production, remove the server-side generated styles and let
 	    // the live app take over (for auto-mount/unmount and lazy-loading)
 	    var ssStyles = document.getElementById('server-side-styles');

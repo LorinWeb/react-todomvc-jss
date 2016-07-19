@@ -19,7 +19,7 @@ ReactDOM.render(
     </Router>
   </Provider>,
   document.getElementById('root'), () => {
-      if (process.env === 'production') {
+      if (process.env.NODE_ENV === 'production') {
         // In production, remove the server-side generated styles and let
         // the live app take over (for auto-mount/unmount and lazy-loading)
         const ssStyles = document.getElementById('server-side-styles')
