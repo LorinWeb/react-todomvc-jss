@@ -4,24 +4,32 @@
 // production version of the app, run the following:
 //
 //  npm run build
-//  cd static/
+//  cd docs/
 //  python -m SimpleHTTPServer 3001
 //
 
-import React from 'react';
+import React from 'react'
+import {SheetsRegistryProvider, SheetsRegistry} from 'react-jss'
 import { renderToString } from 'react-dom/server'
 import App from './containers/App/'
-import jss from 'jss'
 import fs from 'fs'
 import cleancss from 'clean-css'
 import { Provider } from 'react-redux'
 import configure from './store'
+
 const store = configure()
+const sheets = new SheetsRegistry()
 
 // Render the app to generate the css and html.
-const html = renderToString(<Provider store={store}><App/></Provider>);
+const html = renderToString(
+  <SheetsRegistryProvider registry={sheets}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </SheetsRegistryProvider>
+)
 
-fs.writeFile('./static/index.html', `
+fs.writeFile('./docs/index.html', `
 
 <!doctype html>
 <html>
@@ -51,7 +59,7 @@ fs.writeFile('./static/index.html', `
       }
     </style>
     <style type="text/css" id="server-side-styles">
-      ${new cleancss().minify(jss.sheets.toString()).styles}
+      ${new cleancss().minify(sheets.toString()).styles}
     </style>
   </head>
   <body>
@@ -79,6 +87,6 @@ fs.writeFile('./static/index.html', `
 </html>
 
 `, function (err) {
-  if (err) throw err;
-  console.log('Saved static/index.html');
-});
+  if (err) throw err
+  console.log('Saved docs/index.html')
+})

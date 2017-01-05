@@ -2,7 +2,7 @@ webpackJsonp([0],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
@@ -12,7 +12,7 @@ webpackJsonp([0],[
 
 	var _reactRedux = __webpack_require__(220);
 
-	var _reactDom = __webpack_require__(240);
+	var _reactDom = __webpack_require__(248);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -20,11 +20,11 @@ webpackJsonp([0],[
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _App = __webpack_require__(241);
+	var _App = __webpack_require__(249);
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _store = __webpack_require__(380);
+	var _store = __webpack_require__(411);
 
 	var _store2 = _interopRequireDefault(_store);
 
@@ -50,7 +50,7 @@ webpackJsonp([0],[
 	  }
 	});
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
 /* 1 */
@@ -863,10 +863,10 @@ webpackJsonp([0],[
 	  };
 	}
 
-	var CompiledPatternsCache = {};
+	var CompiledPatternsCache = Object.create(null);
 
 	function compilePattern(pattern) {
-	  if (!(pattern in CompiledPatternsCache)) CompiledPatternsCache[pattern] = _compilePattern(pattern);
+	  if (!CompiledPatternsCache[pattern]) CompiledPatternsCache[pattern] = _compilePattern(pattern);
 
 	  return CompiledPatternsCache[pattern];
 	}
@@ -2735,8 +2735,6 @@ webpackJsonp([0],[
 
 	var _routerWarning2 = _interopRequireDefault(_routerWarning);
 
-	var _Actions = __webpack_require__(164);
-
 	var _computeChangedRoutes2 = __webpack_require__(182);
 
 	var _computeChangedRoutes3 = _interopRequireDefault(_computeChangedRoutes2);
@@ -2783,10 +2781,6 @@ webpackJsonp([0],[
 	    }
 
 	    return (0, _isActive3.default)(location, indexOnly, state.location, state.routes, state.params);
-	  }
-
-	  function createLocationFromRedirectInfo(location) {
-	    return history.createLocation(location, _Actions.REPLACE);
 	  }
 
 	  var partialNextState = void 0;
@@ -2846,7 +2840,7 @@ webpackJsonp([0],[
 	    }
 
 	    function handleErrorOrRedirect(error, redirectInfo) {
-	      if (error) callback(error);else callback(null, createLocationFromRedirectInfo(redirectInfo));
+	      if (error) callback(error);else callback(null, redirectInfo);
 	    }
 	  }
 
@@ -3009,7 +3003,7 @@ webpackJsonp([0],[
 	          if (error) {
 	            listener(error);
 	          } else if (redirectLocation) {
-	            history.transitionTo(redirectLocation);
+	            history.replace(redirectLocation);
 	          } else if (nextState) {
 	            listener(null, nextState);
 	          } else {
@@ -3029,6 +3023,7 @@ webpackJsonp([0],[
 	}
 
 	//export default useRoutes
+
 	module.exports = exports['default'];
 
 /***/ },
@@ -4170,7 +4165,7 @@ webpackJsonp([0],[
 	  },
 
 	  propTypes: {
-	    to: oneOfType([string, object]).isRequired,
+	    to: oneOfType([string, object]),
 	    query: object,
 	    hash: string,
 	    state: object,
@@ -4231,6 +4226,11 @@ webpackJsonp([0],[
 
 
 	    if (router) {
+	      // If user does not specify a `to` prop, return an empty anchor tag.
+	      if (to == null) {
+	        return _react2.default.createElement('a', props);
+	      }
+
 	      var location = createLocationDescriptor(to, { query: query, hash: hash, state: state });
 	      props.href = router.createHref(location);
 
@@ -4301,6 +4301,10 @@ webpackJsonp([0],[
 
 	exports.default = withRouter;
 
+	var _invariant = __webpack_require__(161);
+
+	var _invariant2 = _interopRequireDefault(_invariant);
+
 	var _react = __webpack_require__(3);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -4317,13 +4321,33 @@ webpackJsonp([0],[
 	  return WrappedComponent.displayName || WrappedComponent.name || 'Component';
 	}
 
-	function withRouter(WrappedComponent) {
+	function withRouter(WrappedComponent, options) {
+	  var withRef = options && options.withRef;
+
 	  var WithRouter = _react2.default.createClass({
 	    displayName: 'WithRouter',
 
 	    contextTypes: { router: _PropTypes.routerShape },
+	    propTypes: { router: _PropTypes.routerShape },
+
+	    getWrappedInstance: function getWrappedInstance() {
+	      !withRef ?  false ? (0, _invariant2.default)(false, 'To access the wrapped instance, you need to specify ' + '`{ withRef: true }` as the second argument of the withRouter() call.') : (0, _invariant2.default)(false) : void 0;
+
+	      return this.wrappedInstance;
+	    },
 	    render: function render() {
-	      return _react2.default.createElement(WrappedComponent, _extends({}, this.props, { router: this.context.router }));
+	      var _this = this;
+
+	      var router = this.props.router || this.context.router;
+	      var props = _extends({}, this.props, { router: router });
+
+	      if (withRef) {
+	        props.ref = function (c) {
+	          _this.wrappedInstance = c;
+	        };
+	      }
+
+	      return _react2.default.createElement(WrappedComponent, props);
 	    }
 	  });
 
@@ -4364,17 +4388,9 @@ webpackJsonp([0],[
 	    arity: true
 	};
 
-	var isGetOwnPropertySymbolsAvailable = typeof Object.getOwnPropertySymbols === 'function';
-
 	module.exports = function hoistNonReactStatics(targetComponent, sourceComponent, customStatics) {
 	    if (typeof sourceComponent !== 'string') { // don't hoist over string (html) components
 	        var keys = Object.getOwnPropertyNames(sourceComponent);
-
-	        /* istanbul ignore else */
-	        if (isGetOwnPropertySymbolsAvailable) {
-	            keys = keys.concat(Object.getOwnPropertySymbols(sourceComponent));
-	        }
-
 	        for (var i = 0; i < keys.length; ++i) {
 	            if (!REACT_STATICS[keys[i]] && !KNOWN_STATICS[keys[i]] && (!customStatics || !customStatics[keys[i]])) {
 	                try {
@@ -4950,6 +4966,8 @@ webpackJsonp([0],[
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+	var _Actions = __webpack_require__(164);
+
 	var _invariant = __webpack_require__(161);
 
 	var _invariant2 = _interopRequireDefault(_invariant);
@@ -5008,7 +5026,7 @@ webpackJsonp([0],[
 	  history = (0, _RouterUtils.createRoutingHistory)(history, transitionManager);
 
 	  transitionManager.match(location, function (error, redirectLocation, nextState) {
-	    callback(error, redirectLocation, nextState && _extends({}, nextState, {
+	    callback(error, redirectLocation && router.createLocation(redirectLocation, _Actions.REPLACE), nextState && _extends({}, nextState, {
 	      history: history,
 	      router: router,
 	      matchContext: { history: history, transitionManager: transitionManager, router: router }
@@ -5431,6 +5449,10 @@ webpackJsonp([0],[
 
 	var _RouterContext2 = _interopRequireDefault(_RouterContext);
 
+	var _routerWarning = __webpack_require__(157);
+
+	var _routerWarning2 = _interopRequireDefault(_routerWarning);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = function () {
@@ -5438,16 +5460,19 @@ webpackJsonp([0],[
 	    middlewares[_key] = arguments[_key];
 	  }
 
-	  var withContext = middlewares.map(function (m) {
-	    return m.renderRouterContext;
-	  }).filter(function (f) {
-	    return f;
-	  });
-	  var withComponent = middlewares.map(function (m) {
-	    return m.renderRouteComponent;
-	  }).filter(function (f) {
-	    return f;
-	  });
+	  if (false) {
+	    middlewares.forEach(function (middleware, index) {
+	      process.env.NODE_ENV !== 'production' ? (0, _routerWarning2.default)(middleware.renderRouterContext || middleware.renderRouteComponent, 'The middleware specified at index ' + index + ' does not appear to be ' + 'a valid React Router middleware.') : void 0;
+	    });
+	  }
+
+	  var withContext = middlewares.map(function (middleware) {
+	    return middleware.renderRouterContext;
+	  }).filter(Boolean);
+	  var withComponent = middlewares.map(function (middleware) {
+	    return middleware.renderRouteComponent;
+	  }).filter(Boolean);
+
 	  var makeCreateElement = function makeCreateElement() {
 	    var baseCreateElement = arguments.length <= 0 || arguments[0] === undefined ? _react.createElement : arguments[0];
 	    return function (Component, props) {
@@ -5833,12 +5858,11 @@ webpackJsonp([0],[
 	 * this state is discouraged.
 	 */
 	function routerReducer() {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
 
-	  var _ref = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-
-	  var type = _ref.type;
-	  var payload = _ref.payload;
+	  var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+	      type = _ref.type,
+	      payload = _ref.payload;
 
 	  if (type === LOCATION_CHANGE) {
 	    return _extends({}, state, { locationBeforeTransitions: payload });
@@ -5922,12 +5946,11 @@ webpackJsonp([0],[
 	 * correct router state.
 	 */
 	function syncHistoryWithStore(history, store) {
-	  var _ref = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
-
-	  var _ref$selectLocationSt = _ref.selectLocationState;
-	  var selectLocationState = _ref$selectLocationSt === undefined ? defaultSelectLocationState : _ref$selectLocationSt;
-	  var _ref$adjustUrlOnRepla = _ref.adjustUrlOnReplay;
-	  var adjustUrlOnReplay = _ref$adjustUrlOnRepla === undefined ? true : _ref$adjustUrlOnRepla;
+	  var _ref = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {},
+	      _ref$selectLocationSt = _ref.selectLocationState,
+	      selectLocationState = _ref$selectLocationSt === undefined ? defaultSelectLocationState : _ref$selectLocationSt,
+	      _ref$adjustUrlOnRepla = _ref.adjustUrlOnReplay,
+	      adjustUrlOnReplay = _ref$adjustUrlOnRepla === undefined ? true : _ref$adjustUrlOnRepla;
 
 	  // Ensure that the reducer is mounted on the store and functioning properly.
 	  if (typeof selectLocationState(store.getState()) === 'undefined') {
@@ -5938,6 +5961,7 @@ webpackJsonp([0],[
 	  var isTimeTraveling = void 0;
 	  var unsubscribeFromStore = void 0;
 	  var unsubscribeFromHistory = void 0;
+	  var currentLocation = void 0;
 
 	  // What does the store say about current location?
 	  var getLocationInStore = function getLocationInStore(useInitialIfEmpty) {
@@ -5945,14 +5969,14 @@ webpackJsonp([0],[
 	    return locationState.locationBeforeTransitions || (useInitialIfEmpty ? initialLocation : undefined);
 	  };
 
-	  // Init currentLocation with potential location in store
-	  var currentLocation = getLocationInStore();
+	  // Init initialLocation with potential location in store
+	  initialLocation = getLocationInStore();
 
 	  // If the store is replayed, update the URL in the browser to match.
 	  if (adjustUrlOnReplay) {
 	    var handleStoreChange = function handleStoreChange() {
 	      var locationInStore = getLocationInStore(true);
-	      if (currentLocation === locationInStore) {
+	      if (currentLocation === locationInStore || initialLocation === locationInStore) {
 	        return;
 	      }
 
@@ -5998,10 +6022,14 @@ webpackJsonp([0],[
 	  };
 	  unsubscribeFromHistory = history.listen(handleLocationChange);
 
+	  // support history 3.x
+	  if (history.getCurrentLocation) {
+	    handleLocationChange(history.getCurrentLocation());
+	  }
+
 	  // The enhanced history uses store as source of truth
 	  return _extends({}, history, {
 	    // The listeners are subscribed to the store instead of history
-
 	    listen: function listen(listener) {
 	      // Copy of last location.
 	      var lastPublishedLocation = getLocationInStore(true);
@@ -6071,9 +6099,9 @@ webpackJsonp([0],[
 	          return next(action);
 	        }
 
-	        var _action$payload = action.payload;
-	        var method = _action$payload.method;
-	        var args = _action$payload.args;
+	        var _action$payload = action.payload,
+	            method = _action$payload.method,
+	            args = _action$payload.args;
 
 	        history[method].apply(history, _toConsumableArray(args));
 	      };
@@ -6157,9 +6185,7 @@ webpackJsonp([0],[
 	  }
 
 	  Provider.prototype.render = function render() {
-	    var children = this.props.children;
-
-	    return _react.Children.only(children);
+	    return _react.Children.only(this.props.children);
 	  };
 
 	  return Provider;
@@ -6167,10 +6193,12 @@ webpackJsonp([0],[
 
 	exports["default"] = Provider;
 
+
 	if (false) {
 	  Provider.prototype.componentWillReceiveProps = function (nextProps) {
 	    var store = this.store;
 	    var nextStore = nextProps.store;
+
 
 	    if (store !== nextStore) {
 	      warnAboutReceivingStore();
@@ -6223,8 +6251,9 @@ webpackJsonp([0],[
 	  }
 	  /* eslint-enable no-console */
 	  try {
-	    // This error was thrown as a convenience so that you can use this stack
-	    // to find the callsite that caused this warning to fire.
+	    // This error was thrown as a convenience so that if you enable
+	    // "break on all exceptions" in your console,
+	    // it would pause the execution at this line.
 	    throw new Error(message);
 	    /* eslint-disable no-empty */
 	  } catch (e) {}
@@ -6237,9 +6266,10 @@ webpackJsonp([0],[
 
 	'use strict';
 
+	exports.__esModule = true;
+
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	exports.__esModule = true;
 	exports["default"] = connect;
 
 	var _react = __webpack_require__(3);
@@ -6308,12 +6338,12 @@ webpackJsonp([0],[
 	var nextVersion = 0;
 
 	function connect(mapStateToProps, mapDispatchToProps, mergeProps) {
-	  var options = arguments.length <= 3 || arguments[3] === undefined ? {} : arguments[3];
+	  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
 
 	  var shouldSubscribe = Boolean(mapStateToProps);
 	  var mapState = mapStateToProps || defaultMapStateToProps;
 
-	  var mapDispatch = undefined;
+	  var mapDispatch = void 0;
 	  if (typeof mapDispatchToProps === 'function') {
 	    mapDispatch = mapDispatchToProps;
 	  } else if (!mapDispatchToProps) {
@@ -6323,10 +6353,10 @@ webpackJsonp([0],[
 	  }
 
 	  var finalMergeProps = mergeProps || defaultMergeProps;
-	  var _options$pure = options.pure;
-	  var pure = _options$pure === undefined ? true : _options$pure;
-	  var _options$withRef = options.withRef;
-	  var withRef = _options$withRef === undefined ? false : _options$withRef;
+	  var _options$pure = options.pure,
+	      pure = _options$pure === undefined ? true : _options$pure,
+	      _options$withRef = options.withRef,
+	      withRef = _options$withRef === undefined ? false : _options$withRef;
 
 	  var checkMergedEquals = pure && finalMergeProps !== defaultMergeProps;
 
@@ -6545,11 +6575,12 @@ webpackJsonp([0],[
 	      };
 
 	      Connect.prototype.render = function render() {
-	        var haveOwnPropsChanged = this.haveOwnPropsChanged;
-	        var hasStoreStateChanged = this.hasStoreStateChanged;
-	        var haveStatePropsBeenPrecalculated = this.haveStatePropsBeenPrecalculated;
-	        var statePropsPrecalculationError = this.statePropsPrecalculationError;
-	        var renderedElement = this.renderedElement;
+	        var haveOwnPropsChanged = this.haveOwnPropsChanged,
+	            hasStoreStateChanged = this.hasStoreStateChanged,
+	            haveStatePropsBeenPrecalculated = this.haveStatePropsBeenPrecalculated,
+	            statePropsPrecalculationError = this.statePropsPrecalculationError,
+	            renderedElement = this.renderedElement;
+
 
 	        this.haveOwnPropsChanged = false;
 	        this.hasStoreStateChanged = false;
@@ -6690,27 +6721,27 @@ webpackJsonp([0],[
 
 	var _createStore2 = _interopRequireDefault(_createStore);
 
-	var _combineReducers = __webpack_require__(235);
+	var _combineReducers = __webpack_require__(243);
 
 	var _combineReducers2 = _interopRequireDefault(_combineReducers);
 
-	var _bindActionCreators = __webpack_require__(237);
+	var _bindActionCreators = __webpack_require__(245);
 
 	var _bindActionCreators2 = _interopRequireDefault(_bindActionCreators);
 
-	var _applyMiddleware = __webpack_require__(238);
+	var _applyMiddleware = __webpack_require__(246);
 
 	var _applyMiddleware2 = _interopRequireDefault(_applyMiddleware);
 
-	var _compose = __webpack_require__(239);
+	var _compose = __webpack_require__(247);
 
 	var _compose2 = _interopRequireDefault(_compose);
 
-	var _warning = __webpack_require__(236);
+	var _warning = __webpack_require__(244);
 
 	var _warning2 = _interopRequireDefault(_warning);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 	/*
 	* This is a dummy function to check if the function name has been altered by minification.
@@ -6719,14 +6750,14 @@ webpackJsonp([0],[
 	function isCrushed() {}
 
 	if (false) {
-	  (0, _warning2["default"])('You are currently using minified code outside of NODE_ENV === \'production\'. ' + 'This means that you are running a slower development build of Redux. ' + 'You can use loose-envify (https://github.com/zertosh/loose-envify) for browserify ' + 'or DefinePlugin for webpack (http://stackoverflow.com/questions/30030031) ' + 'to ensure you have the correct code for your production build.');
+	  (0, _warning2['default'])('You are currently using minified code outside of NODE_ENV === \'production\'. ' + 'This means that you are running a slower development build of Redux. ' + 'You can use loose-envify (https://github.com/zertosh/loose-envify) for browserify ' + 'or DefinePlugin for webpack (http://stackoverflow.com/questions/30030031) ' + 'to ensure you have the correct code for your production build.');
 	}
 
-	exports.createStore = _createStore2["default"];
-	exports.combineReducers = _combineReducers2["default"];
-	exports.bindActionCreators = _bindActionCreators2["default"];
-	exports.applyMiddleware = _applyMiddleware2["default"];
-	exports.compose = _compose2["default"];
+	exports.createStore = _createStore2['default'];
+	exports.combineReducers = _combineReducers2['default'];
+	exports.bindActionCreators = _bindActionCreators2['default'];
+	exports.applyMiddleware = _applyMiddleware2['default'];
+	exports.compose = _compose2['default'];
 
 /***/ },
 /* 228 */
@@ -6736,17 +6767,17 @@ webpackJsonp([0],[
 
 	exports.__esModule = true;
 	exports.ActionTypes = undefined;
-	exports["default"] = createStore;
+	exports['default'] = createStore;
 
 	var _isPlainObject = __webpack_require__(229);
 
 	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 
-	var _symbolObservable = __webpack_require__(233);
+	var _symbolObservable = __webpack_require__(239);
 
 	var _symbolObservable2 = _interopRequireDefault(_symbolObservable);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 	/**
 	 * These are private action types reserved by Redux.
@@ -6769,7 +6800,7 @@ webpackJsonp([0],[
 	 * @param {Function} reducer A function that returns the next state tree, given
 	 * the current state tree and the action to handle.
 	 *
-	 * @param {any} [initialState] The initial state. You may optionally specify it
+	 * @param {any} [preloadedState] The initial state. You may optionally specify it
 	 * to hydrate the state from the server in universal apps, or to restore a
 	 * previously serialized user session.
 	 * If you use `combineReducers` to produce the root reducer function, this must be
@@ -6783,12 +6814,12 @@ webpackJsonp([0],[
 	 * @returns {Store} A Redux store that lets you read the state, dispatch actions
 	 * and subscribe to changes.
 	 */
-	function createStore(reducer, initialState, enhancer) {
+	function createStore(reducer, preloadedState, enhancer) {
 	  var _ref2;
 
-	  if (typeof initialState === 'function' && typeof enhancer === 'undefined') {
-	    enhancer = initialState;
-	    initialState = undefined;
+	  if (typeof preloadedState === 'function' && typeof enhancer === 'undefined') {
+	    enhancer = preloadedState;
+	    preloadedState = undefined;
 	  }
 
 	  if (typeof enhancer !== 'undefined') {
@@ -6796,7 +6827,7 @@ webpackJsonp([0],[
 	      throw new Error('Expected the enhancer to be a function.');
 	    }
 
-	    return enhancer(createStore)(reducer, initialState);
+	    return enhancer(createStore)(reducer, preloadedState);
 	  }
 
 	  if (typeof reducer !== 'function') {
@@ -6804,7 +6835,7 @@ webpackJsonp([0],[
 	  }
 
 	  var currentReducer = reducer;
-	  var currentState = initialState;
+	  var currentState = preloadedState;
 	  var currentListeners = [];
 	  var nextListeners = currentListeners;
 	  var isDispatching = false;
@@ -6896,7 +6927,7 @@ webpackJsonp([0],[
 	   * return something else (for example, a Promise you can await).
 	   */
 	  function dispatch(action) {
-	    if (!(0, _isPlainObject2["default"])(action)) {
+	    if (!(0, _isPlainObject2['default'])(action)) {
 	      throw new Error('Actions must be plain objects. ' + 'Use custom middleware for async actions.');
 	    }
 
@@ -6961,7 +6992,6 @@ webpackJsonp([0],[
 	       * be used to unsubscribe the observable from the store, and prevent further
 	       * emission of values from the observable.
 	       */
-
 	      subscribe: function subscribe(observer) {
 	        if (typeof observer !== 'object') {
 	          throw new TypeError('Expected the observer to be an object.');
@@ -6977,7 +7007,7 @@ webpackJsonp([0],[
 	        var unsubscribe = outerSubscribe(observeState);
 	        return { unsubscribe: unsubscribe };
 	      }
-	    }, _ref[_symbolObservable2["default"]] = function () {
+	    }, _ref[_symbolObservable2['default']] = function () {
 	      return this;
 	    }, _ref;
 	  }
@@ -6992,38 +7022,32 @@ webpackJsonp([0],[
 	    subscribe: subscribe,
 	    getState: getState,
 	    replaceReducer: replaceReducer
-	  }, _ref2[_symbolObservable2["default"]] = observable, _ref2;
+	  }, _ref2[_symbolObservable2['default']] = observable, _ref2;
 	}
 
 /***/ },
 /* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getPrototype = __webpack_require__(230),
-	    isHostObject = __webpack_require__(231),
-	    isObjectLike = __webpack_require__(232);
+	var baseGetTag = __webpack_require__(230),
+	    getPrototype = __webpack_require__(236),
+	    isObjectLike = __webpack_require__(238);
 
 	/** `Object#toString` result references. */
 	var objectTag = '[object Object]';
 
 	/** Used for built-in method references. */
-	var objectProto = Object.prototype;
+	var funcProto = Function.prototype,
+	    objectProto = Object.prototype;
 
 	/** Used to resolve the decompiled source of functions. */
-	var funcToString = Function.prototype.toString;
+	var funcToString = funcProto.toString;
 
 	/** Used to check objects for own properties. */
 	var hasOwnProperty = objectProto.hasOwnProperty;
 
 	/** Used to infer the `Object` constructor. */
 	var objectCtorString = funcToString.call(Object);
-
-	/**
-	 * Used to resolve the
-	 * [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
-	 * of values.
-	 */
-	var objectToString = objectProto.toString;
 
 	/**
 	 * Checks if `value` is a plain object, that is, an object created by the
@@ -7034,8 +7058,7 @@ webpackJsonp([0],[
 	 * @since 0.8.0
 	 * @category Lang
 	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is a plain object,
-	 *  else `false`.
+	 * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
 	 * @example
 	 *
 	 * function Foo() {
@@ -7055,8 +7078,7 @@ webpackJsonp([0],[
 	 * // => true
 	 */
 	function isPlainObject(value) {
-	  if (!isObjectLike(value) ||
-	      objectToString.call(value) != objectTag || isHostObject(value)) {
+	  if (!isObjectLike(value) || baseGetTag(value) != objectTag) {
 	    return false;
 	  }
 	  var proto = getPrototype(value);
@@ -7064,8 +7086,8 @@ webpackJsonp([0],[
 	    return true;
 	  }
 	  var Ctor = hasOwnProperty.call(proto, 'constructor') && proto.constructor;
-	  return (typeof Ctor == 'function' &&
-	    Ctor instanceof Ctor && funcToString.call(Ctor) == objectCtorString);
+	  return typeof Ctor == 'function' && Ctor instanceof Ctor &&
+	    funcToString.call(Ctor) == objectCtorString;
 	}
 
 	module.exports = isPlainObject;
@@ -7073,53 +7095,191 @@ webpackJsonp([0],[
 
 /***/ },
 /* 230 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	/* Built-in method references for those with the same name as other `lodash` methods. */
-	var nativeGetPrototype = Object.getPrototypeOf;
+	var Symbol = __webpack_require__(231),
+	    getRawTag = __webpack_require__(234),
+	    objectToString = __webpack_require__(235);
+
+	/** `Object#toString` result references. */
+	var nullTag = '[object Null]',
+	    undefinedTag = '[object Undefined]';
+
+	/** Built-in value references. */
+	var symToStringTag = Symbol ? Symbol.toStringTag : undefined;
 
 	/**
-	 * Gets the `[[Prototype]]` of `value`.
+	 * The base implementation of `getTag` without fallbacks for buggy environments.
 	 *
 	 * @private
 	 * @param {*} value The value to query.
-	 * @returns {null|Object} Returns the `[[Prototype]]`.
+	 * @returns {string} Returns the `toStringTag`.
 	 */
-	function getPrototype(value) {
-	  return nativeGetPrototype(Object(value));
+	function baseGetTag(value) {
+	  if (value == null) {
+	    return value === undefined ? undefinedTag : nullTag;
+	  }
+	  return (symToStringTag && symToStringTag in Object(value))
+	    ? getRawTag(value)
+	    : objectToString(value);
 	}
+
+	module.exports = baseGetTag;
+
+
+/***/ },
+/* 231 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var root = __webpack_require__(232);
+
+	/** Built-in value references. */
+	var Symbol = root.Symbol;
+
+	module.exports = Symbol;
+
+
+/***/ },
+/* 232 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var freeGlobal = __webpack_require__(233);
+
+	/** Detect free variable `self`. */
+	var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+	/** Used as a reference to the global object. */
+	var root = freeGlobal || freeSelf || Function('return this')();
+
+	module.exports = root;
+
+
+/***/ },
+/* 233 */
+/***/ function(module, exports) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */
+	var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+
+	module.exports = freeGlobal;
+
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 234 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Symbol = __webpack_require__(231);
+
+	/** Used for built-in method references. */
+	var objectProto = Object.prototype;
+
+	/** Used to check objects for own properties. */
+	var hasOwnProperty = objectProto.hasOwnProperty;
+
+	/**
+	 * Used to resolve the
+	 * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+	 * of values.
+	 */
+	var nativeObjectToString = objectProto.toString;
+
+	/** Built-in value references. */
+	var symToStringTag = Symbol ? Symbol.toStringTag : undefined;
+
+	/**
+	 * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
+	 *
+	 * @private
+	 * @param {*} value The value to query.
+	 * @returns {string} Returns the raw `toStringTag`.
+	 */
+	function getRawTag(value) {
+	  var isOwn = hasOwnProperty.call(value, symToStringTag),
+	      tag = value[symToStringTag];
+
+	  try {
+	    value[symToStringTag] = undefined;
+	    var unmasked = true;
+	  } catch (e) {}
+
+	  var result = nativeObjectToString.call(value);
+	  if (unmasked) {
+	    if (isOwn) {
+	      value[symToStringTag] = tag;
+	    } else {
+	      delete value[symToStringTag];
+	    }
+	  }
+	  return result;
+	}
+
+	module.exports = getRawTag;
+
+
+/***/ },
+/* 235 */
+/***/ function(module, exports) {
+
+	/** Used for built-in method references. */
+	var objectProto = Object.prototype;
+
+	/**
+	 * Used to resolve the
+	 * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+	 * of values.
+	 */
+	var nativeObjectToString = objectProto.toString;
+
+	/**
+	 * Converts `value` to a string using `Object.prototype.toString`.
+	 *
+	 * @private
+	 * @param {*} value The value to convert.
+	 * @returns {string} Returns the converted string.
+	 */
+	function objectToString(value) {
+	  return nativeObjectToString.call(value);
+	}
+
+	module.exports = objectToString;
+
+
+/***/ },
+/* 236 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var overArg = __webpack_require__(237);
+
+	/** Built-in value references. */
+	var getPrototype = overArg(Object.getPrototypeOf, Object);
 
 	module.exports = getPrototype;
 
 
 /***/ },
-/* 231 */
+/* 237 */
 /***/ function(module, exports) {
 
 	/**
-	 * Checks if `value` is a host object in IE < 9.
+	 * Creates a unary function that invokes `func` with its argument transformed.
 	 *
 	 * @private
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is a host object, else `false`.
+	 * @param {Function} func The function to wrap.
+	 * @param {Function} transform The argument transform.
+	 * @returns {Function} Returns the new function.
 	 */
-	function isHostObject(value) {
-	  // Many host objects are `Object` objects that can coerce to strings
-	  // despite having improperly defined `toString` methods.
-	  var result = false;
-	  if (value != null && typeof value.toString != 'function') {
-	    try {
-	      result = !!(value + '');
-	    } catch (e) {}
-	  }
-	  return result;
+	function overArg(func, transform) {
+	  return function(arg) {
+	    return func(transform(arg));
+	  };
 	}
 
-	module.exports = isHostObject;
+	module.exports = overArg;
 
 
 /***/ },
-/* 232 */
+/* 238 */
 /***/ function(module, exports) {
 
 	/**
@@ -7147,39 +7307,90 @@ webpackJsonp([0],[
 	 * // => false
 	 */
 	function isObjectLike(value) {
-	  return !!value && typeof value == 'object';
+	  return value != null && typeof value == 'object';
 	}
 
 	module.exports = isObjectLike;
 
 
 /***/ },
-/* 233 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(global) {/* global window */
-	'use strict';
+	module.exports = __webpack_require__(240);
 
-	module.exports = __webpack_require__(234)(global || window || this);
-
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 234 */
+/* 240 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global, module) {'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _ponyfill = __webpack_require__(242);
+
+	var _ponyfill2 = _interopRequireDefault(_ponyfill);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var root; /* global window */
+
+
+	if (typeof self !== 'undefined') {
+	  root = self;
+	} else if (typeof window !== 'undefined') {
+	  root = window;
+	} else if (typeof global !== 'undefined') {
+	  root = global;
+	} else if (true) {
+	  root = module;
+	} else {
+	  root = Function('return this')();
+	}
+
+	var result = (0, _ponyfill2['default'])(root);
+	exports['default'] = result;
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(241)(module)))
+
+/***/ },
+/* 241 */
+/***/ function(module, exports) {
+
+	module.exports = function(module) {
+		if(!module.webpackPolyfill) {
+			module.deprecate = function() {};
+			module.paths = [];
+			// module.parent = undefined by default
+			module.children = [];
+			module.webpackPolyfill = 1;
+		}
+		return module;
+	}
+
+
+/***/ },
+/* 242 */
 /***/ function(module, exports) {
 
 	'use strict';
 
-	module.exports = function symbolObservablePonyfill(root) {
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports['default'] = symbolObservablePonyfill;
+	function symbolObservablePonyfill(root) {
 		var result;
-		var Symbol = root.Symbol;
+		var _Symbol = root.Symbol;
 
-		if (typeof Symbol === 'function') {
-			if (Symbol.observable) {
-				result = Symbol.observable;
+		if (typeof _Symbol === 'function') {
+			if (_Symbol.observable) {
+				result = _Symbol.observable;
 			} else {
-				result = Symbol('observable');
-				Symbol.observable = result;
+				result = _Symbol('observable');
+				_Symbol.observable = result;
 			}
 		} else {
 			result = '@@observable';
@@ -7188,15 +7399,14 @@ webpackJsonp([0],[
 		return result;
 	};
 
-
 /***/ },
-/* 235 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
-	exports["default"] = combineReducers;
+	exports['default'] = combineReducers;
 
 	var _createStore = __webpack_require__(228);
 
@@ -7204,11 +7414,11 @@ webpackJsonp([0],[
 
 	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 
-	var _warning = __webpack_require__(236);
+	var _warning = __webpack_require__(244);
 
 	var _warning2 = _interopRequireDefault(_warning);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 	function getUndefinedStateErrorMessage(key, action) {
 	  var actionType = action && action.type;
@@ -7217,20 +7427,24 @@ webpackJsonp([0],[
 	  return 'Given action ' + actionName + ', reducer "' + key + '" returned undefined. ' + 'To ignore an action, you must explicitly return the previous state.';
 	}
 
-	function getUnexpectedStateShapeWarningMessage(inputState, reducers, action) {
+	function getUnexpectedStateShapeWarningMessage(inputState, reducers, action, unexpectedKeyCache) {
 	  var reducerKeys = Object.keys(reducers);
-	  var argumentName = action && action.type === _createStore.ActionTypes.INIT ? 'initialState argument passed to createStore' : 'previous state received by the reducer';
+	  var argumentName = action && action.type === _createStore.ActionTypes.INIT ? 'preloadedState argument passed to createStore' : 'previous state received by the reducer';
 
 	  if (reducerKeys.length === 0) {
 	    return 'Store does not have a valid reducer. Make sure the argument passed ' + 'to combineReducers is an object whose values are reducers.';
 	  }
 
-	  if (!(0, _isPlainObject2["default"])(inputState)) {
+	  if (!(0, _isPlainObject2['default'])(inputState)) {
 	    return 'The ' + argumentName + ' has unexpected type of "' + {}.toString.call(inputState).match(/\s([a-z|A-Z]+)/)[1] + '". Expected argument to be an object with the following ' + ('keys: "' + reducerKeys.join('", "') + '"');
 	  }
 
 	  var unexpectedKeys = Object.keys(inputState).filter(function (key) {
-	    return !reducers.hasOwnProperty(key);
+	    return !reducers.hasOwnProperty(key) && !unexpectedKeyCache[key];
+	  });
+
+	  unexpectedKeys.forEach(function (key) {
+	    unexpectedKeyCache[key] = true;
 	  });
 
 	  if (unexpectedKeys.length > 0) {
@@ -7275,11 +7489,22 @@ webpackJsonp([0],[
 	  var finalReducers = {};
 	  for (var i = 0; i < reducerKeys.length; i++) {
 	    var key = reducerKeys[i];
+
+	    if (false) {
+	      if (typeof reducers[key] === 'undefined') {
+	        (0, _warning2['default'])('No reducer provided for key "' + key + '"');
+	      }
+	    }
+
 	    if (typeof reducers[key] === 'function') {
 	      finalReducers[key] = reducers[key];
 	    }
 	  }
 	  var finalReducerKeys = Object.keys(finalReducers);
+
+	  if (false) {
+	    var unexpectedKeyCache = {};
+	  }
 
 	  var sanityError;
 	  try {
@@ -7297,9 +7522,9 @@ webpackJsonp([0],[
 	    }
 
 	    if (false) {
-	      var warningMessage = getUnexpectedStateShapeWarningMessage(state, finalReducers, action);
+	      var warningMessage = getUnexpectedStateShapeWarningMessage(state, finalReducers, action, unexpectedKeyCache);
 	      if (warningMessage) {
-	        (0, _warning2["default"])(warningMessage);
+	        (0, _warning2['default'])(warningMessage);
 	      }
 	    }
 
@@ -7322,13 +7547,13 @@ webpackJsonp([0],[
 	}
 
 /***/ },
-/* 236 */
+/* 244 */
 /***/ function(module, exports) {
 
 	'use strict';
 
 	exports.__esModule = true;
-	exports["default"] = warning;
+	exports['default'] = warning;
 	/**
 	 * Prints a warning in the console if it exists.
 	 *
@@ -7352,13 +7577,13 @@ webpackJsonp([0],[
 	}
 
 /***/ },
-/* 237 */
+/* 245 */
 /***/ function(module, exports) {
 
 	'use strict';
 
 	exports.__esModule = true;
-	exports["default"] = bindActionCreators;
+	exports['default'] = bindActionCreators;
 	function bindActionCreator(actionCreator, dispatch) {
 	  return function () {
 	    return dispatch(actionCreator.apply(undefined, arguments));
@@ -7408,7 +7633,7 @@ webpackJsonp([0],[
 	}
 
 /***/ },
-/* 238 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7417,13 +7642,13 @@ webpackJsonp([0],[
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	exports["default"] = applyMiddleware;
+	exports['default'] = applyMiddleware;
 
-	var _compose = __webpack_require__(239);
+	var _compose = __webpack_require__(247);
 
 	var _compose2 = _interopRequireDefault(_compose);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 	/**
 	 * Creates a store enhancer that applies middleware to the dispatch method
@@ -7447,8 +7672,8 @@ webpackJsonp([0],[
 	  }
 
 	  return function (createStore) {
-	    return function (reducer, initialState, enhancer) {
-	      var store = createStore(reducer, initialState, enhancer);
+	    return function (reducer, preloadedState, enhancer) {
+	      var store = createStore(reducer, preloadedState, enhancer);
 	      var _dispatch = store.dispatch;
 	      var chain = [];
 
@@ -7461,7 +7686,7 @@ webpackJsonp([0],[
 	      chain = middlewares.map(function (middleware) {
 	        return middleware(middlewareAPI);
 	      });
-	      _dispatch = _compose2["default"].apply(undefined, chain)(store.dispatch);
+	      _dispatch = _compose2['default'].apply(undefined, chain)(store.dispatch);
 
 	      return _extends({}, store, {
 	        dispatch: _dispatch
@@ -7471,7 +7696,7 @@ webpackJsonp([0],[
 	}
 
 /***/ },
-/* 239 */
+/* 247 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -7498,25 +7723,23 @@ webpackJsonp([0],[
 	    return function (arg) {
 	      return arg;
 	    };
-	  } else {
-	    var _ret = function () {
-	      var last = funcs[funcs.length - 1];
-	      var rest = funcs.slice(0, -1);
-	      return {
-	        v: function v() {
-	          return rest.reduceRight(function (composed, f) {
-	            return f(composed);
-	          }, last.apply(undefined, arguments));
-	        }
-	      };
-	    }();
-
-	    if (typeof _ret === "object") return _ret.v;
 	  }
+
+	  if (funcs.length === 1) {
+	    return funcs[0];
+	  }
+
+	  var last = funcs[funcs.length - 1];
+	  var rest = funcs.slice(0, -1);
+	  return function () {
+	    return rest.reduceRight(function (composed, f) {
+	      return f(composed);
+	    }, last.apply(undefined, arguments));
+	  };
 	}
 
 /***/ },
-/* 240 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7525,10 +7748,10 @@ webpackJsonp([0],[
 
 
 /***/ },
-/* 241 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
@@ -7536,23 +7759,23 @@ webpackJsonp([0],[
 	  value: true
 	});
 
-	var _getPrototypeOf = __webpack_require__(242);
+	var _getPrototypeOf = __webpack_require__(250);
 
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
-	var _classCallCheck2 = __webpack_require__(268);
+	var _classCallCheck2 = __webpack_require__(276);
 
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-	var _createClass2 = __webpack_require__(269);
+	var _createClass2 = __webpack_require__(277);
 
 	var _createClass3 = _interopRequireDefault(_createClass2);
 
-	var _possibleConstructorReturn2 = __webpack_require__(273);
+	var _possibleConstructorReturn2 = __webpack_require__(281);
 
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-	var _inherits2 = __webpack_require__(320);
+	var _inherits2 = __webpack_require__(328);
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -7566,62 +7789,46 @@ webpackJsonp([0],[
 
 	var _reactRedux = __webpack_require__(220);
 
-	var _Header = __webpack_require__(328);
+	var _Header = __webpack_require__(336);
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _MainSection = __webpack_require__(356);
+	var _MainSection = __webpack_require__(389);
 
 	var _MainSection2 = _interopRequireDefault(_MainSection);
 
-	var _todos = __webpack_require__(364);
+	var _todos = __webpack_require__(397);
 
 	var TodoActions = _interopRequireWildcard(_todos);
 
-	var _style = __webpack_require__(377);
+	var _style = __webpack_require__(410);
 
 	var _style2 = _interopRequireDefault(_style);
 
-	var _jss = __webpack_require__(339);
-
-	var _jss2 = _interopRequireDefault(_jss);
-
-	var _reactJss = __webpack_require__(338);
+	var _reactJss = __webpack_require__(346);
 
 	var _reactJss2 = _interopRequireDefault(_reactJss);
-
-	var _jssCamelCase = __webpack_require__(378);
-
-	var _jssCamelCase2 = _interopRequireDefault(_jssCamelCase);
-
-	var _jssNested = __webpack_require__(379);
-
-	var _jssNested2 = _interopRequireDefault(_jssNested);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	// `jss` is a singleton
-	_jss2.default.use((0, _jssCamelCase2.default)()); // adds support for fontWeight => font-weight
-	_jss2.default.use((0, _jssNested2.default)()); // adds support for '&' to extract nested style objects
 
 	var App = (_dec = (0, _reactJss2.default)(_style2.default), _dec(_class = function (_Component) {
 	  (0, _inherits3.default)(App, _Component);
 
 	  function App() {
 	    (0, _classCallCheck3.default)(this, App);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(App).apply(this, arguments));
+	    return (0, _possibleConstructorReturn3.default)(this, (App.__proto__ || (0, _getPrototypeOf2.default)(App)).apply(this, arguments));
 	  }
 
 	  (0, _createClass3.default)(App, [{
 	    key: 'render',
 	    value: function render() {
-	      var _props = this.props;
-	      var todos = _props.todos;
-	      var actions = _props.actions;
-	      var children = _props.children;
-	      var classes = _props.sheet.classes;
+	      var _props = this.props,
+	          todos = _props.todos,
+	          actions = _props.actions,
+	          children = _props.children,
+	          classes = _props.sheet.classes;
 
 	      return _react2.default.createElement(
 	        'div',
@@ -7654,47 +7861,47 @@ webpackJsonp([0],[
 
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(App);
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 242 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(243), __esModule: true };
+	module.exports = { "default": __webpack_require__(251), __esModule: true };
 
 /***/ },
-/* 243 */
+/* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(244);
-	module.exports = __webpack_require__(255).Object.getPrototypeOf;
+	__webpack_require__(252);
+	module.exports = __webpack_require__(263).Object.getPrototypeOf;
 
 /***/ },
-/* 244 */
+/* 252 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.9 Object.getPrototypeOf(O)
-	var toObject        = __webpack_require__(245)
-	  , $getPrototypeOf = __webpack_require__(247);
+	var toObject        = __webpack_require__(253)
+	  , $getPrototypeOf = __webpack_require__(255);
 
-	__webpack_require__(253)('getPrototypeOf', function(){
+	__webpack_require__(261)('getPrototypeOf', function(){
 	  return function getPrototypeOf(it){
 	    return $getPrototypeOf(toObject(it));
 	  };
 	});
 
 /***/ },
-/* 245 */
+/* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.1.13 ToObject(argument)
-	var defined = __webpack_require__(246);
+	var defined = __webpack_require__(254);
 	module.exports = function(it){
 	  return Object(defined(it));
 	};
 
 /***/ },
-/* 246 */
+/* 254 */
 /***/ function(module, exports) {
 
 	// 7.2.1 RequireObjectCoercible(argument)
@@ -7704,13 +7911,13 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 247 */
+/* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
-	var has         = __webpack_require__(248)
-	  , toObject    = __webpack_require__(245)
-	  , IE_PROTO    = __webpack_require__(249)('IE_PROTO')
+	var has         = __webpack_require__(256)
+	  , toObject    = __webpack_require__(253)
+	  , IE_PROTO    = __webpack_require__(257)('IE_PROTO')
 	  , ObjectProto = Object.prototype;
 
 	module.exports = Object.getPrototypeOf || function(O){
@@ -7722,7 +7929,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 248 */
+/* 256 */
 /***/ function(module, exports) {
 
 	var hasOwnProperty = {}.hasOwnProperty;
@@ -7731,20 +7938,20 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 249 */
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var shared = __webpack_require__(250)('keys')
-	  , uid    = __webpack_require__(252);
+	var shared = __webpack_require__(258)('keys')
+	  , uid    = __webpack_require__(260);
 	module.exports = function(key){
 	  return shared[key] || (shared[key] = uid(key));
 	};
 
 /***/ },
-/* 250 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var global = __webpack_require__(251)
+	var global = __webpack_require__(259)
 	  , SHARED = '__core-js_shared__'
 	  , store  = global[SHARED] || (global[SHARED] = {});
 	module.exports = function(key){
@@ -7752,7 +7959,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 251 */
+/* 259 */
 /***/ function(module, exports) {
 
 	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -7761,7 +7968,7 @@ webpackJsonp([0],[
 	if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
 
 /***/ },
-/* 252 */
+/* 260 */
 /***/ function(module, exports) {
 
 	var id = 0
@@ -7771,13 +7978,13 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 253 */
+/* 261 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// most Object methods by ES6 should accept primitives
-	var $export = __webpack_require__(254)
-	  , core    = __webpack_require__(255)
-	  , fails   = __webpack_require__(264);
+	var $export = __webpack_require__(262)
+	  , core    = __webpack_require__(263)
+	  , fails   = __webpack_require__(272);
 	module.exports = function(KEY, exec){
 	  var fn  = (core.Object || {})[KEY] || Object[KEY]
 	    , exp = {};
@@ -7786,13 +7993,13 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 254 */
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var global    = __webpack_require__(251)
-	  , core      = __webpack_require__(255)
-	  , ctx       = __webpack_require__(256)
-	  , hide      = __webpack_require__(258)
+	var global    = __webpack_require__(259)
+	  , core      = __webpack_require__(263)
+	  , ctx       = __webpack_require__(264)
+	  , hide      = __webpack_require__(266)
 	  , PROTOTYPE = 'prototype';
 
 	var $export = function(type, name, source){
@@ -7852,18 +8059,18 @@ webpackJsonp([0],[
 	module.exports = $export;
 
 /***/ },
-/* 255 */
+/* 263 */
 /***/ function(module, exports) {
 
 	var core = module.exports = {version: '2.4.0'};
 	if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
 
 /***/ },
-/* 256 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// optional / simple context binding
-	var aFunction = __webpack_require__(257);
+	var aFunction = __webpack_require__(265);
 	module.exports = function(fn, that, length){
 	  aFunction(fn);
 	  if(that === undefined)return fn;
@@ -7884,7 +8091,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 257 */
+/* 265 */
 /***/ function(module, exports) {
 
 	module.exports = function(it){
@@ -7893,12 +8100,12 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 258 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var dP         = __webpack_require__(259)
-	  , createDesc = __webpack_require__(267);
-	module.exports = __webpack_require__(263) ? function(object, key, value){
+	var dP         = __webpack_require__(267)
+	  , createDesc = __webpack_require__(275);
+	module.exports = __webpack_require__(271) ? function(object, key, value){
 	  return dP.f(object, key, createDesc(1, value));
 	} : function(object, key, value){
 	  object[key] = value;
@@ -7906,15 +8113,15 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 259 */
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var anObject       = __webpack_require__(260)
-	  , IE8_DOM_DEFINE = __webpack_require__(262)
-	  , toPrimitive    = __webpack_require__(266)
+	var anObject       = __webpack_require__(268)
+	  , IE8_DOM_DEFINE = __webpack_require__(270)
+	  , toPrimitive    = __webpack_require__(274)
 	  , dP             = Object.defineProperty;
 
-	exports.f = __webpack_require__(263) ? Object.defineProperty : function defineProperty(O, P, Attributes){
+	exports.f = __webpack_require__(271) ? Object.defineProperty : function defineProperty(O, P, Attributes){
 	  anObject(O);
 	  P = toPrimitive(P, true);
 	  anObject(Attributes);
@@ -7927,17 +8134,17 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 260 */
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isObject = __webpack_require__(261);
+	var isObject = __webpack_require__(269);
 	module.exports = function(it){
 	  if(!isObject(it))throw TypeError(it + ' is not an object!');
 	  return it;
 	};
 
 /***/ },
-/* 261 */
+/* 269 */
 /***/ function(module, exports) {
 
 	module.exports = function(it){
@@ -7945,24 +8152,24 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 262 */
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = !__webpack_require__(263) && !__webpack_require__(264)(function(){
-	  return Object.defineProperty(__webpack_require__(265)('div'), 'a', {get: function(){ return 7; }}).a != 7;
+	module.exports = !__webpack_require__(271) && !__webpack_require__(272)(function(){
+	  return Object.defineProperty(__webpack_require__(273)('div'), 'a', {get: function(){ return 7; }}).a != 7;
 	});
 
 /***/ },
-/* 263 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Thank's IE8 for his funny defineProperty
-	module.exports = !__webpack_require__(264)(function(){
+	module.exports = !__webpack_require__(272)(function(){
 	  return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
 	});
 
 /***/ },
-/* 264 */
+/* 272 */
 /***/ function(module, exports) {
 
 	module.exports = function(exec){
@@ -7974,11 +8181,11 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 265 */
+/* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isObject = __webpack_require__(261)
-	  , document = __webpack_require__(251).document
+	var isObject = __webpack_require__(269)
+	  , document = __webpack_require__(259).document
 	  // in old IE typeof document.createElement is 'object'
 	  , is = isObject(document) && isObject(document.createElement);
 	module.exports = function(it){
@@ -7986,11 +8193,11 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 266 */
+/* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.1.1 ToPrimitive(input [, PreferredType])
-	var isObject = __webpack_require__(261);
+	var isObject = __webpack_require__(269);
 	// instead of the ES6 spec version, we didn't implement @@toPrimitive case
 	// and the second argument - flag - preferred type is a string
 	module.exports = function(it, S){
@@ -8003,7 +8210,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 267 */
+/* 275 */
 /***/ function(module, exports) {
 
 	module.exports = function(bitmap, value){
@@ -8016,7 +8223,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 268 */
+/* 276 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -8030,14 +8237,14 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 269 */
+/* 277 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	exports.__esModule = true;
 
-	var _defineProperty = __webpack_require__(270);
+	var _defineProperty = __webpack_require__(278);
 
 	var _defineProperty2 = _interopRequireDefault(_defineProperty);
 
@@ -8062,38 +8269,38 @@ webpackJsonp([0],[
 	}();
 
 /***/ },
-/* 270 */
+/* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(271), __esModule: true };
+	module.exports = { "default": __webpack_require__(279), __esModule: true };
 
 /***/ },
-/* 271 */
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(272);
-	var $Object = __webpack_require__(255).Object;
+	__webpack_require__(280);
+	var $Object = __webpack_require__(263).Object;
 	module.exports = function defineProperty(it, key, desc){
 	  return $Object.defineProperty(it, key, desc);
 	};
 
 /***/ },
-/* 272 */
+/* 280 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var $export = __webpack_require__(254);
+	var $export = __webpack_require__(262);
 	// 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
-	$export($export.S + $export.F * !__webpack_require__(263), 'Object', {defineProperty: __webpack_require__(259).f});
+	$export($export.S + $export.F * !__webpack_require__(271), 'Object', {defineProperty: __webpack_require__(267).f});
 
 /***/ },
-/* 273 */
+/* 281 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	exports.__esModule = true;
 
-	var _typeof2 = __webpack_require__(274);
+	var _typeof2 = __webpack_require__(282);
 
 	var _typeof3 = _interopRequireDefault(_typeof2);
 
@@ -8108,54 +8315,54 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 274 */
+/* 282 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	exports.__esModule = true;
 
-	var _iterator = __webpack_require__(275);
+	var _iterator = __webpack_require__(283);
 
 	var _iterator2 = _interopRequireDefault(_iterator);
 
-	var _symbol = __webpack_require__(304);
+	var _symbol = __webpack_require__(312);
 
 	var _symbol2 = _interopRequireDefault(_symbol);
 
-	var _typeof = typeof _symbol2.default === "function" && typeof _iterator2.default === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default ? "symbol" : typeof obj; };
+	var _typeof = typeof _symbol2.default === "function" && typeof _iterator2.default === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj; };
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.default) === "symbol" ? function (obj) {
 	  return typeof obj === "undefined" ? "undefined" : _typeof(obj);
 	} : function (obj) {
-	  return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof(obj);
+	  return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof(obj);
 	};
 
 /***/ },
-/* 275 */
+/* 283 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(276), __esModule: true };
+	module.exports = { "default": __webpack_require__(284), __esModule: true };
 
 /***/ },
-/* 276 */
+/* 284 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(277);
-	__webpack_require__(299);
-	module.exports = __webpack_require__(303).f('iterator');
+	__webpack_require__(285);
+	__webpack_require__(307);
+	module.exports = __webpack_require__(311).f('iterator');
 
 /***/ },
-/* 277 */
+/* 285 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var $at  = __webpack_require__(278)(true);
+	var $at  = __webpack_require__(286)(true);
 
 	// 21.1.3.27 String.prototype[@@iterator]()
-	__webpack_require__(280)(String, 'String', function(iterated){
+	__webpack_require__(288)(String, 'String', function(iterated){
 	  this._t = String(iterated); // target
 	  this._i = 0;                // next index
 	// 21.1.5.2.1 %StringIteratorPrototype%.next()
@@ -8170,11 +8377,11 @@ webpackJsonp([0],[
 	});
 
 /***/ },
-/* 278 */
+/* 286 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var toInteger = __webpack_require__(279)
-	  , defined   = __webpack_require__(246);
+	var toInteger = __webpack_require__(287)
+	  , defined   = __webpack_require__(254);
 	// true  -> String#at
 	// false -> String#codePointAt
 	module.exports = function(TO_STRING){
@@ -8192,7 +8399,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 279 */
+/* 287 */
 /***/ function(module, exports) {
 
 	// 7.1.4 ToInteger
@@ -8203,20 +8410,20 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 280 */
+/* 288 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var LIBRARY        = __webpack_require__(281)
-	  , $export        = __webpack_require__(254)
-	  , redefine       = __webpack_require__(282)
-	  , hide           = __webpack_require__(258)
-	  , has            = __webpack_require__(248)
-	  , Iterators      = __webpack_require__(283)
-	  , $iterCreate    = __webpack_require__(284)
-	  , setToStringTag = __webpack_require__(297)
-	  , getPrototypeOf = __webpack_require__(247)
-	  , ITERATOR       = __webpack_require__(298)('iterator')
+	var LIBRARY        = __webpack_require__(289)
+	  , $export        = __webpack_require__(262)
+	  , redefine       = __webpack_require__(290)
+	  , hide           = __webpack_require__(266)
+	  , has            = __webpack_require__(256)
+	  , Iterators      = __webpack_require__(291)
+	  , $iterCreate    = __webpack_require__(292)
+	  , setToStringTag = __webpack_require__(305)
+	  , getPrototypeOf = __webpack_require__(255)
+	  , ITERATOR       = __webpack_require__(306)('iterator')
 	  , BUGGY          = !([].keys && 'next' in [].keys()) // Safari has buggy iterators w/o `next`
 	  , FF_ITERATOR    = '@@iterator'
 	  , KEYS           = 'keys'
@@ -8278,35 +8485,35 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 281 */
+/* 289 */
 /***/ function(module, exports) {
 
 	module.exports = true;
 
 /***/ },
-/* 282 */
+/* 290 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(258);
+	module.exports = __webpack_require__(266);
 
 /***/ },
-/* 283 */
+/* 291 */
 /***/ function(module, exports) {
 
 	module.exports = {};
 
 /***/ },
-/* 284 */
+/* 292 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var create         = __webpack_require__(285)
-	  , descriptor     = __webpack_require__(267)
-	  , setToStringTag = __webpack_require__(297)
+	var create         = __webpack_require__(293)
+	  , descriptor     = __webpack_require__(275)
+	  , setToStringTag = __webpack_require__(305)
 	  , IteratorPrototype = {};
 
 	// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
-	__webpack_require__(258)(IteratorPrototype, __webpack_require__(298)('iterator'), function(){ return this; });
+	__webpack_require__(266)(IteratorPrototype, __webpack_require__(306)('iterator'), function(){ return this; });
 
 	module.exports = function(Constructor, NAME, next){
 	  Constructor.prototype = create(IteratorPrototype, {next: descriptor(1, next)});
@@ -8314,27 +8521,27 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 285 */
+/* 293 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-	var anObject    = __webpack_require__(260)
-	  , dPs         = __webpack_require__(286)
-	  , enumBugKeys = __webpack_require__(295)
-	  , IE_PROTO    = __webpack_require__(249)('IE_PROTO')
+	var anObject    = __webpack_require__(268)
+	  , dPs         = __webpack_require__(294)
+	  , enumBugKeys = __webpack_require__(303)
+	  , IE_PROTO    = __webpack_require__(257)('IE_PROTO')
 	  , Empty       = function(){ /* empty */ }
 	  , PROTOTYPE   = 'prototype';
 
 	// Create object with fake `null` prototype: use iframe Object with cleared prototype
 	var createDict = function(){
 	  // Thrash, waste and sodomy: IE GC bug
-	  var iframe = __webpack_require__(265)('iframe')
+	  var iframe = __webpack_require__(273)('iframe')
 	    , i      = enumBugKeys.length
 	    , lt     = '<'
 	    , gt     = '>'
 	    , iframeDocument;
 	  iframe.style.display = 'none';
-	  __webpack_require__(296).appendChild(iframe);
+	  __webpack_require__(304).appendChild(iframe);
 	  iframe.src = 'javascript:'; // eslint-disable-line no-script-url
 	  // createDict = iframe.contentWindow.Object;
 	  // html.removeChild(iframe);
@@ -8361,14 +8568,14 @@ webpackJsonp([0],[
 
 
 /***/ },
-/* 286 */
+/* 294 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var dP       = __webpack_require__(259)
-	  , anObject = __webpack_require__(260)
-	  , getKeys  = __webpack_require__(287);
+	var dP       = __webpack_require__(267)
+	  , anObject = __webpack_require__(268)
+	  , getKeys  = __webpack_require__(295);
 
-	module.exports = __webpack_require__(263) ? Object.defineProperties : function defineProperties(O, Properties){
+	module.exports = __webpack_require__(271) ? Object.defineProperties : function defineProperties(O, Properties){
 	  anObject(O);
 	  var keys   = getKeys(Properties)
 	    , length = keys.length
@@ -8379,25 +8586,25 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 287 */
+/* 295 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.14 / 15.2.3.14 Object.keys(O)
-	var $keys       = __webpack_require__(288)
-	  , enumBugKeys = __webpack_require__(295);
+	var $keys       = __webpack_require__(296)
+	  , enumBugKeys = __webpack_require__(303);
 
 	module.exports = Object.keys || function keys(O){
 	  return $keys(O, enumBugKeys);
 	};
 
 /***/ },
-/* 288 */
+/* 296 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var has          = __webpack_require__(248)
-	  , toIObject    = __webpack_require__(289)
-	  , arrayIndexOf = __webpack_require__(292)(false)
-	  , IE_PROTO     = __webpack_require__(249)('IE_PROTO');
+	var has          = __webpack_require__(256)
+	  , toIObject    = __webpack_require__(297)
+	  , arrayIndexOf = __webpack_require__(300)(false)
+	  , IE_PROTO     = __webpack_require__(257)('IE_PROTO');
 
 	module.exports = function(object, names){
 	  var O      = toIObject(object)
@@ -8413,28 +8620,28 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 289 */
+/* 297 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// to indexed object, toObject with fallback for non-array-like ES3 strings
-	var IObject = __webpack_require__(290)
-	  , defined = __webpack_require__(246);
+	var IObject = __webpack_require__(298)
+	  , defined = __webpack_require__(254);
 	module.exports = function(it){
 	  return IObject(defined(it));
 	};
 
 /***/ },
-/* 290 */
+/* 298 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// fallback for non-array-like ES3 and non-enumerable old V8 strings
-	var cof = __webpack_require__(291);
+	var cof = __webpack_require__(299);
 	module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
 	  return cof(it) == 'String' ? it.split('') : Object(it);
 	};
 
 /***/ },
-/* 291 */
+/* 299 */
 /***/ function(module, exports) {
 
 	var toString = {}.toString;
@@ -8444,14 +8651,14 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 292 */
+/* 300 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// false -> Array#indexOf
 	// true  -> Array#includes
-	var toIObject = __webpack_require__(289)
-	  , toLength  = __webpack_require__(293)
-	  , toIndex   = __webpack_require__(294);
+	var toIObject = __webpack_require__(297)
+	  , toLength  = __webpack_require__(301)
+	  , toIndex   = __webpack_require__(302);
 	module.exports = function(IS_INCLUDES){
 	  return function($this, el, fromIndex){
 	    var O      = toIObject($this)
@@ -8470,21 +8677,21 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 293 */
+/* 301 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.1.15 ToLength
-	var toInteger = __webpack_require__(279)
+	var toInteger = __webpack_require__(287)
 	  , min       = Math.min;
 	module.exports = function(it){
 	  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 	};
 
 /***/ },
-/* 294 */
+/* 302 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var toInteger = __webpack_require__(279)
+	var toInteger = __webpack_require__(287)
 	  , max       = Math.max
 	  , min       = Math.min;
 	module.exports = function(index, length){
@@ -8493,7 +8700,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 295 */
+/* 303 */
 /***/ function(module, exports) {
 
 	// IE 8- don't enum bug keys
@@ -8502,30 +8709,30 @@ webpackJsonp([0],[
 	).split(',');
 
 /***/ },
-/* 296 */
+/* 304 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(251).document && document.documentElement;
+	module.exports = __webpack_require__(259).document && document.documentElement;
 
 /***/ },
-/* 297 */
+/* 305 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var def = __webpack_require__(259).f
-	  , has = __webpack_require__(248)
-	  , TAG = __webpack_require__(298)('toStringTag');
+	var def = __webpack_require__(267).f
+	  , has = __webpack_require__(256)
+	  , TAG = __webpack_require__(306)('toStringTag');
 
 	module.exports = function(it, tag, stat){
 	  if(it && !has(it = stat ? it : it.prototype, TAG))def(it, TAG, {configurable: true, value: tag});
 	};
 
 /***/ },
-/* 298 */
+/* 306 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var store      = __webpack_require__(250)('wks')
-	  , uid        = __webpack_require__(252)
-	  , Symbol     = __webpack_require__(251).Symbol
+	var store      = __webpack_require__(258)('wks')
+	  , uid        = __webpack_require__(260)
+	  , Symbol     = __webpack_require__(259).Symbol
 	  , USE_SYMBOL = typeof Symbol == 'function';
 
 	var $exports = module.exports = function(name){
@@ -8536,14 +8743,14 @@ webpackJsonp([0],[
 	$exports.store = store;
 
 /***/ },
-/* 299 */
+/* 307 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(300);
-	var global        = __webpack_require__(251)
-	  , hide          = __webpack_require__(258)
-	  , Iterators     = __webpack_require__(283)
-	  , TO_STRING_TAG = __webpack_require__(298)('toStringTag');
+	__webpack_require__(308);
+	var global        = __webpack_require__(259)
+	  , hide          = __webpack_require__(266)
+	  , Iterators     = __webpack_require__(291)
+	  , TO_STRING_TAG = __webpack_require__(306)('toStringTag');
 
 	for(var collections = ['NodeList', 'DOMTokenList', 'MediaList', 'StyleSheetList', 'CSSRuleList'], i = 0; i < 5; i++){
 	  var NAME       = collections[i]
@@ -8554,20 +8761,20 @@ webpackJsonp([0],[
 	}
 
 /***/ },
-/* 300 */
+/* 308 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var addToUnscopables = __webpack_require__(301)
-	  , step             = __webpack_require__(302)
-	  , Iterators        = __webpack_require__(283)
-	  , toIObject        = __webpack_require__(289);
+	var addToUnscopables = __webpack_require__(309)
+	  , step             = __webpack_require__(310)
+	  , Iterators        = __webpack_require__(291)
+	  , toIObject        = __webpack_require__(297);
 
 	// 22.1.3.4 Array.prototype.entries()
 	// 22.1.3.13 Array.prototype.keys()
 	// 22.1.3.29 Array.prototype.values()
 	// 22.1.3.30 Array.prototype[@@iterator]()
-	module.exports = __webpack_require__(280)(Array, 'Array', function(iterated, kind){
+	module.exports = __webpack_require__(288)(Array, 'Array', function(iterated, kind){
 	  this._t = toIObject(iterated); // target
 	  this._i = 0;                   // next index
 	  this._k = kind;                // kind
@@ -8593,13 +8800,13 @@ webpackJsonp([0],[
 	addToUnscopables('entries');
 
 /***/ },
-/* 301 */
+/* 309 */
 /***/ function(module, exports) {
 
 	module.exports = function(){ /* empty */ };
 
 /***/ },
-/* 302 */
+/* 310 */
 /***/ function(module, exports) {
 
 	module.exports = function(done, value){
@@ -8607,58 +8814,58 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 303 */
+/* 311 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports.f = __webpack_require__(298);
+	exports.f = __webpack_require__(306);
 
 /***/ },
-/* 304 */
+/* 312 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(305), __esModule: true };
+	module.exports = { "default": __webpack_require__(313), __esModule: true };
 
 /***/ },
-/* 305 */
+/* 313 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(306);
-	__webpack_require__(317);
-	__webpack_require__(318);
-	__webpack_require__(319);
-	module.exports = __webpack_require__(255).Symbol;
+	__webpack_require__(314);
+	__webpack_require__(325);
+	__webpack_require__(326);
+	__webpack_require__(327);
+	module.exports = __webpack_require__(263).Symbol;
 
 /***/ },
-/* 306 */
+/* 314 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	// ECMAScript 6 symbols shim
-	var global         = __webpack_require__(251)
-	  , has            = __webpack_require__(248)
-	  , DESCRIPTORS    = __webpack_require__(263)
-	  , $export        = __webpack_require__(254)
-	  , redefine       = __webpack_require__(282)
-	  , META           = __webpack_require__(307).KEY
-	  , $fails         = __webpack_require__(264)
-	  , shared         = __webpack_require__(250)
-	  , setToStringTag = __webpack_require__(297)
-	  , uid            = __webpack_require__(252)
-	  , wks            = __webpack_require__(298)
-	  , wksExt         = __webpack_require__(303)
-	  , wksDefine      = __webpack_require__(308)
-	  , keyOf          = __webpack_require__(309)
-	  , enumKeys       = __webpack_require__(310)
-	  , isArray        = __webpack_require__(313)
-	  , anObject       = __webpack_require__(260)
-	  , toIObject      = __webpack_require__(289)
-	  , toPrimitive    = __webpack_require__(266)
-	  , createDesc     = __webpack_require__(267)
-	  , _create        = __webpack_require__(285)
-	  , gOPNExt        = __webpack_require__(314)
-	  , $GOPD          = __webpack_require__(316)
-	  , $DP            = __webpack_require__(259)
-	  , $keys          = __webpack_require__(287)
+	var global         = __webpack_require__(259)
+	  , has            = __webpack_require__(256)
+	  , DESCRIPTORS    = __webpack_require__(271)
+	  , $export        = __webpack_require__(262)
+	  , redefine       = __webpack_require__(290)
+	  , META           = __webpack_require__(315).KEY
+	  , $fails         = __webpack_require__(272)
+	  , shared         = __webpack_require__(258)
+	  , setToStringTag = __webpack_require__(305)
+	  , uid            = __webpack_require__(260)
+	  , wks            = __webpack_require__(306)
+	  , wksExt         = __webpack_require__(311)
+	  , wksDefine      = __webpack_require__(316)
+	  , keyOf          = __webpack_require__(317)
+	  , enumKeys       = __webpack_require__(318)
+	  , isArray        = __webpack_require__(321)
+	  , anObject       = __webpack_require__(268)
+	  , toIObject      = __webpack_require__(297)
+	  , toPrimitive    = __webpack_require__(274)
+	  , createDesc     = __webpack_require__(275)
+	  , _create        = __webpack_require__(293)
+	  , gOPNExt        = __webpack_require__(322)
+	  , $GOPD          = __webpack_require__(324)
+	  , $DP            = __webpack_require__(267)
+	  , $keys          = __webpack_require__(295)
 	  , gOPD           = $GOPD.f
 	  , dP             = $DP.f
 	  , gOPN           = gOPNExt.f
@@ -8781,11 +8988,11 @@ webpackJsonp([0],[
 
 	  $GOPD.f = $getOwnPropertyDescriptor;
 	  $DP.f   = $defineProperty;
-	  __webpack_require__(315).f = gOPNExt.f = $getOwnPropertyNames;
-	  __webpack_require__(312).f  = $propertyIsEnumerable;
-	  __webpack_require__(311).f = $getOwnPropertySymbols;
+	  __webpack_require__(323).f = gOPNExt.f = $getOwnPropertyNames;
+	  __webpack_require__(320).f  = $propertyIsEnumerable;
+	  __webpack_require__(319).f = $getOwnPropertySymbols;
 
-	  if(DESCRIPTORS && !__webpack_require__(281)){
+	  if(DESCRIPTORS && !__webpack_require__(289)){
 	    redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
 	  }
 
@@ -8860,7 +9067,7 @@ webpackJsonp([0],[
 	});
 
 	// 19.4.3.4 Symbol.prototype[@@toPrimitive](hint)
-	$Symbol[PROTOTYPE][TO_PRIMITIVE] || __webpack_require__(258)($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
+	$Symbol[PROTOTYPE][TO_PRIMITIVE] || __webpack_require__(266)($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
 	// 19.4.3.5 Symbol.prototype[@@toStringTag]
 	setToStringTag($Symbol, 'Symbol');
 	// 20.2.1.9 Math[@@toStringTag]
@@ -8869,18 +9076,18 @@ webpackJsonp([0],[
 	setToStringTag(global.JSON, 'JSON', true);
 
 /***/ },
-/* 307 */
+/* 315 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var META     = __webpack_require__(252)('meta')
-	  , isObject = __webpack_require__(261)
-	  , has      = __webpack_require__(248)
-	  , setDesc  = __webpack_require__(259).f
+	var META     = __webpack_require__(260)('meta')
+	  , isObject = __webpack_require__(269)
+	  , has      = __webpack_require__(256)
+	  , setDesc  = __webpack_require__(267).f
 	  , id       = 0;
 	var isExtensible = Object.isExtensible || function(){
 	  return true;
 	};
-	var FREEZE = !__webpack_require__(264)(function(){
+	var FREEZE = !__webpack_require__(272)(function(){
 	  return isExtensible(Object.preventExtensions({}));
 	});
 	var setMeta = function(it){
@@ -8927,25 +9134,25 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 308 */
+/* 316 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var global         = __webpack_require__(251)
-	  , core           = __webpack_require__(255)
-	  , LIBRARY        = __webpack_require__(281)
-	  , wksExt         = __webpack_require__(303)
-	  , defineProperty = __webpack_require__(259).f;
+	var global         = __webpack_require__(259)
+	  , core           = __webpack_require__(263)
+	  , LIBRARY        = __webpack_require__(289)
+	  , wksExt         = __webpack_require__(311)
+	  , defineProperty = __webpack_require__(267).f;
 	module.exports = function(name){
 	  var $Symbol = core.Symbol || (core.Symbol = LIBRARY ? {} : global.Symbol || {});
 	  if(name.charAt(0) != '_' && !(name in $Symbol))defineProperty($Symbol, name, {value: wksExt.f(name)});
 	};
 
 /***/ },
-/* 309 */
+/* 317 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getKeys   = __webpack_require__(287)
-	  , toIObject = __webpack_require__(289);
+	var getKeys   = __webpack_require__(295)
+	  , toIObject = __webpack_require__(297);
 	module.exports = function(object, el){
 	  var O      = toIObject(object)
 	    , keys   = getKeys(O)
@@ -8956,13 +9163,13 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 310 */
+/* 318 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// all enumerable object keys, includes symbols
-	var getKeys = __webpack_require__(287)
-	  , gOPS    = __webpack_require__(311)
-	  , pIE     = __webpack_require__(312);
+	var getKeys = __webpack_require__(295)
+	  , gOPS    = __webpack_require__(319)
+	  , pIE     = __webpack_require__(320);
 	module.exports = function(it){
 	  var result     = getKeys(it)
 	    , getSymbols = gOPS.f;
@@ -8976,34 +9183,34 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 311 */
+/* 319 */
 /***/ function(module, exports) {
 
 	exports.f = Object.getOwnPropertySymbols;
 
 /***/ },
-/* 312 */
+/* 320 */
 /***/ function(module, exports) {
 
 	exports.f = {}.propertyIsEnumerable;
 
 /***/ },
-/* 313 */
+/* 321 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.2.2 IsArray(argument)
-	var cof = __webpack_require__(291);
+	var cof = __webpack_require__(299);
 	module.exports = Array.isArray || function isArray(arg){
 	  return cof(arg) == 'Array';
 	};
 
 /***/ },
-/* 314 */
+/* 322 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
-	var toIObject = __webpack_require__(289)
-	  , gOPN      = __webpack_require__(315).f
+	var toIObject = __webpack_require__(297)
+	  , gOPN      = __webpack_require__(323).f
 	  , toString  = {}.toString;
 
 	var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames
@@ -9023,30 +9230,30 @@ webpackJsonp([0],[
 
 
 /***/ },
-/* 315 */
+/* 323 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
-	var $keys      = __webpack_require__(288)
-	  , hiddenKeys = __webpack_require__(295).concat('length', 'prototype');
+	var $keys      = __webpack_require__(296)
+	  , hiddenKeys = __webpack_require__(303).concat('length', 'prototype');
 
 	exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O){
 	  return $keys(O, hiddenKeys);
 	};
 
 /***/ },
-/* 316 */
+/* 324 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var pIE            = __webpack_require__(312)
-	  , createDesc     = __webpack_require__(267)
-	  , toIObject      = __webpack_require__(289)
-	  , toPrimitive    = __webpack_require__(266)
-	  , has            = __webpack_require__(248)
-	  , IE8_DOM_DEFINE = __webpack_require__(262)
+	var pIE            = __webpack_require__(320)
+	  , createDesc     = __webpack_require__(275)
+	  , toIObject      = __webpack_require__(297)
+	  , toPrimitive    = __webpack_require__(274)
+	  , has            = __webpack_require__(256)
+	  , IE8_DOM_DEFINE = __webpack_require__(270)
 	  , gOPD           = Object.getOwnPropertyDescriptor;
 
-	exports.f = __webpack_require__(263) ? gOPD : function getOwnPropertyDescriptor(O, P){
+	exports.f = __webpack_require__(271) ? gOPD : function getOwnPropertyDescriptor(O, P){
 	  O = toIObject(O);
 	  P = toPrimitive(P, true);
 	  if(IE8_DOM_DEFINE)try {
@@ -9056,40 +9263,40 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 317 */
+/* 325 */
 /***/ function(module, exports) {
 
 	
 
 /***/ },
-/* 318 */
+/* 326 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(308)('asyncIterator');
+	__webpack_require__(316)('asyncIterator');
 
 /***/ },
-/* 319 */
+/* 327 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(308)('observable');
+	__webpack_require__(316)('observable');
 
 /***/ },
-/* 320 */
+/* 328 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	exports.__esModule = true;
 
-	var _setPrototypeOf = __webpack_require__(321);
+	var _setPrototypeOf = __webpack_require__(329);
 
 	var _setPrototypeOf2 = _interopRequireDefault(_setPrototypeOf);
 
-	var _create = __webpack_require__(325);
+	var _create = __webpack_require__(333);
 
 	var _create2 = _interopRequireDefault(_create);
 
-	var _typeof2 = __webpack_require__(274);
+	var _typeof2 = __webpack_require__(282);
 
 	var _typeof3 = _interopRequireDefault(_typeof2);
 
@@ -9112,34 +9319,34 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 321 */
+/* 329 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(322), __esModule: true };
+	module.exports = { "default": __webpack_require__(330), __esModule: true };
 
 /***/ },
-/* 322 */
+/* 330 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(323);
-	module.exports = __webpack_require__(255).Object.setPrototypeOf;
+	__webpack_require__(331);
+	module.exports = __webpack_require__(263).Object.setPrototypeOf;
 
 /***/ },
-/* 323 */
+/* 331 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.3.19 Object.setPrototypeOf(O, proto)
-	var $export = __webpack_require__(254);
-	$export($export.S, 'Object', {setPrototypeOf: __webpack_require__(324).set});
+	var $export = __webpack_require__(262);
+	$export($export.S, 'Object', {setPrototypeOf: __webpack_require__(332).set});
 
 /***/ },
-/* 324 */
+/* 332 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Works with __proto__ only. Old v8 can't work with null proto objects.
 	/* eslint-disable no-proto */
-	var isObject = __webpack_require__(261)
-	  , anObject = __webpack_require__(260);
+	var isObject = __webpack_require__(269)
+	  , anObject = __webpack_require__(268);
 	var check = function(O, proto){
 	  anObject(O);
 	  if(!isObject(proto) && proto !== null)throw TypeError(proto + ": can't set as prototype!");
@@ -9148,7 +9355,7 @@ webpackJsonp([0],[
 	  set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line
 	    function(test, buggy, set){
 	      try {
-	        set = __webpack_require__(256)(Function.call, __webpack_require__(316).f(Object.prototype, '__proto__').set, 2);
+	        set = __webpack_require__(264)(Function.call, __webpack_require__(324).f(Object.prototype, '__proto__').set, 2);
 	        set(test, []);
 	        buggy = !(test instanceof Array);
 	      } catch(e){ buggy = true; }
@@ -9163,34 +9370,34 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 325 */
+/* 333 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(326), __esModule: true };
+	module.exports = { "default": __webpack_require__(334), __esModule: true };
 
 /***/ },
-/* 326 */
+/* 334 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(327);
-	var $Object = __webpack_require__(255).Object;
+	__webpack_require__(335);
+	var $Object = __webpack_require__(263).Object;
 	module.exports = function create(P, D){
 	  return $Object.create(P, D);
 	};
 
 /***/ },
-/* 327 */
+/* 335 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var $export = __webpack_require__(254)
+	var $export = __webpack_require__(262)
 	// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-	$export($export.S, 'Object', {create: __webpack_require__(285)});
+	$export($export.S, 'Object', {create: __webpack_require__(293)});
 
 /***/ },
-/* 328 */
+/* 336 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
@@ -9198,23 +9405,23 @@ webpackJsonp([0],[
 	  value: true
 	});
 
-	var _getPrototypeOf = __webpack_require__(242);
+	var _getPrototypeOf = __webpack_require__(250);
 
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
-	var _classCallCheck2 = __webpack_require__(268);
+	var _classCallCheck2 = __webpack_require__(276);
 
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-	var _createClass2 = __webpack_require__(269);
+	var _createClass2 = __webpack_require__(277);
 
 	var _createClass3 = _interopRequireDefault(_createClass2);
 
-	var _possibleConstructorReturn2 = __webpack_require__(273);
+	var _possibleConstructorReturn2 = __webpack_require__(281);
 
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-	var _inherits2 = __webpack_require__(320);
+	var _inherits2 = __webpack_require__(328);
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -9224,15 +9431,15 @@ webpackJsonp([0],[
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _TodoTextInput = __webpack_require__(329);
+	var _TodoTextInput = __webpack_require__(337);
 
 	var _TodoTextInput2 = _interopRequireDefault(_TodoTextInput);
 
-	var _reactJss = __webpack_require__(338);
+	var _reactJss = __webpack_require__(346);
 
 	var _reactJss2 = _interopRequireDefault(_reactJss);
 
-	var _style = __webpack_require__(355);
+	var _style = __webpack_require__(388);
 
 	var _style2 = _interopRequireDefault(_style);
 
@@ -9243,7 +9450,7 @@ webpackJsonp([0],[
 
 	  function Header() {
 	    (0, _classCallCheck3.default)(this, Header);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Header).apply(this, arguments));
+	    return (0, _possibleConstructorReturn3.default)(this, (Header.__proto__ || (0, _getPrototypeOf2.default)(Header)).apply(this, arguments));
 	  }
 
 	  (0, _createClass3.default)(Header, [{
@@ -9277,13 +9484,13 @@ webpackJsonp([0],[
 	}(_react.Component)) || _class);
 	exports.default = Header;
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 329 */
+/* 337 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
@@ -9291,27 +9498,27 @@ webpackJsonp([0],[
 	  value: true
 	});
 
-	var _defineProperty2 = __webpack_require__(330);
+	var _defineProperty2 = __webpack_require__(338);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-	var _getPrototypeOf = __webpack_require__(242);
+	var _getPrototypeOf = __webpack_require__(250);
 
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
-	var _classCallCheck2 = __webpack_require__(268);
+	var _classCallCheck2 = __webpack_require__(276);
 
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-	var _createClass2 = __webpack_require__(269);
+	var _createClass2 = __webpack_require__(277);
 
 	var _createClass3 = _interopRequireDefault(_createClass2);
 
-	var _possibleConstructorReturn2 = __webpack_require__(273);
+	var _possibleConstructorReturn2 = __webpack_require__(281);
 
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-	var _inherits2 = __webpack_require__(320);
+	var _inherits2 = __webpack_require__(328);
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -9321,15 +9528,15 @@ webpackJsonp([0],[
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames2 = __webpack_require__(331);
+	var _classnames2 = __webpack_require__(339);
 
 	var _classnames3 = _interopRequireDefault(_classnames2);
 
-	var _style = __webpack_require__(332);
+	var _style = __webpack_require__(340);
 
 	var _style2 = _interopRequireDefault(_style);
 
-	var _reactJss = __webpack_require__(338);
+	var _reactJss = __webpack_require__(346);
 
 	var _reactJss2 = _interopRequireDefault(_reactJss);
 
@@ -9341,7 +9548,7 @@ webpackJsonp([0],[
 	  function TodoTextInput(props, context) {
 	    (0, _classCallCheck3.default)(this, TodoTextInput);
 
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(TodoTextInput).call(this, props, context));
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (TodoTextInput.__proto__ || (0, _getPrototypeOf2.default)(TodoTextInput)).call(this, props, context));
 
 	    _this.state = {
 	      text: _this.props.text || ''
@@ -9397,17 +9604,17 @@ webpackJsonp([0],[
 	}(_react.Component)) || _class);
 	exports.default = TodoTextInput;
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 330 */
+/* 338 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	exports.__esModule = true;
 
-	var _defineProperty = __webpack_require__(270);
+	var _defineProperty = __webpack_require__(278);
 
 	var _defineProperty2 = _interopRequireDefault(_defineProperty);
 
@@ -9429,7 +9636,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 331 */
+/* 339 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -9483,10 +9690,10 @@ webpackJsonp([0],[
 
 
 /***/ },
-/* 332 */
+/* 340 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
@@ -9494,11 +9701,11 @@ webpackJsonp([0],[
 	  value: true
 	});
 
-	var _extends2 = __webpack_require__(333);
+	var _extends2 = __webpack_require__(341);
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-	var _defineProperty2 = __webpack_require__(330);
+	var _defineProperty2 = __webpack_require__(338);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
@@ -9540,17 +9747,17 @@ webpackJsonp([0],[
 
 	};
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "style.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "style.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 333 */
+/* 341 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	exports.__esModule = true;
 
-	var _assign = __webpack_require__(334);
+	var _assign = __webpack_require__(342);
 
 	var _assign2 = _interopRequireDefault(_assign);
 
@@ -9571,42 +9778,42 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 334 */
+/* 342 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(335), __esModule: true };
+	module.exports = { "default": __webpack_require__(343), __esModule: true };
 
 /***/ },
-/* 335 */
+/* 343 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(336);
-	module.exports = __webpack_require__(255).Object.assign;
+	__webpack_require__(344);
+	module.exports = __webpack_require__(263).Object.assign;
 
 /***/ },
-/* 336 */
+/* 344 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.3.1 Object.assign(target, source)
-	var $export = __webpack_require__(254);
+	var $export = __webpack_require__(262);
 
-	$export($export.S + $export.F, 'Object', {assign: __webpack_require__(337)});
+	$export($export.S + $export.F, 'Object', {assign: __webpack_require__(345)});
 
 /***/ },
-/* 337 */
+/* 345 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	// 19.1.2.1 Object.assign(target, source, ...)
-	var getKeys  = __webpack_require__(287)
-	  , gOPS     = __webpack_require__(311)
-	  , pIE      = __webpack_require__(312)
-	  , toObject = __webpack_require__(245)
-	  , IObject  = __webpack_require__(290)
+	var getKeys  = __webpack_require__(295)
+	  , gOPS     = __webpack_require__(319)
+	  , pIE      = __webpack_require__(320)
+	  , toObject = __webpack_require__(253)
+	  , IObject  = __webpack_require__(298)
 	  , $assign  = Object.assign;
 
 	// should work with symbols and should have deterministic property order (V8 bug)
-	module.exports = !$assign || __webpack_require__(264)(function(){
+	module.exports = !$assign || __webpack_require__(272)(function(){
 	  var A = {}
 	    , B = {}
 	    , S = Symbol()
@@ -9631,7 +9838,7 @@ webpackJsonp([0],[
 	} : $assign;
 
 /***/ },
-/* 338 */
+/* 346 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9639,26 +9846,33 @@ webpackJsonp([0],[
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.SheetsRegistry = exports.SheetsRegistryProvider = exports.jss = undefined;
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	exports.default = useSheet;
+	exports.create = create;
 
 	var _react = __webpack_require__(3);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _jss2 = __webpack_require__(339);
+	var _jss = __webpack_require__(347);
 
-	var _jss3 = _interopRequireDefault(_jss2);
+	var _jssPresetDefault = __webpack_require__(370);
+
+	var _jssPresetDefault2 = _interopRequireDefault(_jssPresetDefault);
 
 	var _hoistNonReactStatics = __webpack_require__(195);
 
 	var _hoistNonReactStatics2 = _interopRequireDefault(_hoistNonReactStatics);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var _SheetsRegistryProvider = __webpack_require__(387);
+
+	var _SheetsRegistryProvider2 = _interopRequireDefault(_SheetsRegistryProvider);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -9666,14 +9880,29 @@ webpackJsonp([0],[
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	function decorate(DecoratedComponent, rules, options) {
-	  var _jss = arguments.length <= 3 || arguments[3] === undefined ? _jss3.default : arguments[3];
+	/**
+	 * Wrap a Component into a JSS Container Component.
+	 *
+	 * @param {Jss} jss
+	 * @param {Component} WrappedComponent
+	 * @param {Object} styles
+	 * @param {Object} [options]
+	 * @return {Component}
+	 */
+	function wrap(jss, WrappedComponent, styles) {
+	  var _class, _temp;
+
+	  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
 
 	  var refs = 0;
 	  var sheet = null;
 
+	  var displayName = WrappedComponent.displayName || WrappedComponent.name || 'Component';
+
+	  if (!options.meta) options.meta = displayName;
+
 	  function attach() {
-	    if (!sheet) sheet = _jss.createStyleSheet(rules, options);
+	    if (!sheet) sheet = jss.createStyleSheet(styles, options);
 	    sheet.attach();
 	  }
 
@@ -9692,21 +9921,22 @@ webpackJsonp([0],[
 	    if (refs === 0) detach();
 	  }
 
-	  var displayName = DecoratedComponent.displayName || DecoratedComponent.name || 'Component';
+	  return _temp = _class = function (_Component) {
+	    _inherits(Jss, _Component);
 
-	  var StyleSheetWrapper = function (_React$Component) {
-	    _inherits(StyleSheetWrapper, _React$Component);
+	    function Jss() {
+	      _classCallCheck(this, Jss);
 
-	    function StyleSheetWrapper() {
-	      _classCallCheck(this, StyleSheetWrapper);
-
-	      return _possibleConstructorReturn(this, Object.getPrototypeOf(StyleSheetWrapper).apply(this, arguments));
+	      return _possibleConstructorReturn(this, (Jss.__proto__ || Object.getPrototypeOf(Jss)).apply(this, arguments));
 	    }
 
-	    _createClass(StyleSheetWrapper, [{
+	    _createClass(Jss, [{
 	      key: 'componentWillMount',
 	      value: function componentWillMount() {
 	        this.sheet = ref();
+	        var jssSheetsRegistry = this.context.jssSheetsRegistry;
+
+	        if (jssSheetsRegistry) jssSheetsRegistry.add(this.sheet);
 	      }
 	    }, {
 	      key: 'componentWillUpdate',
@@ -9722,115 +9952,78 @@ webpackJsonp([0],[
 	    }, {
 	      key: 'componentWillUnmount',
 	      value: function componentWillUnmount() {
-	        deref();
-	        this.sheet = null;
+	        if (this.sheet && !sheet && !refs) {
+	          this.sheet.detach();
+	          var jssSheetsRegistry = this.context.jssSheetsRegistry;
+
+	          if (jssSheetsRegistry) jssSheetsRegistry.remove(this.sheet);
+	        } else deref();
 	      }
 	    }, {
 	      key: 'render',
 	      value: function render() {
-	        return _react2.default.createElement(DecoratedComponent, _extends({}, this.props, { sheet: this.sheet }));
+	        return _react2['default'].createElement(WrappedComponent, _extends({}, this.props, { sheet: this.sheet }));
 	      }
 	    }]);
 
-	    return StyleSheetWrapper;
-	  }(_react2.default.Component);
-
-	  StyleSheetWrapper.wrapped = DecoratedComponent;
-	  StyleSheetWrapper.displayName = 'JSS(' + displayName + ')';
-
-
-	  return (0, _hoistNonReactStatics2.default)(StyleSheetWrapper, DecoratedComponent, {
-	    wrapped: true
-	  });
+	    return Jss;
+	  }(_react.Component), _class.wrapped = WrappedComponent, _class.displayName = 'Jss(' + displayName + ')', _class.contextTypes = {
+	    jssSheetsRegistry: _react.PropTypes.instanceOf(_jss.SheetsRegistry)
+	  }, _temp;
 	}
 
+	var Container = function Container(_ref) {
+	  var children = _ref.children;
+	  return children || null;
+	};
+
+	var jss = exports.jss = (0, _jss.create)((0, _jssPresetDefault2['default'])());
+
+	// global index counter to preserve source order.
+	var indexCounter = -100000;
+
 	/**
-	 * It has 3 different use cases:
+	 * Create a `injectSheet` function that will use the passed JSS instance.
 	 *
-	 * - binding to a specific jss version `useSheet(jss)`, returns a bound useSheet
-	 * function, default is the global jss instance
-	 * - manual decoration `useSheet(Component, rules, options)`
-	 * - decoration by @decorator, which produces `useSheet(rules, options)(Component)`
+	 * @param {Jss} jss
+	 * @return {Function}
+	 * @api public
 	 */
-	function useSheet(DecoratedComponent, rules, options) {
-	  // User creates a useSheet function bound to a specific jss version.
-	  // DecoratedComponent is Jss instance.
-	  if (DecoratedComponent instanceof _jss3.default.constructor && !rules) {
-	    return useSheet.bind(DecoratedComponent);
-	  }
+	function create() {
+	  var localJss = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : jss;
 
-	  var customJss = this instanceof _jss3.default.constructor ? this : undefined;
+	  return function injectSheet(styles) {
+	    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-	  // Manually called by user: `useSheet(DecoratedComponent, rules, options)`.
-	  if (typeof DecoratedComponent === 'function') {
-	    return decorate(DecoratedComponent, rules, options, customJss);
-	  }
+	    if (options.index === undefined) {
+	      options.index = indexCounter++;
+	    }
+	    return function () {
+	      var WrappedComponent = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Container;
 
-	  // Used as a decorator: `useSheet(rules, options)(DecoratedComponent)`.
-	  options = rules;
-	  rules = DecoratedComponent;
-
-	  return function (_DecoratedComponent) {
-	    return decorate(_DecoratedComponent, rules, options, customJss);
+	      var Jss = wrap(localJss, WrappedComponent, styles, options);
+	      return (0, _hoistNonReactStatics2['default'])(Jss, WrappedComponent, { wrapped: true });
+	    };
 	  };
 	}
 
-	// Hotfix for babel 5 migration, will be removed in the next major version.
-	module.exports = exports = useSheet;
-
-/***/ },
-/* 339 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.Rule = exports.StyleSheet = exports.Jss = undefined;
-	exports.create = create;
-
-	var _Jss = __webpack_require__(340);
-
-	var _Jss2 = _interopRequireDefault(_Jss);
-
-	var _StyleSheet = __webpack_require__(341);
-
-	var _StyleSheet2 = _interopRequireDefault(_StyleSheet);
-
-	var _Rule = __webpack_require__(345);
-
-	var _Rule2 = _interopRequireDefault(_Rule);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	// For testing only.
-	exports.Jss = _Jss2.default;
-	exports.StyleSheet = _StyleSheet2.default;
-	exports.Rule = _Rule2.default;
-
 	/**
-	 * Creates a new instance of Jss.
+	 * Exports injectSheet function as default.
+	 * Returns a function which needs to be invoked with a Component.
 	 *
-	 * @see Jss
+	 * `injectSheet(styles, [options])(Component)`
+	 *
+	 * @param {Object} styles
+	 * @param {Object} [options]
+	 * @return {Function}
 	 * @api public
 	 */
-	/**
-	 * StyleSheets written in javascript.
-	 *
-	 * @copyright Oleg Slobodskoi 2014-2016
-	 * @website https://github.com/jsstyles/jss
-	 * @license MIT
-	 */
-
-	function create(options) {
-	  return new _Jss2.default(options);
-	}
-
-	exports.default = create();
+	exports['default'] = create();
+	exports.SheetsRegistryProvider = _SheetsRegistryProvider2['default'];
+	exports.SheetsRegistry = _jss.SheetsRegistry;
 
 /***/ },
-/* 340 */
+/* 347 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9838,26 +10031,111 @@ webpackJsonp([0],[
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.create = exports.sheets = exports.RulesContainer = exports.SheetsRegistry = undefined;
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	var _Jss = __webpack_require__(348);
 
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _StyleSheet = __webpack_require__(341);
-
-	var _StyleSheet2 = _interopRequireDefault(_StyleSheet);
-
-	var _PluginsRegistry = __webpack_require__(353);
-
-	var _PluginsRegistry2 = _interopRequireDefault(_PluginsRegistry);
+	var _Jss2 = _interopRequireDefault(_Jss);
 
 	var _SheetsRegistry = __webpack_require__(354);
 
 	var _SheetsRegistry2 = _interopRequireDefault(_SheetsRegistry);
 
-	var _createRule2 = __webpack_require__(344);
+	var _RulesContainer = __webpack_require__(356);
+
+	var _RulesContainer2 = _interopRequireDefault(_RulesContainer);
+
+	var _sheets = __webpack_require__(353);
+
+	var _sheets2 = _interopRequireDefault(_sheets);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	/**
+	 * SheetsRegistry for SSR.
+	 */
+
+	/**
+	 * A better abstraction over CSS.
+	 *
+	 * @copyright Oleg Slobodskoi 2014-present
+	 * @website https://github.com/cssinjs/jss
+	 * @license MIT
+	 */
+	exports.SheetsRegistry = _SheetsRegistry2['default'];
+
+	/**
+	 * RulesContainer for plugins.
+	 */
+
+	exports.RulesContainer = _RulesContainer2['default'];
+
+	/**
+	 * Default global SheetsRegistry instance.
+	 */
+
+	exports.sheets = _sheets2['default'];
+
+	/**
+	 * Creates a new instance of Jss.
+	 */
+
+	var create = exports.create = function create(options) {
+	  return new _Jss2['default'](options);
+	};
+
+	/**
+	 * A global Jss instance.
+	 */
+	exports['default'] = create();
+
+/***/ },
+/* 348 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _typeof2 = __webpack_require__(282);
+
+	var _typeof3 = _interopRequireDefault(_typeof2);
+
+	var _extends2 = __webpack_require__(341);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	var _classCallCheck2 = __webpack_require__(276);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(277);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _StyleSheet = __webpack_require__(349);
+
+	var _StyleSheet2 = _interopRequireDefault(_StyleSheet);
+
+	var _PluginsRegistry = __webpack_require__(362);
+
+	var _PluginsRegistry2 = _interopRequireDefault(_PluginsRegistry);
+
+	var _plugins = __webpack_require__(363);
+
+	var _plugins2 = _interopRequireDefault(_plugins);
+
+	var _sheets = __webpack_require__(353);
+
+	var _sheets2 = _interopRequireDefault(_sheets);
+
+	var _generateClassName = __webpack_require__(368);
+
+	var _generateClassName2 = _interopRequireDefault(_generateClassName);
+
+	var _createRule2 = __webpack_require__(357);
 
 	var _createRule3 = _interopRequireDefault(_createRule2);
 
@@ -9865,80 +10143,89 @@ webpackJsonp([0],[
 
 	var _findRenderer2 = _interopRequireDefault(_findRenderer);
 
-	var _utils = __webpack_require__(342);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	/**
-	 * Main Jss class.
-	 *
-	 * @api public
-	 */
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 	var Jss = function () {
-	  /**
-	   * Options:
-	   * - `generateClassName` accepts a styles string and a Rule instance.
-	   */
+	  function Jss(options) {
+	    (0, _classCallCheck3['default'])(this, Jss);
+	    this.version = "6.1.1";
+	    this.plugins = new _PluginsRegistry2['default']();
 
-	  function Jss() {
-	    var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-	    _classCallCheck(this, Jss);
-
-	    this.sheets = new _SheetsRegistry2.default();
-	    this.plugins = new _PluginsRegistry2.default();
-	    this.version = '5.1.0';
-	    this.generateClassName = options.generateClassName || _utils.generateClassName;
+	    this.use.apply(this, _plugins2['default']); // eslint-disable-line prefer-spread
+	    this.setup(options);
 	  }
 
-	  /**
-	   * Create a stylesheet.
-	   *
-	   * @see StyleSheet
-	   * @api public
-	   */
+	  (0, _createClass3['default'])(Jss, [{
+	    key: 'setup',
+	    value: function setup() {
+	      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
+	      this.options = (0, _extends3['default'])({}, options, {
+	        generateClassName: options.generateClassName || _generateClassName2['default']
+	      });
+	      var plugins = this.options.plugins;
 
-	  _createClass(Jss, [{
-	    key: 'createStyleSheet',
-	    value: function createStyleSheet(rules, options) {
-	      var sheet = new _StyleSheet2.default(rules, _extends({}, options, { jss: this }));
-	      this.sheets.add(sheet);
-	      return sheet;
+	      if (plugins) this.use.apply(this, plugins); // eslint-disable-line prefer-spread
+	      return this;
 	    }
 
 	    /**
-	     * Create a rule.
-	     *
-	     * @see createRule
-	     * @api public
+	     * Create a Style Sheet.
+	     */
+
+	  }, {
+	    key: 'createStyleSheet',
+	    value: function createStyleSheet(styles, options) {
+	      return new _StyleSheet2['default'](styles, (0, _extends3['default'])({
+	        jss: this,
+	        generateClassName: this.options.generateClassName
+	      }, options));
+	    }
+
+	    /**
+	     * Detach the Style Sheet and remove it from the registry.
+	     */
+
+	  }, {
+	    key: 'removeStyleSheet',
+	    value: function removeStyleSheet(sheet) {
+	      sheet.detach();
+	      _sheets2['default'].remove(sheet);
+	      return this;
+	    }
+
+	    /**
+	     * Create a rule without a Style Sheet.
 	     */
 
 	  }, {
 	    key: 'createRule',
-	    value: function createRule(selector, style, options) {
-	      // Enable rule without selector.
-	      if ((typeof selector === 'undefined' ? 'undefined' : _typeof(selector)) == 'object') {
+	    value: function createRule(name) {
+	      var style = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+	      var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+	      // Enable rule without name for inline styles.
+	      if ((typeof name === 'undefined' ? 'undefined' : (0, _typeof3['default'])(name)) === 'object') {
 	        options = style;
-	        style = selector;
-	        selector = null;
+	        style = name;
+	        name = undefined;
 	      }
-	      var rule = (0, _createRule3.default)(selector, style, _extends({}, options, {
-	        jss: this,
-	        Renderer: (0, _findRenderer2.default)(options)
-	      }));
-	      this.plugins.run(rule);
+
+	      if (!options.classes) options.classes = {};
+	      if (!options.jss) options.jss = this;
+	      if (!options.Renderer) options.Renderer = (0, _findRenderer2['default'])(options);
+	      if (!options.generateClassName) {
+	        options.generateClassName = this.options.generateClassName || _generateClassName2['default'];
+	      }
+
+	      var rule = (0, _createRule3['default'])(name, style, options);
+	      this.plugins.onProcessRule(rule);
+
 	      return rule;
 	    }
 
 	    /**
 	     * Register plugin. Passed function will be invoked with a rule instance.
-	     *
-	     * @param {Function} plugins
-	     * @api public
 	     */
 
 	  }, {
@@ -9956,14 +10243,13 @@ webpackJsonp([0],[
 	      return this;
 	    }
 	  }]);
-
 	  return Jss;
 	}();
 
-	exports.default = Jss;
+	exports['default'] = Jss;
 
 /***/ },
-/* 341 */
+/* 349 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9972,77 +10258,63 @@ webpackJsonp([0],[
 	  value: true
 	});
 
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	var _extends2 = __webpack_require__(341);
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	var _extends3 = _interopRequireDefault(_extends2);
 
-	var _utils = __webpack_require__(342);
+	var _classCallCheck2 = __webpack_require__(276);
 
-	var _createRule = __webpack_require__(344);
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-	var _createRule2 = _interopRequireDefault(_createRule);
+	var _createClass2 = __webpack_require__(277);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
 
 	var _findRenderer = __webpack_require__(350);
 
 	var _findRenderer2 = _interopRequireDefault(_findRenderer);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var _RulesContainer = __webpack_require__(356);
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	var _RulesContainer2 = _interopRequireDefault(_RulesContainer);
 
-	/**
-	 * StyleSheet model.
-	 *
-	 * Options:
-	 *
-	 * - `media` media query - attribute of style element.
-	 * - `meta` meta information about this style - attribute of style element, for e.g. you could pass
-	 * component name for easier debugging.
-	 * - `named` true by default - keys are names, selectors will be generated, if false - keys are
-	 * global selectors.
-	 * - `link` link jss `Rule` instances with DOM `CSSRule` instances so that styles, can be modified
-	 * dynamically, false by default because it has some performance cost.
-	 * - `element` style element, will create one by default
-	 *
-	 * @param {Object} [rules] object with selectors and declarations
-	 * @param {Object} [options]
-	 * @api public
-	 */
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 	var StyleSheet = function () {
-	  function StyleSheet(rules, options) {
-	    _classCallCheck(this, StyleSheet);
+	  function StyleSheet(styles, options) {
+	    (0, _classCallCheck3['default'])(this, StyleSheet);
 
-	    this.options = _extends({}, options);
-	    if (this.options.named == null) this.options.named = true;
-	    this.rules = Object.create(null);
-	    this.classes = Object.create(null);
+	    var Renderer = (0, _findRenderer2['default'])(options);
+	    var index = typeof options.index === 'number' ? options.index : 0;
+
 	    this.attached = false;
 	    this.deployed = false;
 	    this.linked = false;
+	    this.classes = Object.create(null);
+	    this.options = (0, _extends3['default'])({
+	      sheet: this,
+	      parent: this,
+	      classes: this.classes,
+	      index: index,
+	      Renderer: Renderer
+	    }, options);
+	    this.renderer = new Renderer(this);
+	    this.renderer.createElement();
+	    this.rules = new _RulesContainer2['default'](this.options);
 
-	    var Renderer = (0, _findRenderer2.default)(this.options);
-	    this.options.Renderer = Renderer;
-	    this.renderer = new Renderer(this.options);
-
-	    for (var name in rules) {
-	      this.createAndRegisterRule(name, rules[name]);
+	    for (var name in styles) {
+	      this.rules.add(name, styles[name]);
 	    }
 
-	    for (var _name in rules) {
-	      this.options.jss.plugins.run(this.rules[_name]);
-	    }
+	    this.rules.process();
 	  }
 
 	  /**
 	   * Attach renderable to the render tree.
-	   *
-	   * @api public
-	   * @return {StyleSheet}
 	   */
 
 
-	  _createClass(StyleSheet, [{
+	  (0, _createClass3['default'])(StyleSheet, [{
 	    key: 'attach',
 	    value: function attach() {
 	      if (this.attached) return this;
@@ -10055,9 +10327,6 @@ webpackJsonp([0],[
 
 	    /**
 	     * Remove renderable from render tree.
-	     *
-	     * @return {StyleSheet}
-	     * @api public
 	     */
 
 	  }, {
@@ -10070,203 +10339,104 @@ webpackJsonp([0],[
 	    }
 
 	    /**
-	     * Add a rule to the current stylesheet. Will insert a rule also after the stylesheet
-	     * has been rendered first time.
-	     *
-	     * @param {Object} [name] can be selector or name if ´options.named is true
-	     * @param {Object} style property/value hash
-	     * @return {Rule}
-	     * @api public
+	     * Add a rule to the current stylesheet.
+	     * Will insert a rule also after the stylesheet has been rendered first time.
 	     */
 
 	  }, {
 	    key: 'addRule',
-	    value: function addRule(name, style) {
-	      var rule = this.createRule(name, style);
+	    value: function addRule(name, style, options) {
+	      var queue = this.queue;
+
+	      // Plugins can create rules.
+	      // In order to preserve the right order, we need to queue all `.addRule` calls,
+	      // which happen after the first `rules.add()` call.
+
+	      if (this.attached && !queue) this.queue = [];
+
+	      var rule = this.rules.add(name, style, options);
+	      this.options.jss.plugins.onProcessRule(rule);
 
 	      if (this.attached) {
+	        if (!this.deployed) return rule;
 	        // Don't insert rule directly if there is no stringified version yet.
 	        // It will be inserted all together when .attach is called.
-	        if (this.deployed) {
+	        if (queue) queue.push(rule);else {
 	          var renderable = this.renderer.insertRule(rule);
-	          if (this.options.link) rule.renderable = renderable;
+	          if (renderable && this.options.link) rule.renderable = renderable;
+	          if (this.queue) {
+	            this.queue.forEach(this.renderer.insertRule, this.renderer);
+	            this.queue = undefined;
+	          }
 	        }
-	        // We can't add rules to a detached style node.
-	        // We will redeploy the sheet once user will attach it.
-	      } else {
-	        this.deployed = false;
+	        return rule;
 	      }
+
+	      // We can't add rules to a detached style node.
+	      // We will redeploy the sheet once user will attach it.
+	      this.deployed = false;
 
 	      return rule;
 	    }
 
 	    /**
-	     * Create rules, will render also after stylesheet was rendered the first time.
-	     *
-	     * @param {Object} rules name:style hash.
-	     * @return {Array} array of added rules
-	     * @api public
+	     * Create and add rules.
+	     * Will render also after Style Sheet was rendered the first time.
 	     */
 
 	  }, {
 	    key: 'addRules',
-	    value: function addRules(rules) {
+	    value: function addRules(styles, options) {
 	      var added = [];
-	      for (var name in rules) {
-	        added.push(this.addRule(name, rules[name]));
+	      for (var name in styles) {
+	        added.push(this.addRule(name, styles[name], options));
 	      }
 	      return added;
 	    }
 
 	    /**
-	     * Get a rule.
-	     *
-	     * @param {String} name can be selector or name if `named` option is true.
-	     * @return {Rule}
-	     * @api public
+	     * Get a rule by name.
 	     */
 
 	  }, {
 	    key: 'getRule',
 	    value: function getRule(name) {
-	      return this.rules[name];
+	      return this.rules.get(name);
 	    }
 
 	    /**
-	     * Convert rules to a CSS string.
-	     *
-	     * @param {Object} options
-	     * @return {String}
-	     * @api public
+	     * Delete a rule by name.
+	     * Returns `true`: if rule has been deleted from the DOM.
 	     */
 
 	  }, {
-	    key: 'toString',
-	    value: function toString(options) {
-	      var rules = this.rules;
+	    key: 'deleteRule',
+	    value: function deleteRule(name) {
+	      var rule = this.rules.get(name);
 
-	      var stringified = [];
-	      var str = '';
-	      for (var name in rules) {
-	        var rule = rules[name];
-	        // We have the same rule referenced twice if using named rules.
-	        // By name and by selector.
-	        if (stringified.indexOf(rule) !== -1) {
-	          continue;
-	        }
+	      if (!rule) return false;
 
-	        if (rule.style && (0, _utils.isEmptyObject)(rule.style)) {
-	          continue;
-	        }
+	      this.rules.remove(rule);
 
-	        if (rule.rules && (0, _utils.isEmptyObject)(rule.rules)) {
-	          continue;
-	        }
-
-	        if (str) str += '\n';
-
-	        str += rule.toString(options);
-	        stringified.push(rule);
+	      if (this.attached && rule.renderable) {
+	        return this.renderer.deleteRule(rule.renderable);
 	      }
-	      return str;
+
+	      return true;
 	    }
 
 	    /**
-	     * Create and register a rule.
-	     *
-	     * @see createRule
-	     * @api private
+	     * Get index of a rule.
 	     */
 
 	  }, {
-	    key: 'createAndRegisterRule',
-	    value: function createAndRegisterRule(name, style, options) {
-	      options = _extends({}, options, {
-	        sheet: this,
-	        jss: this.options.jss,
-	        Renderer: this.options.Renderer,
-	        className: this.classes[name]
-	      });
-	      // Scope options overwrite instance options.
-	      if (options.named == null) options.named = this.options.named;
-	      var rule = (0, _createRule2.default)(name, style, options);
-	      this.registerRule(rule);
-	      return rule;
-	    }
-
-	    /**
-	     * Create and register rule, run plugins.
-	     *
-	     * Will not render after stylesheet was rendered the first time.
-	     * Will link the rule in `this.rules`.
-	     *
-	     * @see createRule
-	     * @api public
-	     */
-
-	  }, {
-	    key: 'createRule',
-	    value: function createRule(name, style, options) {
-	      var rule = this.createAndRegisterRule(name, style, options);
-	      this.options.jss.plugins.run(rule);
-	      return rule;
-	    }
-
-	    /**
-	     * Register a rule in `sheet.rules` and `sheet.classes` maps.
-	     *
-	     * @param {Rule} rule
-	     * @api public
-	     */
-
-	  }, {
-	    key: 'registerRule',
-	    value: function registerRule(rule) {
-	      // Children of container rules should not be registered.
-	      if (rule.options.parent) {
-	        // We need to register child rules of conditionals in classes, otherwise
-	        // user can't access generated class name if it doesn't overrides
-	        // a regular rule.
-	        if (rule.name && rule.className) {
-	          this.classes[rule.name] = rule.className;
-	        }
-	        return this;
-	      }
-
-	      if (rule.name) {
-	        this.rules[rule.name] = rule;
-	        if (rule.className) this.classes[rule.name] = rule.className;
-	      }
-	      if (rule.selector) {
-	        this.rules[rule.selector] = rule;
-	      }
-	      return this;
-	    }
-
-	    /**
-	     * Unregister a rule.
-	     *
-	     * @param {Rule} rule
-	     * @api public
-	     */
-
-	  }, {
-	    key: 'unregisterRule',
-	    value: function unregisterRule(rule) {
-	      // Children of a conditional rule are not registered.
-	      if (!rule.options.parent) {
-	        delete this.rules[rule.name];
-	        delete this.rules[rule.selector];
-	      }
-	      delete this.classes[rule.name];
-	      return this;
+	    key: 'indexOf',
+	    value: function indexOf(rule) {
+	      return this.rules.indexOf(rule);
 	    }
 
 	    /**
 	     * Deploy pure CSS string to a renderable.
-	     *
-	     * @return {StyleSheet}
-	     * @api private
 	     */
 
 	  }, {
@@ -10279,31 +10449,42 @@ webpackJsonp([0],[
 
 	    /**
 	     * Link renderable CSS rules with their corresponding models.
-	     *
-	     * @return {StyleSheet}
-	     * @api private
 	     */
 
 	  }, {
 	    key: 'link',
 	    value: function link() {
-	      var renderables = this.renderer.getRules();
-	      for (var selector in renderables) {
-	        var rule = this.rules[selector];
-	        if (rule) rule.renderable = renderables[selector];
+	      var cssRules = this.renderer.getRules();
+
+	      // Is undefined when VirtualRenderer is used.
+	      if (cssRules) {
+	        for (var i = 0; i < cssRules.length; i++) {
+	          var CSSStyleRule = cssRules[i];
+	          var rule = this.rules.get(CSSStyleRule.selectorText);
+	          if (rule) rule.renderable = CSSStyleRule;
+	        }
 	      }
 	      this.linked = true;
 	      return this;
 	    }
-	  }]);
 
+	    /**
+	     * Convert rules to a CSS string.
+	     */
+
+	  }, {
+	    key: 'toString',
+	    value: function toString(options) {
+	      return this.rules.toString(options);
+	    }
+	  }]);
 	  return StyleSheet;
 	}();
 
-	exports.default = StyleSheet;
+	exports['default'] = StyleSheet;
 
 /***/ },
-/* 342 */
+/* 350 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10311,163 +10492,1509 @@ webpackJsonp([0],[
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.findClassNames = exports.toCssValue = undefined;
-	exports.generateClassName = generateClassName;
-	exports.isEmptyObject = isEmptyObject;
-	exports.toCss = toCss;
+	exports['default'] = findRenderer;
 
-	var _murmurhash3_gc = __webpack_require__(343);
+	var _isInBrowser = __webpack_require__(351);
 
-	var _murmurhash3_gc2 = _interopRequireDefault(_murmurhash3_gc);
+	var _isInBrowser2 = _interopRequireDefault(_isInBrowser);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var _DomRenderer = __webpack_require__(352);
+
+	var _DomRenderer2 = _interopRequireDefault(_DomRenderer);
+
+	var _VirtualRenderer = __webpack_require__(355);
+
+	var _VirtualRenderer2 = _interopRequireDefault(_VirtualRenderer);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 	/**
-	 * Generates a class name using murmurhash.
-	 *
-	 * @param {String} str
-	 * @param {Rule} rule
-	 * @return {String}
+	 * Find proper renderer.
+	 * Option `virtual` is used to force use of VirtualRenderer even if DOM is
+	 * detected, used for testing only.
 	 */
-	function generateClassName(str, rule) {
-	  var hash = (0, _murmurhash3_gc2.default)(str);
-	  return rule.name ? rule.name + '-' + hash : hash;
+	function findRenderer() {
+	  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+	  if (options.Renderer) return options.Renderer;
+	  var useVirtual = options.virtual || !_isInBrowser2['default'];
+	  return useVirtual ? _VirtualRenderer2['default'] : _DomRenderer2['default'];
+	}
+
+/***/ },
+/* 351 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+	var isBrowser = exports.isBrowser = (typeof window === "undefined" ? "undefined" : _typeof(window)) === "object" && (typeof document === "undefined" ? "undefined" : _typeof(document)) === 'object' && document.nodeType === 9;
+
+	exports.default = isBrowser;
+
+/***/ },
+/* 352 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _classCallCheck2 = __webpack_require__(276);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(277);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _warning = __webpack_require__(158);
+
+	var _warning2 = _interopRequireDefault(_warning);
+
+	var _sheets = __webpack_require__(353);
+
+	var _sheets2 = _interopRequireDefault(_sheets);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	/**
+	 * Get a style property.
+	 */
+	function getStyle(rule, prop) {
+	  try {
+	    return rule.style.getPropertyValue(prop);
+	  } catch (err) {
+	    // IE may throw if property is unknown.
+	    return '';
+	  }
 	}
 
 	/**
-	 * Determine whether an object is empty or not.
-	 * More performant than a `Object.keys(obj).length > 0`
-	 *
-	 * @param {Object} obj
-	 * @return {Boolean}
+	 * Set a style property.
 	 */
-	function isEmptyObject(obj) {
-	  for (var key in obj) {
+	function setStyle(rule, prop, value) {
+	  try {
+	    rule.style.setProperty(prop, value);
+	  } catch (err) {
+	    // IE may throw if property is unknown.
 	    return false;
-	  } // eslint-disable-line no-unused-vars
-
+	  }
 	  return true;
 	}
 
 	/**
-	 * Indent a string.
-	 *
-	 * http://jsperf.com/array-join-vs-for
-	 *
-	 * @param {Number} level
-	 * @param {String} str
-	 * @return {String}
+	 * Get the selector.
 	 */
-	function indent(level, str) {
-	  var indentStr = '';
-	  for (var index = 0; index < level; index++) {
-	    indentStr += '  ';
-	  }return indentStr + str;
+	function getSelector(rule) {
+	  return rule.selectorText;
 	}
 
 	/**
-	 * Converts array values to string.
-	 *
-	 * `margin: [['5px', '10px']]` > `margin: 5px 10px;`
-	 * `border: ['1px', '2px']` > `border: 1px, 2px;`
-	 *
-	 * @param {Array} value
-	 * @return {String|Number|Object}
+	 * Set the selector.
 	 */
-	var toCssValue = exports.toCssValue = function () {
-	  function joinWithSpace(value) {
-	    return value.join(' ');
+	function setSelector(rule, selectorText) {
+	  rule.selectorText = selectorText;
+
+	  // Return false if setter was not successful.
+	  // Currently works in chrome only.
+	  return rule.selectorText === selectorText;
+	}
+
+	/**
+	 * Find attached sheet with an index higher than the passed one.
+	 */
+	function findHigherSheet(registry, index) {
+	  for (var i = 0; i < registry.length; i++) {
+	    var sheet = registry[i];
+	    if (sheet.attached && sheet.options.index > index) {
+	      return sheet;
+	    }
+	  }
+	  return null;
+	}
+
+	/**
+	 * Find attached sheet with the highest index.
+	 */
+	function findHighestSheet(registry) {
+	  for (var i = registry.length - 1; i >= 0; i--) {
+	    var sheet = registry[i];
+	    if (sheet.attached) return sheet;
+	  }
+	  return null;
+	}
+
+	/**
+	 * Find a comment with "jss" inside.
+	 */
+	function findCommentNode(head) {
+	  for (var i = 0; i < head.childNodes.length; i++) {
+	    var node = head.childNodes[i];
+	    if (node.nodeType === 8 && node.nodeValue.trim() === 'jss') {
+	      return node;
+	    }
+	  }
+	  return null;
+	}
+
+	/**
+	 * Find a node before which we can insert the sheet.
+	 */
+	function findPrevNode(head, index) {
+	  var registry = _sheets2['default'].registry;
+
+
+	  if (registry.length > 1) {
+	    // Try to insert before the next higher sheet.
+	    var sheet = findHigherSheet(registry, index);
+	    if (sheet) return sheet.renderer.element;
+
+	    // Otherwise insert after the last attached.
+	    sheet = findHighestSheet(registry);
+	    if (sheet) return sheet.renderer.element.nextElementSibling;
 	  }
 
-	  return function joinWithComma(value) {
-	    if (!Array.isArray(value)) return value;
+	  // Try find a comment placeholder if registry is empty.
+	  var comment = findCommentNode(head);
+	  if (comment) return comment.nextSibling;
+	  return null;
+	}
 
-	    // Support space separated values.
-	    if (Array.isArray(value[0])) {
-	      return joinWithComma(value.map(joinWithSpace));
+	var DomRenderer = function () {
+
+	  // HTMLStyleElement needs fixing https://github.com/facebook/flow/issues/2696
+	  function DomRenderer(sheet) {
+	    (0, _classCallCheck3['default'])(this, DomRenderer);
+	    this.getStyle = getStyle;
+	    this.setStyle = setStyle;
+	    this.setSelector = setSelector;
+	    this.getSelector = getSelector;
+
+	    this.sheet = sheet;
+	    // There is no sheet when the renderer is used from a standalone RegularRule.
+	    if (sheet) _sheets2['default'].add(sheet);
+	  }
+
+	  /**
+	   * Create and ref style element.
+	   */
+
+
+	  (0, _createClass3['default'])(DomRenderer, [{
+	    key: 'createElement',
+	    value: function createElement() {
+	      var _ref = this.sheet ? this.sheet.options : {},
+	          media = _ref.media,
+	          meta = _ref.meta,
+	          element = _ref.element;
+
+	      this.head = document.head || document.getElementsByTagName('head')[0];
+	      this.element = element || document.createElement('style');
+	      this.element.type = 'text/css';
+	      this.element.setAttribute('data-jss', '');
+	      if (media) this.element.setAttribute('media', media);
+	      if (meta) this.element.setAttribute('data-meta', meta);
 	    }
 
-	    return value.join(', ');
-	  };
+	    /**
+	     * Insert style element into render tree.
+	     */
+
+	  }, {
+	    key: 'attach',
+	    value: function attach() {
+	      // In the case the element node is external and it is already in the DOM.
+	      if (this.element.parentNode || !this.sheet) return;
+	      var prevNode = findPrevNode(this.head, this.sheet.options.index);
+	      this.head.insertBefore(this.element, prevNode);
+	    }
+
+	    /**
+	     * Remove style element from render tree.
+	     */
+
+	  }, {
+	    key: 'detach',
+	    value: function detach() {
+	      this.element.parentNode.removeChild(this.element);
+	    }
+
+	    /**
+	     * Inject CSS string into element.
+	     */
+
+	  }, {
+	    key: 'deploy',
+	    value: function deploy(sheet) {
+	      this.element.textContent = '\n' + sheet.toString() + '\n';
+	    }
+
+	    /**
+	     * Insert a rule into element.
+	     */
+
+	  }, {
+	    key: 'insertRule',
+	    value: function insertRule(rule) {
+	      var sheet = this.element.sheet;
+	      var cssRules = sheet.cssRules;
+
+	      var index = cssRules.length;
+	      var str = rule.toString();
+
+	      if (!str) return false;
+
+	      try {
+	        sheet.insertRule(str, index);
+	      } catch (err) {
+	        (0, _warning2['default'])(false, '[JSS] Can not insert an unsupported rule \n\r%s', rule);
+	        return false;
+	      }
+
+	      return cssRules[index];
+	    }
+
+	    /**
+	     * Delete a rule.
+	     */
+
+	  }, {
+	    key: 'deleteRule',
+	    value: function deleteRule(rule) {
+	      var sheet = this.element.sheet;
+	      var cssRules = sheet.cssRules;
+
+	      for (var index = 0; index < cssRules.length; index++) {
+	        if (rule === cssRules[index]) {
+	          sheet.deleteRule(index);
+	          return true;
+	        }
+	      }
+	      return false;
+	    }
+
+	    /**
+	     * Get all rules elements.
+	     */
+
+	  }, {
+	    key: 'getRules',
+	    value: function getRules() {
+	      return this.element.sheet.cssRules;
+	    }
+	  }]);
+	  return DomRenderer;
 	}();
+
+	exports['default'] = DomRenderer;
+
+/***/ },
+/* 353 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _SheetsRegistry = __webpack_require__(354);
+
+	var _SheetsRegistry2 = _interopRequireDefault(_SheetsRegistry);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	/**
+	 * This is a global sheets registry. Only DomRenderer will add sheets to it.
+	 * On the server one should use an own SheetsRegistry instance and add the
+	 * sheets to it, because you need to make sure to create a new registry for
+	 * each request in order to not leak sheets across requests.
+	 */
+	exports['default'] = new _SheetsRegistry2['default']();
+
+/***/ },
+/* 354 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _classCallCheck2 = __webpack_require__(276);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(277);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	/**
+	 * Sheets registry to access them all at one place.
+	 */
+	var SheetsRegistry = function () {
+	  function SheetsRegistry() {
+	    (0, _classCallCheck3['default'])(this, SheetsRegistry);
+	    this.registry = [];
+	  }
+
+	  (0, _createClass3['default'])(SheetsRegistry, [{
+	    key: 'add',
+
+
+	    /**
+	     * Register a Style Sheet.
+	     */
+	    value: function add(sheet) {
+	      var registry = this.registry;
+	      var index = sheet.options.index;
+
+
+	      if (!registry.length || index >= registry[registry.length - 1].options.index) {
+	        registry.push(sheet);
+	        return;
+	      }
+
+	      for (var i = 0; i < registry.length; i++) {
+	        var options = registry[i].options;
+
+	        if (options.index > index) {
+	          registry.splice(i, 0, sheet);
+	          return;
+	        }
+	      }
+	    }
+
+	    /**
+	     * Reset the registry.
+	     */
+
+	  }, {
+	    key: 'reset',
+	    value: function reset() {
+	      this.registry = [];
+	    }
+
+	    /**
+	     * Remove a Style Sheet.
+	     */
+
+	  }, {
+	    key: 'remove',
+	    value: function remove(sheet) {
+	      var index = this.registry.indexOf(sheet);
+	      this.registry.splice(index, 1);
+	    }
+
+	    /**
+	     * Convert all attached sheets to a CSS string.
+	     */
+
+	  }, {
+	    key: 'toString',
+	    value: function toString(options) {
+	      return this.registry.filter(function (sheet) {
+	        return sheet.attached;
+	      }).map(function (sheet) {
+	        return sheet.toString(options);
+	      }).join('\n');
+	    }
+	  }]);
+	  return SheetsRegistry;
+	}();
+
+	exports['default'] = SheetsRegistry;
+
+/***/ },
+/* 355 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _classCallCheck2 = __webpack_require__(276);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(277);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	/* eslint-disable class-methods-use-this */
+
+	/**
+	 * Rendering backend to do nothing in nodejs.
+	 */
+	var VirtualRenderer = function () {
+	  function VirtualRenderer() {
+	    (0, _classCallCheck3['default'])(this, VirtualRenderer);
+	  }
+
+	  (0, _createClass3['default'])(VirtualRenderer, [{
+	    key: 'createElement',
+	    value: function createElement() {}
+	  }, {
+	    key: 'setStyle',
+	    value: function setStyle() {
+	      return true;
+	    }
+	  }, {
+	    key: 'getStyle',
+	    value: function getStyle() {
+	      return '';
+	    }
+	  }, {
+	    key: 'setSelector',
+	    value: function setSelector() {
+	      return true;
+	    }
+	  }, {
+	    key: 'getSelector',
+	    value: function getSelector() {
+	      return '';
+	    }
+	  }, {
+	    key: 'attach',
+	    value: function attach() {}
+	  }, {
+	    key: 'detach',
+	    value: function detach() {}
+	  }, {
+	    key: 'deploy',
+	    value: function deploy() {}
+	  }, {
+	    key: 'insertRule',
+	    value: function insertRule() {
+	      return true;
+	    }
+	  }, {
+	    key: 'deleteRule',
+	    value: function deleteRule() {
+	      return true;
+	    }
+	  }, {
+	    key: 'getRules',
+	    value: function getRules() {}
+	  }]);
+	  return VirtualRenderer;
+	}();
+
+	exports['default'] = VirtualRenderer;
+
+/***/ },
+/* 356 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends2 = __webpack_require__(341);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	var _classCallCheck2 = __webpack_require__(276);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(277);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _createRule = __webpack_require__(357);
+
+	var _createRule2 = _interopRequireDefault(_createRule);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	/**
+	 * Contains rules objects and allows adding/removing etc.
+	 * Is used for e.g. by `StyleSheet` or `ConditionalRule`.
+	 */
+	var RulesContainer = function () {
+	  // Rules registry for access by .get() method.
+	  // It contains the same rule registered by name and by selector.
+	  function RulesContainer(options) {
+	    (0, _classCallCheck3['default'])(this, RulesContainer);
+	    this.map = Object.create(null);
+	    this.index = [];
+
+	    this.options = options;
+	    this.classes = options.classes;
+	  }
+
+	  /**
+	   * Create and register rule.
+	   *
+	   * Will not render after Style Sheet was rendered the first time.
+	   */
+
+
+	  // Used to ensure correct rules order.
+
+
+	  (0, _createClass3['default'])(RulesContainer, [{
+	    key: 'add',
+	    value: function add(name, style, options) {
+	      var _options = this.options,
+	          parent = _options.parent,
+	          sheet = _options.sheet,
+	          jss = _options.jss,
+	          Renderer = _options.Renderer,
+	          generateClassName = _options.generateClassName;
+
+
+	      options = (0, _extends3['default'])({
+	        classes: this.classes,
+	        parent: parent,
+	        sheet: sheet,
+	        jss: jss,
+	        Renderer: Renderer,
+	        generateClassName: generateClassName
+	      }, options);
+
+	      if (!options.className) options.className = this.classes[name];
+
+	      var rule = (0, _createRule2['default'])(name, style, options);
+	      this.register(rule);
+
+	      var index = options.index === undefined ? this.index.length : options.index;
+	      this.index.splice(index, 0, rule);
+	      return rule;
+	    }
+
+	    /**
+	     * Get a rule.
+	     */
+
+	  }, {
+	    key: 'get',
+	    value: function get(name) {
+	      return this.map[name];
+	    }
+
+	    /**
+	     * Delete a rule.
+	     */
+
+	  }, {
+	    key: 'remove',
+	    value: function remove(rule) {
+	      this.unregister(rule);
+	      this.index.splice(this.indexOf(rule), 1);
+	    }
+
+	    /**
+	     * Get index of a rule.
+	     */
+
+	  }, {
+	    key: 'indexOf',
+	    value: function indexOf(rule) {
+	      return this.index.indexOf(rule);
+	    }
+
+	    /**
+	     * Run `onProcessRule()` plugins on every rule.
+	     */
+
+	  }, {
+	    key: 'process',
+	    value: function process() {
+	      var plugins = this.options.jss.plugins;
+	      // We need to clone array because if we modify the index somewhere else during a loop
+	      // we end up with very hard-to-track-down side effects.
+
+	      this.index.slice(0).forEach(plugins.onProcessRule, plugins);
+	    }
+
+	    /**
+	     * Register a rule in `.map` and `.classes` maps.
+	     */
+
+	  }, {
+	    key: 'register',
+	    value: function register(rule) {
+	      if (rule.name) this.map[rule.name] = rule;
+	      if (rule.className && rule.name) this.classes[rule.name] = rule.className;
+	      if (rule.selector) this.map[rule.selector] = rule;
+	    }
+
+	    /**
+	     * Unregister a rule.
+	     */
+
+	  }, {
+	    key: 'unregister',
+	    value: function unregister(rule) {
+	      delete this.map[rule.name];
+	      delete this.map[rule.selector];
+	      delete this.classes[rule.name];
+	    }
+
+	    /**
+	     * Convert rules to a CSS string.
+	     */
+
+	  }, {
+	    key: 'toString',
+	    value: function toString(options) {
+	      var str = '';
+
+	      for (var index = 0; index < this.index.length; index++) {
+	        var rule = this.index[index];
+	        var css = rule.toString(options);
+
+	        // No need to render an empty rule.
+	        if (!css) continue;
+
+	        if (str) str += '\n';
+	        str += css;
+	      }
+
+	      return str;
+	    }
+	  }]);
+	  return RulesContainer;
+	}();
+
+	exports['default'] = RulesContainer;
+
+/***/ },
+/* 357 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports['default'] = createRule;
+
+	var _warning = __webpack_require__(158);
+
+	var _warning2 = _interopRequireDefault(_warning);
+
+	var _RegularRule = __webpack_require__(358);
+
+	var _RegularRule2 = _interopRequireDefault(_RegularRule);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	/**
+	 * Create a rule instance.
+	 */
+	function createRule(name) {
+	  var decl = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+	  var options = arguments[2];
+	  var jss = options.jss;
+
+	  if (jss) {
+	    var rule = jss.plugins.onCreateRule(name, decl, options);
+	    if (rule) return rule;
+	  }
+
+	  // It is an at-rule and it has no instance.
+	  if (name && name[0] === '@') {
+	    (0, _warning2['default'])(false, '[JSS] Unknown at-rule %s', name);
+	  }
+
+	  return new _RegularRule2['default'](name, decl, options);
+	}
+
+/***/ },
+/* 358 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _typeof2 = __webpack_require__(282);
+
+	var _typeof3 = _interopRequireDefault(_typeof2);
+
+	var _classCallCheck2 = __webpack_require__(276);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(277);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _toCss = __webpack_require__(359);
+
+	var _toCss2 = _interopRequireDefault(_toCss);
+
+	var _toCssValue = __webpack_require__(360);
+
+	var _toCssValue2 = _interopRequireDefault(_toCssValue);
+
+	var _findClassNames = __webpack_require__(361);
+
+	var _findClassNames2 = _interopRequireDefault(_findClassNames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var parse = JSON.parse,
+	    stringify = JSON.stringify;
+
+	var RegularRule = function () {
+
+	  /**
+	   * We expect `style` to be a plain object.
+	   * To avoid original style object mutations, we clone it and hash it
+	   * along the way.
+	   * It is also the fastetst way.
+	   * http://jsperf.com/lodash-deepclone-vs-jquery-extend-deep/6
+	   */
+	  function RegularRule(name, style, options) {
+	    (0, _classCallCheck3['default'])(this, RegularRule);
+	    this.type = 'regular';
+	    var generateClassName = options.generateClassName,
+	        sheet = options.sheet,
+	        Renderer = options.Renderer;
+
+	    var styleStr = stringify(style);
+	    this.style = parse(styleStr);
+	    this.name = name;
+	    this.options = options;
+	    this.originalStyle = style;
+	    this.className = '';
+	    if (options.className) this.className = options.className;else if (generateClassName) this.className = generateClassName(styleStr, this, options.sheet);
+	    this.selectorText = options.selector || '.' + this.className;
+	    if (sheet) this.renderer = sheet.renderer;else if (Renderer) this.renderer = new Renderer();
+	  }
+
+	  /**
+	   * Set selector string.
+	   * Attenition: use this with caution. Most browser didn't implement
+	   * selectorText setter, so this may result in rerendering of entire Style Sheet.
+	   */
+
+
+	  (0, _createClass3['default'])(RegularRule, [{
+	    key: 'prop',
+
+
+	    /**
+	     * Get or set a style property.
+	     */
+	    value: function prop(name, value) {
+	      // Its a setter.
+	      if (value != null) {
+	        this.style[name] = value;
+	        // Only defined if option linked is true.
+	        if (this.renderable) this.renderer.setStyle(this.renderable, name, value);
+	        return this;
+	      }
+	      // Its a getter, read the value from the DOM if its not cached.
+	      if (this.renderable && this.style[name] == null) {
+	        // Cache the value after we have got it from the DOM once.
+	        this.style[name] = this.renderer.getStyle(this.renderable, name);
+	      }
+	      return this.style[name];
+	    }
+
+	    /**
+	     * Apply rule to an element inline.
+	     */
+
+	  }, {
+	    key: 'applyTo',
+	    value: function applyTo(renderable) {
+	      var json = this.toJSON();
+	      for (var prop in json) {
+	        this.renderer.setStyle(renderable, prop, json[prop]);
+	      }return this;
+	    }
+
+	    /**
+	     * Returns JSON representation of the rule.
+	     * Fallbacks are not supported.
+	     * Useful as inline style.
+	     */
+
+	  }, {
+	    key: 'toJSON',
+	    value: function toJSON() {
+	      var json = Object.create(null);
+	      for (var prop in this.style) {
+	        var value = this.style[prop];
+	        if ((typeof value === 'undefined' ? 'undefined' : (0, _typeof3['default'])(value)) !== 'object') json[prop] = value;else if (Array.isArray(value)) json[prop] = (0, _toCssValue2['default'])(value);
+	      }
+	      return json;
+	    }
+
+	    /**
+	     * Generates a CSS string.
+	     */
+
+	  }, {
+	    key: 'toString',
+	    value: function toString(options) {
+	      return (0, _toCss2['default'])(this.selector, this.style, options);
+	    }
+	  }, {
+	    key: 'selector',
+	    set: function set(selector) {
+	      var sheet = this.options.sheet;
+
+	      // After we modify a selector, ref by old selector needs to be removed.
+
+	      if (sheet) sheet.rules.unregister(this);
+
+	      this.selectorText = selector;
+	      this.className = (0, _findClassNames2['default'])(selector);
+
+	      if (!this.renderable) {
+	        // Register the rule with new selector.
+	        if (sheet) sheet.rules.register(this);
+	        return;
+	      }
+
+	      var changed = this.renderer.setSelector(this.renderable, selector);
+
+	      if (changed && sheet) {
+	        sheet.rules.register(this);
+	        return;
+	      }
+
+	      // If selector setter is not implemented, rerender the sheet.
+	      // We need to delete renderable from the rule, because when sheet.deploy()
+	      // calls rule.toString, it will get the old selector.
+	      delete this.renderable;
+	      if (sheet) {
+	        sheet.rules.register(this);
+	        sheet.deploy().link();
+	      }
+	    }
+
+	    /**
+	     * Get selector string.
+	     */
+	    ,
+	    get: function get() {
+	      if (this.renderable) {
+	        return this.renderer.getSelector(this.renderable);
+	      }
+
+	      return this.selectorText;
+	    }
+	  }]);
+	  return RegularRule;
+	}();
+
+	exports['default'] = RegularRule;
+
+/***/ },
+/* 359 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports['default'] = toCss;
+
+	var _toCssValue = __webpack_require__(360);
+
+	var _toCssValue2 = _interopRequireDefault(_toCssValue);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	/**
+	 * Indent a string.
+	 * http://jsperf.com/array-join-vs-for
+	 */
+	function indentStr(str, indent) {
+	  var result = '';
+	  for (var index = 0; index < indent; index++) {
+	    result += '  ';
+	  }return result + str;
+	}
 
 	/**
 	 * Converts a Rule to CSS string.
-	 *
-	 * Options:
-	 * - `selector` use `false` to get a rule without selector
-	 * - `indentationLevel` level of indentation
-	 *
-	 * @param {String} selector
-	 * @param {Object} style
-	 * @param {Object} options
-	 * @return {String}
 	 */
+
 	function toCss(selector, style) {
-	  var options = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
-
-	  var indentationLevel = options.indentationLevel || 0;
-	  var str = '';
-
-	  if (options.selector !== false) {
-	    str += indent(indentationLevel, selector + ' {');
-	    indentationLevel++;
-	  }
-
+	  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+	  var _options$indent = options.indent,
+	      indent = _options$indent === undefined ? 0 : _options$indent;
 	  var fallbacks = style.fallbacks;
 
-	  // Apply fallbacks first.
+	  var result = '';
 
+	  indent++;
+
+	  // Apply fallbacks first.
 	  if (fallbacks) {
 	    // Array syntax {fallbacks: [{prop: value}]}
 	    if (Array.isArray(fallbacks)) {
 	      for (var index = 0; index < fallbacks.length; index++) {
 	        var fallback = fallbacks[index];
 	        for (var prop in fallback) {
-	          str += '\n' + indent(indentationLevel, prop + ': ' + toCssValue(fallback[prop]) + ';');
+	          var value = fallback[prop];
+	          if (value != null) {
+	            result += '\n' + indentStr(prop + ': ' + (0, _toCssValue2['default'])(value) + ';', indent);
+	          }
 	        }
 	      }
 	    }
 	    // Object syntax {fallbacks: {prop: value}}
 	    else {
 	        for (var _prop in fallbacks) {
-	          str += '\n' + indent(indentationLevel, _prop + ': ' + toCssValue(fallbacks[_prop]) + ';');
+	          var _value = fallbacks[_prop];
+	          if (_value != null) {
+	            result += '\n' + indentStr(_prop + ': ' + (0, _toCssValue2['default'])(_value) + ';', indent);
+	          }
 	        }
 	      }
 	  }
 
 	  for (var _prop2 in style) {
-	    if (_prop2 !== 'fallbacks') {
-	      str += '\n' + indent(indentationLevel, _prop2 + ': ' + toCssValue(style[_prop2]) + ';');
+	    var _value2 = style[_prop2];
+	    if (_value2 != null && _prop2 !== 'fallbacks') {
+	      result += '\n' + indentStr(_prop2 + ': ' + (0, _toCssValue2['default'])(_value2) + ';', indent);
 	    }
 	  }
 
-	  if (options.selector !== false) str += '\n' + indent(--indentationLevel, '}');
+	  if (!result) return result;
 
-	  return str;
+	  indent--;
+	  result = indentStr(selector + ' {' + result + '\n', indent) + indentStr('}', indent);
+
+	  return result;
 	}
+
+/***/ },
+/* 360 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports['default'] = toCssValue;
+	var joinWithSpace = function joinWithSpace(value) {
+	  return value.join(' ');
+	};
+
+	/**
+	 * Converts array values to string.
+	 *
+	 * `margin: [['5px', '10px']]` > `margin: 5px 10px;`
+	 * `border: ['1px', '2px']` > `border: 1px, 2px;`
+	 */
+	function toCssValue(value) {
+	  if (!Array.isArray(value)) return value;
+
+	  // Support space separated values.
+	  if (Array.isArray(value[0])) {
+	    return toCssValue(value.map(joinWithSpace));
+	  }
+
+	  return value.join(', ');
+	}
+
+/***/ },
+/* 361 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports['default'] = findClassNames;
+	var dotsRegExp = /[.]/g;
+	var classesRegExp = /[.][^ ,]+/g;
 
 	/**
 	 * Get class names from a selector.
-	 *
-	 * @param {String} selector
-	 * @return {String}
 	 */
-	var findClassNames = exports.findClassNames = function () {
-	  var dotsRegExp = /[.]/g;
-	  var classesRegExp = /[.][^ ,]+/g;
+	function findClassNames(selector) {
+	  var classes = selector.match(classesRegExp);
 
-	  return function (selector) {
-	    var classes = selector.match(classesRegExp);
+	  if (!classes) return '';
 
-	    if (!classes) return '';
-
-	    return classes.join(' ').replace(dotsRegExp, '');
-	  };
-	}();
+	  return classes.join(' ').replace(dotsRegExp, '');
+	}
 
 /***/ },
-/* 343 */
+/* 362 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _classCallCheck2 = __webpack_require__(276);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(277);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var PluginsRegistry = function () {
+	  function PluginsRegistry() {
+	    (0, _classCallCheck3['default'])(this, PluginsRegistry);
+	    this.creators = [];
+	    this.processors = [];
+	  }
+
+	  (0, _createClass3['default'])(PluginsRegistry, [{
+	    key: 'onCreateRule',
+
+
+	    /**
+	     * Call `onCreateRule` hooks and return an object if returned by a hook.
+	     */
+	    value: function onCreateRule(name, decl, options) {
+	      for (var i = 0; i < this.creators.length; i++) {
+	        var rule = this.creators[i](name, decl, options);
+	        if (rule) return rule;
+	      }
+	      return null;
+	    }
+
+	    /**
+	     * Call `onProcessRule` hooks.
+	     */
+
+	  }, {
+	    key: 'onProcessRule',
+	    value: function onProcessRule(rule) {
+	      if (rule.isProcessed) return;
+	      for (var i = 0; i < this.processors.length; i++) {
+	        this.processors[i](rule, rule.options.sheet);
+	      }
+	      rule.isProcessed = true;
+	    }
+
+	    /**
+	     * Register a plugin.
+	     * If function is passed, it is a shortcut for `{onProcessRule}`.
+	     */
+
+	  }, {
+	    key: 'use',
+	    value: function use(plugin) {
+	      if (typeof plugin === 'function') {
+	        this.processors.push(plugin);
+	        return;
+	      }
+
+	      if (plugin.onCreateRule) this.creators.push(plugin.onCreateRule);
+	      if (plugin.onProcessRule) this.processors.push(plugin.onProcessRule);
+	    }
+	  }]);
+	  return PluginsRegistry;
+	}();
+
+	exports['default'] = PluginsRegistry;
+
+/***/ },
+/* 363 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _SimpleRule = __webpack_require__(364);
+
+	var _SimpleRule2 = _interopRequireDefault(_SimpleRule);
+
+	var _KeyframeRule = __webpack_require__(365);
+
+	var _KeyframeRule2 = _interopRequireDefault(_KeyframeRule);
+
+	var _ConditionalRule = __webpack_require__(366);
+
+	var _ConditionalRule2 = _interopRequireDefault(_ConditionalRule);
+
+	var _FontFaceRule = __webpack_require__(367);
+
+	var _FontFaceRule2 = _interopRequireDefault(_FontFaceRule);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var classes = {
+	  '@charset': _SimpleRule2['default'],
+	  '@import': _SimpleRule2['default'],
+	  '@namespace': _SimpleRule2['default'],
+	  '@keyframes': _KeyframeRule2['default'],
+	  '@media': _ConditionalRule2['default'],
+	  '@supports': _ConditionalRule2['default'],
+	  '@font-face': _FontFaceRule2['default']
+	};
+
+	/**
+	 * Generate plugins which will register all rules.
+	 */
+	exports['default'] = Object.keys(classes).map(function (key) {
+	  // https://jsperf.com/indexof-vs-substr-vs-regex-at-the-beginning-3
+	  var re = new RegExp('^' + key);
+	  var onCreateRule = function onCreateRule(name, decl, options) {
+	    return re.test(name) ? new classes[key](name, decl, options) : null;
+	  };
+	  return { onCreateRule: onCreateRule };
+	});
+
+/***/ },
+/* 364 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _classCallCheck2 = __webpack_require__(276);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(277);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var SimpleRule = function () {
+	  function SimpleRule(name, value, options) {
+	    (0, _classCallCheck3['default'])(this, SimpleRule);
+	    this.type = 'simple';
+
+	    this.name = name;
+	    this.value = value;
+	    this.options = options;
+	  }
+
+	  /**
+	   * Generates a CSS string.
+	   */
+
+
+	  (0, _createClass3['default'])(SimpleRule, [{
+	    key: 'toString',
+	    value: function toString() {
+	      if (Array.isArray(this.value)) {
+	        var str = '';
+	        for (var index = 0; index < this.value.length; index++) {
+	          str += this.name + ' ' + this.value[index] + ';';
+	          if (this.value[index + 1]) str += '\n';
+	        }
+	        return str;
+	      }
+
+	      return this.name + ' ' + this.value + ';';
+	    }
+	  }]);
+	  return SimpleRule;
+	}();
+
+	exports['default'] = SimpleRule;
+
+/***/ },
+/* 365 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends2 = __webpack_require__(341);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	var _classCallCheck2 = __webpack_require__(276);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(277);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _createRule = __webpack_require__(357);
+
+	var _createRule2 = _interopRequireDefault(_createRule);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var toCssOptions = { indent: 1 };
+
+	var KeyframeRule = function () {
+	  function KeyframeRule(selector, frames, options) {
+	    (0, _classCallCheck3['default'])(this, KeyframeRule);
+	    this.type = 'keyframe';
+
+	    this.selector = selector;
+	    this.options = options;
+	    this.frames = this.formatFrames(frames);
+	  }
+
+	  /**
+	   * Creates formatted frames where every frame value is a rule instance.
+	   */
+
+
+	  (0, _createClass3['default'])(KeyframeRule, [{
+	    key: 'formatFrames',
+	    value: function formatFrames(frames) {
+	      var newFrames = Object.create(null);
+	      for (var name in frames) {
+	        var options = (0, _extends3['default'])({}, this.options, {
+	          parent: this,
+	          className: name,
+	          selector: name
+	        });
+	        var rule = (0, _createRule2['default'])(name, frames[name], options);
+	        options.jss.plugins.onProcessRule(rule);
+	        newFrames[name] = rule;
+	      }
+	      return newFrames;
+	    }
+
+	    /**
+	     * Generates a CSS string.
+	     */
+
+	  }, {
+	    key: 'toString',
+	    value: function toString() {
+	      var str = this.selector + ' {\n';
+	      for (var name in this.frames) {
+	        str += this.frames[name].toString(toCssOptions) + '\n';
+	      }
+	      str += '}';
+	      return str;
+	    }
+	  }]);
+	  return KeyframeRule;
+	}();
+
+	exports['default'] = KeyframeRule;
+
+/***/ },
+/* 366 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends2 = __webpack_require__(341);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	var _classCallCheck2 = __webpack_require__(276);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(277);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _RulesContainer = __webpack_require__(356);
+
+	var _RulesContainer2 = _interopRequireDefault(_RulesContainer);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	/**
+	 * Conditional rule for @media, @supports
+	 */
+	var ConditionalRule = function () {
+	  function ConditionalRule(selector, styles, options) {
+	    (0, _classCallCheck3['default'])(this, ConditionalRule);
+	    this.type = 'conditional';
+
+	    this.selector = selector;
+	    this.options = options;
+	    this.rules = new _RulesContainer2['default']((0, _extends3['default'])({}, options, { parent: this }));
+
+	    for (var name in styles) {
+	      this.rules.add(name, styles[name]);
+	    }
+
+	    this.rules.process();
+	  }
+
+	  /**
+	   * Get a rule.
+	   */
+
+
+	  (0, _createClass3['default'])(ConditionalRule, [{
+	    key: 'getRule',
+	    value: function getRule(name) {
+	      return this.rules.get(name);
+	    }
+
+	    /**
+	     * Get index of a rule.
+	     */
+
+	  }, {
+	    key: 'indexOf',
+	    value: function indexOf(rule) {
+	      return this.rules.indexOf(rule);
+	    }
+
+	    /**
+	     * Create and register rule, run plugins.
+	     */
+
+	  }, {
+	    key: 'addRule',
+	    value: function addRule(name, style, options) {
+	      var rule = this.rules.add(name, style, options);
+	      this.options.jss.plugins.onProcessRule(rule);
+	      return rule;
+	    }
+
+	    /**
+	     * Generates a CSS string.
+	     */
+
+	  }, {
+	    key: 'toString',
+	    value: function toString() {
+	      var inner = this.rules.toString({ indent: 1 });
+	      return inner ? this.selector + ' {\n' + inner + '\n}' : '';
+	    }
+	  }]);
+	  return ConditionalRule;
+	}();
+
+	exports['default'] = ConditionalRule;
+
+/***/ },
+/* 367 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _classCallCheck2 = __webpack_require__(276);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(277);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _toCss = __webpack_require__(359);
+
+	var _toCss2 = _interopRequireDefault(_toCss);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var FontFaceRule = function () {
+	  function FontFaceRule(selector, style, options) {
+	    (0, _classCallCheck3['default'])(this, FontFaceRule);
+	    this.type = 'font-face';
+
+	    this.selector = selector;
+	    this.style = style;
+	    this.options = options;
+	  }
+
+	  /**
+	   * Generates a CSS string.
+	   */
+
+
+	  (0, _createClass3['default'])(FontFaceRule, [{
+	    key: 'toString',
+	    value: function toString() {
+	      if (Array.isArray(this.style)) {
+	        var str = '';
+	        for (var index = 0; index < this.style.length; index++) {
+	          str += (0, _toCss2['default'])(this.selector, this.style[index]);
+	          if (this.style[index + 1]) str += '\n';
+	        }
+	        return str;
+	      }
+
+	      return (0, _toCss2['default'])(this.selector, this.style);
+	    }
+	  }]);
+	  return FontFaceRule;
+	}();
+
+	exports['default'] = FontFaceRule;
+
+/***/ },
+/* 368 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports['default'] = generateClassName;
+
+	var _murmurhash3_gc = __webpack_require__(369);
+
+	var _murmurhash3_gc2 = _interopRequireDefault(_murmurhash3_gc);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	/**
+	 * Generates a class name using murmurhash.
+	 */
+	function generateClassName(str, rule, sheet) {
+	  if (sheet && sheet.options.meta) str += sheet.options.meta;
+
+	  var hash = (0, _murmurhash3_gc2['default'])(str);
+
+	  // There is no name if `jss.createRule(style)` was used.
+	  return rule.name ? rule.name + '-' + hash : hash;
+	}
+
+/***/ },
+/* 369 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -10540,7 +12067,7 @@ webpackJsonp([0],[
 	}
 
 /***/ },
-/* 344 */
+/* 370 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10548,73 +12075,971 @@ webpackJsonp([0],[
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.default = createRule;
 
-	var _Rule = __webpack_require__(345);
+	var _jssExtend = __webpack_require__(371);
 
-	var _Rule2 = _interopRequireDefault(_Rule);
+	var _jssExtend2 = _interopRequireDefault(_jssExtend);
 
-	var _SimpleRule = __webpack_require__(346);
+	var _jssNested = __webpack_require__(372);
 
-	var _SimpleRule2 = _interopRequireDefault(_SimpleRule);
+	var _jssNested2 = _interopRequireDefault(_jssNested);
 
-	var _KeyframeRule = __webpack_require__(347);
+	var _jssCamelCase = __webpack_require__(373);
 
-	var _KeyframeRule2 = _interopRequireDefault(_KeyframeRule);
+	var _jssCamelCase2 = _interopRequireDefault(_jssCamelCase);
 
-	var _ConditionalRule = __webpack_require__(348);
+	var _jssDefaultUnit = __webpack_require__(374);
 
-	var _ConditionalRule2 = _interopRequireDefault(_ConditionalRule);
+	var _jssDefaultUnit2 = _interopRequireDefault(_jssDefaultUnit);
 
-	var _FontFaceRule = __webpack_require__(349);
+	var _jssVendorPrefixer = __webpack_require__(376);
 
-	var _FontFaceRule2 = _interopRequireDefault(_FontFaceRule);
+	var _jssVendorPrefixer2 = _interopRequireDefault(_jssVendorPrefixer);
+
+	var _jssPropsSort = __webpack_require__(382);
+
+	var _jssPropsSort2 = _interopRequireDefault(_jssPropsSort);
+
+	var _jssCompose = __webpack_require__(383);
+
+	var _jssCompose2 = _interopRequireDefault(_jssCompose);
+
+	var _jssExpand = __webpack_require__(384);
+
+	var _jssExpand2 = _interopRequireDefault(_jssExpand);
+
+	var _jssGlobal = __webpack_require__(386);
+
+	var _jssGlobal2 = _interopRequireDefault(_jssGlobal);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = function () {
+	  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	  return {
+	    plugins: [(0, _jssGlobal2.default)(options.global), (0, _jssExtend2.default)(options.extend), (0, _jssNested2.default)(options.nested), (0, _jssCompose2.default)(options.compose), (0, _jssCamelCase2.default)(options.camelCase), (0, _jssDefaultUnit2.default)(options.defaultUnit), (0, _jssExpand2.default)(options.expand), (0, _jssVendorPrefixer2.default)(options.vendorPrefixer), (0, _jssPropsSort2.default)(options.propsSort)]
+	  };
+	};
+
+/***/ },
+/* 371 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+	var _warning = __webpack_require__(158);
+
+	var _warning2 = _interopRequireDefault(_warning);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function isObject(obj) {
+	  return obj && (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object' && !Array.isArray(obj);
+	}
+
+	/**
+	 * Recursively extend styles.
+	 */
+	function extend(rule, newStyle, style) {
+	  if (typeof style.extend == 'string') {
+	    if (rule.options && rule.options.sheet) {
+	      var refRule = rule.options.sheet.getRule(style.extend);
+	      if (refRule) {
+	        if (refRule === rule) (0, _warning2['default'])(false, '[JSS] A rule tries to extend itself \r\n%s', rule);else extend(rule, newStyle, refRule.originalStyle);
+	      }
+	    }
+	  } else if (Array.isArray(style.extend)) {
+	    for (var index = 0; index < style.extend.length; index++) {
+	      extend(rule, newStyle, style.extend[index]);
+	    }
+	  } else {
+	    for (var prop in style.extend) {
+	      if (prop === 'extend') {
+	        extend(rule, newStyle, style.extend.extend);
+	      } else if (isObject(style.extend[prop])) {
+	        if (!newStyle[prop]) newStyle[prop] = {};
+	        extend(rule, newStyle[prop], style.extend[prop]);
+	      } else {
+	        newStyle[prop] = style.extend[prop];
+	      }
+	    }
+	  }
+	  // Copy base style.
+	  for (var _prop in style) {
+	    if (_prop === 'extend') continue;
+	    if (isObject(newStyle[_prop]) && isObject(style[_prop])) {
+	      extend(rule, newStyle[_prop], style[_prop]);
+	    } else {
+	      newStyle[_prop] = style[_prop];
+	    }
+	  }
+
+	  return newStyle;
+	}
+
+	/**
+	 * Handle `extend` property.
+	 *
+	 * @param {Rule} rule
+	 * @api public
+	 */
+
+	exports['default'] = function () {
+	  return function (rule) {
+	    if (!rule.style || !rule.style.extend) return;
+	    rule.style = extend(rule, {}, rule.style);
+	  };
+	};
+
+/***/ },
+/* 372 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	exports.default = jssNested;
+
+	var _warning = __webpack_require__(158);
+
+	var _warning2 = _interopRequireDefault(_warning);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	var separatorRegExp = /\s*,\s*/g;
+	var parentRegExp = /&/g;
+	var refRegExp = /\$([\w-]+)/g;
+
+	/**
+	 * Convert nested rules to separate, remove them from original styles.
+	 *
+	 * @param {Rule} rule
+	 * @api public
+	 */
+	function jssNested() {
+	  // Get a function to be used for $ref replacement.
+	  function getReplaceRef(container) {
+	    return function (match, name) {
+	      var rule = container.getRule(name);
+	      if (rule) return rule.selector;
+	      (0, _warning2.default)(false, '[JSS] Could not find the referenced rule %s. \r\n%s', name, rule);
+	      return name;
+	    };
+	  }
+
+	  var hasAnd = function hasAnd(str) {
+	    return str.indexOf('&') !== -1;
+	  };
+
+	  function replaceParentRefs(nestedProp, parentProp) {
+	    var parentSelectors = parentProp.split(separatorRegExp);
+	    var nestedSelectors = nestedProp.split(separatorRegExp);
+
+	    var result = '';
+
+	    for (var i = 0; i < parentSelectors.length; i++) {
+	      var parent = parentSelectors[i];
+
+	      for (var j = 0; j < nestedSelectors.length; j++) {
+	        var nested = nestedSelectors[j];
+	        if (result) result += ', ';
+	        // Replace all & by the parent or prefix & with the parent.
+	        result += hasAnd(nested) ? nested.replace(parentRegExp, parent) : parent + ' ' + nested;
+	      }
+	    }
+
+	    return result;
+	  }
+
+	  function getOptions(rule, container, options) {
+	    // Options has been already created, now we only increase index.
+	    if (options) return _extends({}, options, { index: options.index + 1 });
+
+	    var nestingLevel = rule.options.nestingLevel;
+
+	    nestingLevel = nestingLevel === undefined ? 1 : nestingLevel + 1;
+
+	    return _extends({}, rule.options, {
+	      nestingLevel: nestingLevel,
+	      index: container.indexOf(rule) + 1
+	    });
+	  }
+
+	  return function (rule) {
+	    if (rule.type !== 'regular') return;
+	    var container = rule.options.parent;
+	    var options = void 0;
+	    var replaceRef = void 0;
+
+	    for (var prop in rule.style) {
+	      var isNested = hasAnd(prop);
+	      var isNestedConditional = prop[0] === '@';
+
+	      if (!isNested && !isNestedConditional) continue;
+
+	      options = getOptions(rule, container, options);
+
+	      if (isNested) {
+	        var selector = replaceParentRefs(prop, rule.selector);
+	        // Lazily create the ref replacer function just once for
+	        // all nested rules within the sheet.
+	        if (!replaceRef) replaceRef = getReplaceRef(container);
+	        // Replace all $refs.
+	        selector = selector.replace(refRegExp, replaceRef);
+
+	        container.addRule(selector, rule.style[prop], _extends({}, options, { selector: selector }));
+	      } else if (isNestedConditional) {
+	        // Place conditional right after the parent rule to ensure right ordering.
+	        container.addRule(prop, _defineProperty({}, rule.name, rule.style[prop]), options);
+	      }
+
+	      delete rule.style[prop];
+	    }
+	  };
+	}
+
+/***/ },
+/* 373 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var regExp = /([A-Z])/g;
+
+	/**
+	 * Replace a string passed from String#replace.
+	 * @param {String} str
+	 * @return {String}
+	 */
+	function replace(str) {
+	  return "-" + str.toLowerCase();
+	}
+
+	/**
+	 * Convert camel cased property names to dash separated.
+	 *
+	 * @param {Object} style
+	 * @return {Object}
+	 */
+	function convertCase(style) {
+	  var converted = {};
+
+	  for (var prop in style) {
+	    var value = style[prop];
+	    prop = prop.replace(regExp, replace);
+	    converted[prop] = value;
+	  }
+
+	  if (style.fallbacks) {
+	    if (Array.isArray(style.fallbacks)) converted.fallbacks = style.fallbacks.map(convertCase);else converted.fallbacks = convertCase(style.fallbacks);
+	  }
+
+	  return converted;
+	}
+
+	/**
+	 * Allow camel cased property names by converting them back to dasherized.
+	 *
+	 * @param {Rule} rule
+	 */
+
+	exports["default"] = function () {
+	  return function (rule) {
+	    var style = rule.style;
+
+	    if (!style) return;
+
+	    if (Array.isArray(style)) {
+	      // Handle rules like @font-face, which can have multiple styles in an array
+	      for (var index = 0; index < style.length; index++) {
+	        style[index] = convertCase(style[index]);
+	      }
+	      return;
+	    }
+
+	    rule.style = convertCase(style);
+	  };
+	};
+
+/***/ },
+/* 374 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports['default'] = defaultUnit;
+
+	var _defaultUnits = __webpack_require__(375);
+
+	var _defaultUnits2 = _interopRequireDefault(_defaultUnits);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	/**
+	 * Clones the object and adds a camel cased property version.
+	 */
+	function addCamelCasedVersion(obj) {
+	  var regExp = /(-[a-z])/g;
+	  var replace = function replace(str) {
+	    return str[1].toUpperCase();
+	  };
+	  var newObj = {};
+	  for (var key in obj) {
+	    newObj[key] = obj[key];
+	    newObj[key.replace(regExp, replace)] = obj[key];
+	  }
+	  return newObj;
+	}
+
+	var units = addCamelCasedVersion(_defaultUnits2['default']);
+
+	/**
+	 * Recursive deep style passing function
+	 *
+	 * @param {String} current property
+	 * @param {(Object|Array|Number|String)} property value
+	 * @param {Object} options
+	 * @return {(Object|Array|Number|String)} resulting value
+	 */
+	function iterate(prop, value, options) {
+	  if (!value) return value;
+
+	  var convertedValue = value;
+	  switch (value.constructor) {
+	    case Object:
+	      if (prop === 'fallbacks') {
+	        for (var innerProp in value) {
+	          value[innerProp] = iterate(innerProp, value[innerProp], options);
+	        }
+	        break;
+	      }
+	      for (var _innerProp in value) {
+	        value[_innerProp] = iterate(prop + '-' + _innerProp, value[_innerProp], options);
+	      }
+	      break;
+	    case Array:
+	      for (var i = 0; i < value.length; i++) {
+	        value[i] = iterate(prop, value[i], options);
+	      }
+	      break;
+	    case Number:
+	      convertedValue = addUnit(prop, value, options);
+	      break;
+	    default:
+	      break;
+	  }
+
+	  return convertedValue;
+	}
+
+	/**
+	 * Check if default unit must be added
+	 *
+	 * @param {String} current property
+	 * @param {(Object|Array|Number|String)} property value
+	 * @param {Object} options
+	 * @return {String} string with units
+	 */
+	function addUnit(prop, value, options) {
+	  if (typeof value === 'number' && value !== 0) {
+	    value += options[prop] || units[prop] || '';
+	  }
+	  return value;
+	}
+
+	/**
+	 * Add unit to numeric values.
+	 *
+	 * @param {Rule} rule
+	 * @api public
+	 */
+	function defaultUnit() {
+	  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+	  return function (rule) {
+	    var style = rule.style,
+	        type = rule.type;
+
+	    if (!style || type !== 'regular') return;
+	    for (var prop in style) {
+	      style[prop] = iterate(prop, style[prop], addCamelCasedVersion(options));
+	    }
+	  };
+	}
+
+/***/ },
+/* 375 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	/**
+	 * Generated jss-default-unit CSS property units
+	 * @object
+	 */
+	exports['default'] = {
+	  'animation-delay': 'ms',
+	  'animation-duration': 'ms',
+	  'background-position': 'px',
+	  'background-position-x': 'px',
+	  'background-position-y': 'px',
+	  'background-size': 'px',
+	  border: 'px',
+	  'border-bottom': 'px',
+	  'border-bottom-left-radius': 'px',
+	  'border-bottom-right-radius': 'px',
+	  'border-bottom-width': 'px',
+	  'border-left': 'px',
+	  'border-left-width': 'px',
+	  'border-radius': 'px',
+	  'border-right': 'px',
+	  'border-right-width': 'px',
+	  'border-spacing': 'px',
+	  'border-top': 'px',
+	  'border-top-left-radius': 'px',
+	  'border-top-right-radius': 'px',
+	  'border-top-width': 'px',
+	  'border-width': 'px',
+	  'border-after-width': 'px',
+	  'border-before-width': 'px',
+	  'border-end-width': 'px',
+	  'border-horizontal-spacing': 'px',
+	  'border-start-width': 'px',
+	  'border-vertical-spacing': 'px',
+	  bottom: 'px',
+	  'box-shadow': 'px',
+	  'box-shadow-x': 'px', // Not existing property. Used to avoid issues with jss-expand intergration
+	  'box-shadow-y': 'px', // Not existing property. Used to avoid issues with jss-expand intergration
+	  'box-shadow-blur': 'px', // Not existing property. Used to avoid issues with jss-expand intergration
+	  'box-shadow-spread': 'px', // Not existing property. Used to avoid issues with jss-expand intergration
+	  'column-gap': 'px',
+	  'column-rule': 'px',
+	  'column-rule-width': 'px',
+	  'column-width': 'px',
+	  'flex-basis': 'px',
+	  'font-line-height': 'px', // Not existing property. Used to avoid issues with jss-expand intergration
+	  'font-size': 'px',
+	  'font-size-delta': 'px',
+	  height: 'px',
+	  left: 'px',
+	  'letter-spacing': 'px',
+	  'logical-height': 'px',
+	  'logical-width': 'px',
+	  margin: 'px',
+	  'margin-after': 'px',
+	  'margin-before': 'px',
+	  'margin-bottom': 'px',
+	  'margin-left': 'px',
+	  'margin-right': 'px',
+	  'margin-top': 'px',
+	  'max-height': 'px',
+	  'max-width': 'px',
+	  'margin-end': 'px',
+	  'margin-start': 'px',
+	  'mask-position-x': 'px',
+	  'mask-position-y': 'px',
+	  'mask-size': 'px',
+	  'max-logical-height': 'px',
+	  'max-logical-width': 'px',
+	  'min-height': 'px',
+	  'min-width': 'px',
+	  'min-logical-height': 'px',
+	  'min-logical-width': 'px',
+	  motion: 'px',
+	  'motion-offset': 'px',
+	  outline: 'px',
+	  'outline-offset': 'px',
+	  'outline-width': 'px',
+	  padding: 'px',
+	  'padding-bottom': 'px',
+	  'padding-left': 'px',
+	  'padding-right': 'px',
+	  'padding-top': 'px',
+	  'padding-after': 'px',
+	  'padding-before': 'px',
+	  'padding-end': 'px',
+	  'padding-start': 'px',
+	  'perspective-origin-x': '%',
+	  'perspective-origin-y': '%',
+	  perspective: 'px',
+	  right: 'px',
+	  'shape-margin': 'px',
+	  size: 'px',
+	  'text-indent': 'px',
+	  'text-shadow-x': 'px', // Not existing property. Used to avoid issues with jss-expand intergration
+	  'text-shadow-y': 'px', // Not existing property. Used to avoid issues with jss-expand intergration
+	  'text-shadow-blur': 'px', // Not existing property. Used to avoid issues with jss-expand intergration
+	  'text-stroke': 'px',
+	  'text-stroke-width': 'px',
+	  top: 'px',
+	  'transform-origin': '%',
+	  'transform-origin-x': '%',
+	  'transform-origin-y': '%',
+	  'transform-origin-z': '%',
+	  'transition-delay': 'ms',
+	  'transition-duration': 'ms',
+	  'vertical-align': 'px',
+	  width: 'px',
+	  'word-spacing': 'px'
+	};
+
+/***/ },
+/* 376 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports['default'] = jssVendorPrefixer;
+
+	var _cssVendor = __webpack_require__(377);
+
+	var vendor = _interopRequireWildcard(_cssVendor);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+
+	/**
+	 * Add vendor prefix to a property name when needed.
+	 *
+	 * @param {Rule} rule
+	 * @api public
+	 */
+	function jssVendorPrefixer() {
+	  return function (rule) {
+	    if (rule.type === 'keyframe') {
+	      rule.selector = '@' + vendor.prefix.css + rule.selector.substr(1);
+	      return;
+	    }
+
+	    if (rule.type !== 'regular') return;
+
+	    for (var prop in rule.style) {
+	      var value = rule.style[prop];
+
+	      var changeProp = false;
+	      var supportedProp = vendor.supportedProperty(prop);
+	      if (supportedProp && supportedProp !== prop) changeProp = true;
+
+	      var changeValue = false;
+	      var supportedValue = vendor.supportedValue(supportedProp, value);
+	      if (supportedValue && supportedValue !== value) changeValue = true;
+
+	      if (changeProp || changeValue) {
+	        if (changeProp) delete rule.style[prop];
+	        rule.style[supportedProp || prop] = supportedValue || value;
+	      }
+	    }
+	  };
+	}
+
+/***/ },
+/* 377 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.supportedValue = exports.supportedProperty = exports.prefix = undefined;
+
+	var _prefix = __webpack_require__(378);
+
+	var _prefix2 = _interopRequireDefault(_prefix);
+
+	var _supportedProperty = __webpack_require__(379);
+
+	var _supportedProperty2 = _interopRequireDefault(_supportedProperty);
+
+	var _supportedValue = __webpack_require__(381);
+
+	var _supportedValue2 = _interopRequireDefault(_supportedValue);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	exports['default'] = {
+	  prefix: _prefix2['default'],
+	  supportedProperty: _supportedProperty2['default'],
+	  supportedValue: _supportedValue2['default']
+	}; /**
+	    * CSS Vendor prefix detection and property feature testing.
+	    *
+	    * @copyright Oleg Slobodskoi 2015
+	    * @website https://github.com/jsstyles/css-vendor
+	    * @license MIT
+	    */
+
+	exports.prefix = _prefix2['default'];
+	exports.supportedProperty = _supportedProperty2['default'];
+	exports.supportedValue = _supportedValue2['default'];
+
+/***/ },
+/* 378 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _isInBrowser = __webpack_require__(351);
+
+	var _isInBrowser2 = _interopRequireDefault(_isInBrowser);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var js = ''; /**
+	              * Export javascript style and css style vendor prefixes.
+	              * Based on "transform" support test.
+	              */
+
+	var css = '';
+
+	// We should not do anything if required serverside.
+	if (_isInBrowser2['default']) {
+	  // Order matters. We need to check Webkit the last one because
+	  // other vendors use to add Webkit prefixes to some properties
+	  var jsCssMap = {
+	    Moz: '-moz-',
+	    // IE did it wrong again ...
+	    ms: '-ms-',
+	    O: '-o-',
+	    Webkit: '-webkit-'
+	  };
+	  var style = document.createElement('p').style;
+	  var testProp = 'Transform';
+
+	  for (var key in jsCssMap) {
+	    if (key + testProp in style) {
+	      js = key;
+	      css = jsCssMap[key];
+	      break;
+	    }
+	  }
+	}
+
+	/**
+	 * Vendor prefix string for the current browser.
+	 *
+	 * @type {{js: String, css: String}}
+	 * @api public
+	 */
+	exports['default'] = { js: js, css: css };
+
+/***/ },
+/* 379 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports['default'] = supportedProperty;
+
+	var _isInBrowser = __webpack_require__(351);
+
+	var _isInBrowser2 = _interopRequireDefault(_isInBrowser);
+
+	var _prefix = __webpack_require__(378);
+
+	var _prefix2 = _interopRequireDefault(_prefix);
+
+	var _camelize = __webpack_require__(380);
+
+	var _camelize2 = _interopRequireDefault(_camelize);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var el = void 0;
+	var cache = {};
+
+	if (_isInBrowser2['default']) {
+	  el = document.createElement('p');
+
+	  /**
+	   * We test every property on vendor prefix requirement.
+	   * Once tested, result is cached. It gives us up to 70% perf boost.
+	   * http://jsperf.com/element-style-object-access-vs-plain-object
+	   *
+	   * Prefill cache with known css properties to reduce amount of
+	   * properties we need to feature test at runtime.
+	   * http://davidwalsh.name/vendor-prefix
+	   */
+	  var computed = window.getComputedStyle(document.documentElement, '');
+	  for (var key in computed) {
+	    if (!isNaN(key)) cache[computed[key]] = computed[key];
+	  }
+	}
+
+	/**
+	 * Test if a property is supported, returns supported property with vendor
+	 * prefix if required. Returns `false` if not supported.
+	 *
+	 * @param {String} prop dash separated
+	 * @return {String|Boolean}
+	 * @api public
+	 */
+	function supportedProperty(prop) {
+	  // For server-side rendering.
+	  if (!el) return prop;
+
+	  // We have not tested this prop yet, lets do the test.
+	  if (cache[prop] != null) return cache[prop];
+
+	  // Camelization is required because we can't test using
+	  // css syntax for e.g. in FF.
+	  // Test if property is supported as it is.
+	  if ((0, _camelize2['default'])(prop) in el.style) {
+	    cache[prop] = prop;
+	  }
+	  // Test if property is supported with vendor prefix.
+	  else if (_prefix2['default'].js + (0, _camelize2['default'])('-' + prop) in el.style) {
+	      cache[prop] = _prefix2['default'].css + prop;
+	    } else {
+	      cache[prop] = false;
+	    }
+
+	  return cache[prop];
+	}
+
+/***/ },
+/* 380 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports['default'] = camelize;
+	var regExp = /[-\s]+(.)?/g;
+
+	/**
+	 * Convert dash separated strings to camel cased.
+	 *
+	 * @param {String} str
+	 * @return {String}
+	 */
+	function camelize(str) {
+	  return str.replace(regExp, toUpper);
+	}
+
+	function toUpper(match, c) {
+	  return c ? c.toUpperCase() : '';
+	}
+
+/***/ },
+/* 381 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports['default'] = supportedValue;
+
+	var _isInBrowser = __webpack_require__(351);
+
+	var _isInBrowser2 = _interopRequireDefault(_isInBrowser);
+
+	var _prefix = __webpack_require__(378);
+
+	var _prefix2 = _interopRequireDefault(_prefix);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var cache = {};
+	var el = void 0;
+
+	if (_isInBrowser2['default']) el = document.createElement('p');
+
+	/**
+	 * Returns prefixed value if needed. Returns `false` if value is not supported.
+	 *
+	 * @param {String} property
+	 * @param {String} value
+	 * @return {String|Boolean}
+	 * @api public
+	 */
+	function supportedValue(property, value) {
+	  // For server-side rendering.
+	  if (!el) return value;
+
+	  // It is a string or a number as a string like '1'.
+	  // We want only prefixable values here.
+	  if (typeof value !== 'string' || !isNaN(parseInt(value, 10))) return value;
+
+	  var cacheKey = property + value;
+
+	  if (cache[cacheKey] != null) return cache[cacheKey];
+
+	  // IE can even throw an error in some cases, for e.g. style.content = 'bar'
+	  try {
+	    // Test value as it is.
+	    el.style[property] = value;
+	  } catch (err) {
+	    cache[cacheKey] = false;
+	    return false;
+	  }
+
+	  // Value is supported as it is.
+	  if (el.style[property] !== '') {
+	    cache[cacheKey] = value;
+	  } else {
+	    // Test value with vendor prefix.
+	    value = _prefix2['default'].css + value;
+
+	    // Hardcode test to convert "flex" to "-ms-flexbox" for IE10.
+	    if (value === '-ms-flex') value = '-ms-flexbox';
+
+	    el.style[property] = value;
+
+	    // Value is supported with vendor prefix.
+	    if (el.style[property] !== '') cache[cacheKey] = value;
+	  }
+
+	  if (!cache[cacheKey]) cache[cacheKey] = false;
+
+	  // Reset style value.
+	  el.style[property] = '';
+
+	  return cache[cacheKey];
+	}
+
+/***/ },
+/* 382 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports['default'] = jssPropsSort;
+	/**
+	 * Sort props by length.
+	 *
+	 * @param {Rule} rule
+	 * @api public
+	 */
+	function jssPropsSort() {
+	  function sort(prop0, prop1) {
+	    return prop0.length - prop1.length;
+	  }
+
+	  return function (rule) {
+	    var style = rule.style,
+	        type = rule.type;
+
+	    if (!style || type !== 'regular') return;
+	    var newStyle = {};
+	    var props = Object.keys(style).sort(sort);
+	    for (var prop in props) {
+	      newStyle[props[prop]] = style[props[prop]];
+	    }
+	    rule.style = newStyle;
+	  };
+	}
+
+/***/ },
+/* 383 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = jssCompose;
+
+	var _warning = __webpack_require__(158);
+
+	var _warning2 = _interopRequireDefault(_warning);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	/**
-	 * Map of at rules to corresponding implementation class.
+	 * Set class name.
 	 *
-	 * @type {Object}
+	 * @param {Object} original rule
+	 * @param {String} compostion class string
+	 * @return {Boolean} flag, indicating function was successfull or not
 	 */
-	var atRuleClassMap = {
-	  '@charset': _SimpleRule2.default,
-	  '@import': _SimpleRule2.default,
-	  '@namespace': _SimpleRule2.default,
-	  '@keyframes': _KeyframeRule2.default,
-	  '@media': _ConditionalRule2.default,
-	  '@supports': _ConditionalRule2.default,
-	  '@font-face': _FontFaceRule2.default
-	};
+	function setClass(rule, composition) {
+	  if (composition[0] === '$') {
+	    var refRule = rule.options.sheet.getRule(composition.substr(1));
 
-	var atRuleNameRegExp = /^@[^ ]+/;
-
-	/**
-	 * Create rule factory.
-	 *
-	 * @param {Object} [selector] if you don't pass selector - it will be generated
-	 * @param {Object} [style] declarations block
-	 * @param {Object} [options] rule options
-	 * @return {Object} rule
-	 * @api private
-	 */
-	function createRule(selector) {
-	  var style = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-	  var options = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
-
-	  // Is an at-rule.
-	  if (selector && selector[0] === '@') {
-	    var name = atRuleNameRegExp.exec(selector)[0];
-	    var AtRule = atRuleClassMap[name];
-	    return new AtRule(selector, style, options);
+	    if (!refRule) {
+	      (0, _warning2.default)(false, '[JSS] Referenced rule is not defined. \r\n%s', rule);
+	      return false;
+	    }
+	    if (refRule === rule) {
+	      (0, _warning2.default)(false, '[JSS] Cyclic composition detected. \r\n%s', rule);
+	      return false;
+	    }
+	    setClass(rule, refRule.className);
+	    return true;
 	  }
 
-	  if (options.named == null) options.named = true;
-	  return new _Rule2.default(selector, style, options);
+	  var container = rule.options.parent;
+	  rule.className += ' ' + composition;
+	  container.classes[rule.name] = rule.className;
+	  return true;
+	}
+
+	/**
+	 * Convert compose property to additional class, remove property from original styles.
+	 *
+	 * @param {Rule} rule
+	 * @api public
+	 */
+	function jssCompose() {
+	  return function (rule) {
+	    var style = rule.style;
+
+
+	    if (!style || !style.composes) return;
+
+	    if (Array.isArray(style.composes)) {
+	      for (var index = 0; index < style.composes.length; index++) {
+	        setClass(rule, style.composes[index]);
+	      }
+	    } else setClass(rule, style.composes);
+
+	    // Remove composes property to prevent infinite loop.
+	    delete style.composes;
+	  };
 	}
 
 /***/ },
-/* 345 */
+/* 384 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10622,256 +13047,179 @@ webpackJsonp([0],[
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.default = jssExpand;
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	var _props = __webpack_require__(385);
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _utils = __webpack_require__(342);
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	var parse = JSON.parse;
-	var stringify = JSON.stringify;
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 	/**
-	 * Regular rules.
+	 * Map values by given prop.
 	 *
-	 * @api public
+	 * @param {Array} array of values
+	 * @param {String} original property
+	 * @param {String} original rule
+	 * @return {String} mapped values
 	 */
+	function mapValuesByProp(value, prop, rule) {
+	  return value.map(function (item) {
+	    return objectToString(item, prop, rule);
+	  });
+	}
 
-	var Rule = function () {
-	  function Rule(selector, style, options) {
-	    _classCallCheck(this, Rule);
+	/**
+	 * Convert array to string.
+	 *
+	 * @param {Array} array of values
+	 * @param {String} original property
+	 * @param {Object} sheme, for converting arrays in strings
+	 * @param {Object} original rule
+	 * @return {String} converted string
+	 */
+	function arrayToString(value, prop, scheme, rule) {
+	  if (value.length === 0) return '';
+	  if (value[0].constructor === Object) return mapValuesByProp(value, prop, rule);
+	  if (scheme[prop] == null) return value.join(',');
+	  if (Array.isArray(value[0])) return arrayToString(value[0], prop, scheme);
+	  return value.join(' ');
+	}
 
-	    // We expect style to be plain object.
-	    // To avoid original style object mutations, we clone it and hash it
-	    // along the way.
-	    // It is also the fastetst way.
-	    // http://jsperf.com/lodash-deepclone-vs-jquery-extend-deep/6
-	    var styleStr = stringify(style);
-	    this.style = parse(styleStr);
-	    this.type = 'regular';
-	    this.options = options;
-	    this.selectorText = selector || '';
-	    this.className = options.className || '';
-	    this.originalStyle = style;
-	    if (options.named) {
-	      this.name = selector;
-	      if (!this.className) {
-	        this.className = options.jss.generateClassName(styleStr, this);
+	/**
+	 * Convert object to string.
+	 *
+	 * @param {Object} object of values
+	 * @param {String} original property
+	 * @param {Object} original rule
+	 * @param {Boolean} is fallback prop
+	 * @return {String} converted string
+	 */
+	function objectToString(value, prop, rule, isFallback) {
+	  if (!(_props.propObj[prop] || _props.customPropObj[prop])) return '';
+
+	  var result = [];
+
+	  // Check if exists any non-standart property
+	  if (_props.customPropObj[prop]) {
+	    value = customPropsToStyle(value, rule, _props.customPropObj[prop], isFallback);
+	  }
+
+	  // Pass throught all standart props
+	  if (Object.keys(value).length) {
+	    for (var baseProp in _props.propObj[prop]) {
+	      if (value[baseProp]) {
+	        if (Array.isArray(value[baseProp])) {
+	          result.push(arrayToString(value[baseProp], baseProp, _props.propArrayInObj));
+	        } else result.push(value[baseProp]);
+	        continue;
 	      }
-	      this.selectorText = '.' + this.className;
+
+	      // Add default value from props config.
+	      if (_props.propObj[prop][baseProp] != null) {
+	        result.push(_props.propObj[prop][baseProp]);
+	      }
 	    }
 	  }
 
-	  /**
-	   * Set selector string.
-	   * Attenition: use this with caution. Most browser didn't implement selector
-	   * text setter, so this will result in rerendering of entire style sheet.
-	   *
-	   * @param {String} selector
-	   * @api public
-	   */
-
-
-	  _createClass(Rule, [{
-	    key: 'prop',
-
-
-	    /**
-	     * Get or set a style property.
-	     *
-	     * @param {String} name
-	     * @param {String|Number} [value]
-	     * @return {Rule|String|Number}
-	     * @api public
-	     */
-	    value: function prop(name, value) {
-	      var style = this.options.Renderer.style;
-	      // Its a setter.
-
-	      if (value != null) {
-	        this.style[name] = value;
-	        // Only defined if option linked is true.
-	        if (this.renderable) style(this.renderable, name, value);
-	        return this;
-	      }
-	      // Its a getter, read the value from the DOM if its not cached.
-	      if (this.renderable && this.style[name] == null) {
-	        // Cache the value after we have got it from the DOM once.
-	        this.style[name] = style(this.renderable, name);
-	      }
-	      return this.style[name];
-	    }
-
-	    /**
-	     * Apply rule to an element inline.
-	     *
-	     * @param {Element} renderable
-	     * @return {Rule}
-	     * @api public
-	     */
-
-	  }, {
-	    key: 'applyTo',
-	    value: function applyTo(renderable) {
-	      var style = this.options.Renderer.style;
-
-	      var json = this.toJSON();
-	      for (var prop in json) {
-	        style(renderable, prop, json[prop]);
-	      }return this;
-	    }
-
-	    /**
-	     * Returns JSON representation of the rule.
-	     * Fallbacks are not supported.
-	     *
-	     * @return {Object}
-	     * @api public
-	     */
-
-	  }, {
-	    key: 'toJSON',
-	    value: function toJSON() {
-	      var json = Object.create(null);
-	      for (var prop in this.style) {
-	        var value = this.style[prop];
-	        if ((typeof value === 'undefined' ? 'undefined' : _typeof(value)) !== 'object') json[prop] = value;else if (Array.isArray(value)) json[prop] = (0, _utils.toCssValue)(value);
-	      }
-	      return json;
-	    }
-
-	    /**
-	     * Generates a CSS string.
-	     *
-	     * @see toCss
-	     * @api public
-	     */
-
-	  }, {
-	    key: 'toString',
-	    value: function toString(options) {
-	      return (0, _utils.toCss)(this.selector, this.style, options);
-	    }
-	  }, {
-	    key: 'selector',
-	    set: function set() {
-	      var selector = arguments.length <= 0 || arguments[0] === undefined ? '' : arguments[0];
-	      var _options = this.options;
-	      var Renderer = _options.Renderer;
-	      var sheet = _options.sheet;
-
-	      // After we modify selector, ref by old selector needs to be removed.
-
-	      if (sheet) sheet.unregisterRule(this);
-
-	      this.selectorText = selector;
-	      this.className = (0, _utils.findClassNames)(selector);
-
-	      if (!this.renderable) {
-	        // Register the rule with new selector.
-	        if (sheet) sheet.registerRule(this);
-	        return;
-	      }
-
-	      var changed = Renderer.setSelector(this.renderable, selector);
-
-	      if (changed) {
-	        sheet.registerRule(this);
-	        return;
-	      }
-
-	      // If selector setter is not implemented, rerender the sheet.
-	      // We need to delete renderable from the rule, because when sheet.deploy()
-	      // calls rule.toString, it will get the old selector.
-	      delete this.renderable;
-	      sheet.registerRule(this).deploy().link();
-	    }
-
-	    /**
-	     * Get selector string.
-	     *
-	     * @return {String}
-	     * @api public
-	     */
-	    ,
-	    get: function get() {
-	      if (this.renderable) {
-	        return this.options.Renderer.getSelector(this.renderable);
-	      }
-
-	      return this.selectorText;
-	    }
-	  }]);
-
-	  return Rule;
-	}();
-
-	exports.default = Rule;
-
-/***/ },
-/* 346 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	  return result.join(' ');
+	}
 
 	/**
-	 * Rule like @charset, @import, @namespace.
+	 * Convert custom properties values to styles adding them to rule directly
 	 *
-	 * @api public
+	 * @param {Object} object of values
+	 * @param {Object} original rule
+	 * @param {String} property, that contain partial custom properties
+	 * @param {Boolean} is fallback prop
+	 * @return {Object} value without custom properties, that was already added to rule
 	 */
+	function customPropsToStyle(value, rule, customProps, isFallback) {
+	  for (var prop in customProps) {
+	    var propName = customProps[prop];
 
-	var SimpleRule = function () {
-	  function SimpleRule(name, value, options) {
-	    _classCallCheck(this, SimpleRule);
+	    // If current property doesn't exist already in rule - add new one
+	    if (value[prop] && (isFallback || !rule.prop(propName))) {
+	      var appendedValue = styleDetector(_defineProperty({}, propName, value[prop]), rule)[propName];
 
-	    this.type = 'simple';
-	    this.name = name;
-	    this.value = value;
-	    this.options = options;
+	      // Add style directly in rule
+	      if (isFallback) rule.style.fallbacks[propName] = appendedValue;else rule.style[propName] = appendedValue;
+	    }
+	    // Delete converted property to avoid double converting
+	    delete value[prop];
 	  }
 
-	  /**
-	   * Generates a CSS string.
-	   *
-	   * @return {String}
-	   * @api public
-	   */
+	  return value;
+	}
 
+	/**
+	 * Detect if a style needs to be converted.
+	 *
+	 * @param {Object} style
+	 * @param {Object} rule
+	 * @param {Boolean} is fallback prop
+	 * @return {Object} convertedStyle
+	 */
+	function styleDetector(style, rule, isFallback) {
+	  for (var prop in style) {
+	    var value = style[prop];
 
-	  _createClass(SimpleRule, [{
-	    key: 'toString',
-	    value: function toString() {
-	      if (Array.isArray(this.value)) {
-	        var str = '';
-	        for (var index = 0; index < this.value.length; index++) {
-	          str += this.name + ' ' + this.value[index] + ';';
-	          if (this.value[index + 1]) str += '\n';
+	    if (value.constructor === Object) {
+	      if (prop === 'fallbacks') {
+	        style[prop] = styleDetector(style[prop], rule, true);
+	        continue;
+	      }
+
+	      style[prop] = objectToString(value, prop, rule, isFallback);
+	      // Avoid creating properties with empty values
+	      if (!style[prop]) delete style[prop];
+	    }
+
+	    // Check double arrays to avoid recursion.
+	    else if (Array.isArray(value) && !Array.isArray(value[0])) {
+	        if (prop === 'fallbacks') {
+	          for (var index = 0; index < style[prop].length; index++) {
+	            style[prop][index] = styleDetector(style[prop][index], rule, true);
+	          }
+	          continue;
 	        }
-	        return str;
+
+	        style[prop] = arrayToString(value, prop, _props.propArray);
+	        // Avoid creating properties with empty values
+	        if (!style[prop]) delete style[prop];
 	      }
 
-	      return this.name + ' ' + this.value + ';';
+	      // Maybe a computed value resulting in an empty string
+	      else if (style[prop] === '') delete style[prop];
+	  }
+	  return style;
+	}
+
+	/**
+	 * Adds possibility to write expanded styles.
+	 *
+	 * @param {Rule} rule
+	 * @api public
+	 */
+	function jssExpand() {
+	  return function (rule) {
+	    var style = rule.style;
+	    var type = rule.type;
+
+	    if (!style || type !== 'regular') return;
+
+	    if (Array.isArray(style)) {
+	      // Pass rules one by one and reformat them
+	      for (var index = 0; index < style.length; index++) {
+	        style[index] = styleDetector(style[index], rule);
+	      }
+	      return;
 	    }
-	  }]);
 
-	  return SimpleRule;
-	}();
-
-	exports.default = SimpleRule;
+	    rule.style = styleDetector(style, rule);
+	  };
+	}
 
 /***/ },
-/* 347 */
+/* 385 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -10879,74 +13227,164 @@ webpackJsonp([0],[
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	/**
+	 * A scheme for converting properties from array to regular style.
+	 * All properties listed below will be transformed to a string separated by space.
+	 */
+	var propArray = exports.propArray = {
+	  'background-size': true,
+	  'background-position': true,
+	  border: true,
+	  'border-bottom': true,
+	  'border-left': true,
+	  'border-top': true,
+	  'border-right': true,
+	  'border-radius': true,
+	  'box-shadow': true,
+	  flex: true,
+	  margin: true,
+	  padding: true,
+	  outline: true,
+	  'transform-origin': true,
+	  transform: true,
+	  transition: true
+	};
 
 	/**
-	 * Keyframe rule.
-	 *
-	 * @api private
+	 * A scheme for converting arrays to regular styles inside of objects.
+	 * For e.g.: "{position: [0, 0]}" => "background-position: 0 0;".
 	 */
+	var propArrayInObj = exports.propArrayInObj = {
+	  position: true, // background-position
+	  size: true // background-size
+	};
 
-	var KeyframeRule = function () {
-	  function KeyframeRule(selector, frames, options) {
-	    _classCallCheck(this, KeyframeRule);
-
-	    this.type = 'keyframe';
-	    this.selector = selector;
-	    this.options = options;
-	    this.frames = this.formatFrames(frames);
+	/**
+	 * A scheme for parsing and building correct styles from passed objects.
+	 */
+	var propObj = exports.propObj = {
+	  padding: {
+	    top: 0,
+	    right: 0,
+	    bottom: 0,
+	    left: 0
+	  },
+	  margin: {
+	    top: 0,
+	    right: 0,
+	    bottom: 0,
+	    left: 0
+	  },
+	  background: {
+	    attachment: null,
+	    color: null,
+	    image: null,
+	    position: null,
+	    repeat: null
+	  },
+	  border: {
+	    width: null,
+	    style: null,
+	    color: null
+	  },
+	  'border-top': {
+	    width: null,
+	    style: null,
+	    color: null
+	  },
+	  'border-right': {
+	    width: null,
+	    style: null,
+	    color: null
+	  },
+	  'border-bottom': {
+	    width: null,
+	    style: null,
+	    color: null
+	  },
+	  'border-left': {
+	    width: null,
+	    style: null,
+	    color: null
+	  },
+	  outline: {
+	    width: null,
+	    style: null,
+	    color: null
+	  },
+	  'list-style': {
+	    type: null,
+	    position: null,
+	    image: null
+	  },
+	  transition: {
+	    property: null,
+	    duration: null,
+	    'timing-function': null,
+	    timingFunction: null, // Needed for avoiding comilation issues with jss-camel-case
+	    delay: null
+	  },
+	  animation: {
+	    name: null,
+	    duration: null,
+	    'timing-function': null,
+	    timingFunction: null, // Needed to avoid compilation issues with jss-camel-case
+	    delay: null,
+	    'iteration-count': null,
+	    iterationCount: null, // Needed to avoid compilation issues with jss-camel-case
+	    direction: null,
+	    'fill-mode': null,
+	    fillMode: null, // Needed to avoid compilation issues with jss-camel-case
+	    'play-state': null,
+	    playState: null // Needed to avoid compilation issues with jss-camel-case
+	  },
+	  'box-shadow': {
+	    x: 0,
+	    y: 0,
+	    blur: null,
+	    spread: null,
+	    color: null,
+	    inset: null
+	  },
+	  'text-shadow': {
+	    x: 0,
+	    y: 0,
+	    blur: null,
+	    color: null
+	  },
+	  flex: {
+	    grow: null,
+	    shrink: null,
+	    basis: null
 	  }
+	};
 
-	  /**
-	   * Creates formatted frames where every frame value is a rule instance.
-	   *
-	   * @api private
-	   */
-
-
-	  _createClass(KeyframeRule, [{
-	    key: 'formatFrames',
-	    value: function formatFrames(frames) {
-	      var newFrames = Object.create(null);
-	      for (var name in frames) {
-	        var options = _extends({}, this.options, { named: false, parent: this });
-	        newFrames[name] = this.options.jss.createRule(name, frames[name], options);
-	      }
-	      return newFrames;
-	    }
-
-	    /**
-	     * Generates a CSS string.
-	     *
-	     * @return {String}
-	     * @api private
-	     */
-
-	  }, {
-	    key: 'toString',
-	    value: function toString() {
-	      var str = this.selector + ' {\n';
-	      var options = { indentationLevel: 1 };
-	      for (var name in this.frames) {
-	        str += this.frames[name].toString(options) + '\n';
-	      }
-	      str += '}';
-	      return str;
-	    }
-	  }]);
-
-	  return KeyframeRule;
-	}();
-
-	exports.default = KeyframeRule;
+	/**
+	 * A scheme for converting non-standart properties inside object.
+	 * For e.g.: include 'border-radius' property inside 'border' object.
+	 */
+	var customPropObj = exports.customPropObj = {
+	  border: {
+	    radius: 'border-radius'
+	  },
+	  background: {
+	    size: 'background-size',
+	    image: 'background-image'
+	  },
+	  font: {
+	    style: 'font-style',
+	    variant: 'font-variant',
+	    weight: 'font-weight',
+	    stretch: 'font-stretch',
+	    size: 'font-size',
+	    family: 'font-family',
+	    lineHeight: 'line-height', // Needed to avoid compilation issues with jss-camel-case
+	    'line-height': 'line-height'
+	  }
+	};
 
 /***/ },
-/* 348 */
+/* 386 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10959,520 +13397,261 @@ webpackJsonp([0],[
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _utils = __webpack_require__(342);
+	exports['default'] = jssGlobal;
+
+	var _jss = __webpack_require__(347);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	/**
-	 * Conditional rule for @media, @supports
-	 *
-	 * @api public
-	 */
+	var key = '@global';
+	var prefixKey = '@global ';
 
-	var ConditionalRule = function () {
-	  function ConditionalRule(selector, styles, options) {
-	    _classCallCheck(this, ConditionalRule);
+	var GlobalContainerRule = function () {
+	  function GlobalContainerRule(name, styles, options) {
+	    _classCallCheck(this, GlobalContainerRule);
 
-	    this.type = 'conditional';
-	    this.selector = selector;
+	    this.type = 'global';
+
+	    this.name = name;
 	    this.options = options;
-	    this.rules = Object.create(null);
-	    for (var name in styles) {
-	      this.createRule(name, styles[name]);
+	    this.rules = new _jss.RulesContainer(_extends({}, options, {
+	      parent: this
+	    }));
+
+	    for (var selector in styles) {
+	      this.rules.add(selector, styles[selector], {
+	        generateClassName: null,
+	        selector: selector
+	      });
 	    }
+
+	    this.rules.process();
 	  }
 
 	  /**
-	   * A conditional rule always contains child rules.
-	   *
-	   * @param {Object} styles
-	   * @return {Array} rules
-	   * @api public
+	   * Get a rule.
 	   */
 
 
-	  _createClass(ConditionalRule, [{
-	    key: 'createRule',
-	    value: function createRule(name, style, options) {
-	      var newOptions = _extends({}, this.options, { parent: this });
-	      var _newOptions = newOptions;
-	      var sheet = _newOptions.sheet;
-	      var jss = _newOptions.jss;
-	      // We have already a rule in the current style sheet with this name,
-	      // This new rule is supposed to overwrite the first one, for this we need
-	      // to ensure it will have the same className/selector.
+	  _createClass(GlobalContainerRule, [{
+	    key: 'getRule',
+	    value: function getRule(name) {
+	      return this.rules.get(name);
+	    }
 
-	      var existingRule = sheet && sheet.getRule(name);
-	      var className = existingRule ? existingRule.className : null;
-	      if (className || options) {
-	        newOptions = _extends({}, newOptions, { className: className }, options);
-	      }
-	      var rule = (sheet || jss).createRule(name, style, newOptions);
-	      this.rules[name] = rule;
+	    /**
+	     * Create and register rule, run plugins.
+	     */
+
+	  }, {
+	    key: 'addRule',
+	    value: function addRule(name, style, options) {
+	      var rule = this.rules.add(name, style, _extends({}, options, {
+	        generateClassName: null
+	      }));
+	      this.options.jss.plugins.onProcessRule(rule);
 	      return rule;
 	    }
 
 	    /**
+	     * Get index of a rule.
+	     */
+
+	  }, {
+	    key: 'indexOf',
+	    value: function indexOf(rule) {
+	      return this.rules.indexOf(rule);
+	    }
+
+	    /**
 	     * Generates a CSS string.
-	     *
-	     * @return {String}
-	     * @api public
 	     */
 
 	  }, {
 	    key: 'toString',
 	    value: function toString() {
-	      var str = this.selector + ' {\n';
-	      for (var name in this.rules) {
-	        var rule = this.rules[name];
-	        if (rule.style && (0, _utils.isEmptyObject)(rule.style)) {
-	          continue;
-	        }
-	        var ruleStr = rule.toString({ indentationLevel: 1 });
-	        str += ruleStr + '\n';
-	      }
-	      str += '}';
-	      return str;
+	      return this.rules.toString();
 	    }
 	  }]);
 
-	  return ConditionalRule;
+	  return GlobalContainerRule;
 	}();
 
-	exports.default = ConditionalRule;
+	var GlobalPrefixedRule = function () {
+	  function GlobalPrefixedRule(name, style, options) {
+	    _classCallCheck(this, GlobalPrefixedRule);
 
-/***/ },
-/* 349 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _utils = __webpack_require__(342);
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	/**
-	 * Font-face rules.
-	 *
-	 * @api public
-	 */
-
-	var Rule = function () {
-	  function Rule(selector, style, options) {
-	    _classCallCheck(this, Rule);
-
-	    this.type = 'font-face';
+	    this.name = name;
 	    this.options = options;
-	    this.selector = selector;
-	    this.style = style;
+	    var selector = name.substr(prefixKey.length);
+	    this.rule = options.jss.createRule(selector, style, _extends({}, options, {
+	      parent: this,
+	      selector: selector,
+	      generateClassName: null
+	    }));
 	  }
 
-	  /**
-	   * Generates a CSS string.
-	   *
-	   * @see toCss
-	   * @api public
-	   */
-
-
-	  _createClass(Rule, [{
+	  _createClass(GlobalPrefixedRule, [{
 	    key: 'toString',
 	    value: function toString(options) {
-	      if (Array.isArray(this.style)) {
-	        var str = '';
-	        for (var index = 0; index < this.style.length; index++) {
-	          str += (0, _utils.toCss)(this.selector, this.style[index], options);
-	          if (this.style[index + 1]) str += '\n';
-	        }
-	        return str;
-	      }
-
-	      return (0, _utils.toCss)(this.selector, this.style, options);
+	      return this.rule.toString(options);
 	    }
 	  }]);
 
-	  return Rule;
+	  return GlobalPrefixedRule;
 	}();
 
-	exports.default = Rule;
+	function handleNestedGlobalContainerRule(rule) {
+	  var options = rule.options,
+	      style = rule.style;
 
-/***/ },
-/* 350 */
-/***/ function(module, exports, __webpack_require__) {
+	  var rules = style[key];
 
-	'use strict';
+	  if (!rules) return;
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = findRenderer;
+	  for (var name in rules) {
+	    var selector = rule.selector + ' ' + name;
+	    options.sheet.addRule(name, rules[name], _extends({}, options, {
+	      selector: selector,
+	      generateClassName: null
+	    }));
+	  }
 
-	var _DomRenderer = __webpack_require__(351);
+	  delete style[key];
+	}
 
-	var _DomRenderer2 = _interopRequireDefault(_DomRenderer);
+	function handlePrefixedGlobalRule(rule) {
+	  var options = rule.options,
+	      style = rule.style;
 
-	var _VirtualRenderer = __webpack_require__(352);
+	  for (var prop in style) {
+	    if (prop.substr(0, key.length) !== key) continue;
 
-	var _VirtualRenderer2 = _interopRequireDefault(_VirtualRenderer);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	    var selector = prop.substr(key.length).trim();
+	    var scopedSelector = rule.selector + ' ' + selector;
+	    options.sheet.addRule(scopedSelector, style[prop], _extends({}, options, {
+	      selector: scopedSelector,
+	      generateClassName: null
+	    }));
+	    delete style[prop];
+	  }
+	}
 
 	/**
-	 * Find proper renderer.
-	 * Option `virtual` is used to force use of VirtualRenderer even if DOM is
-	 * detected, used for testing only.
+	 * Convert nested rules to separate, remove them from original styles.
 	 *
-	 * @param {Object} options
-	 * @return {Renderer}
-	 * @api private
+	 * @param {Rule} rule
+	 * @api public
 	 */
-	function findRenderer() {
-	  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	function jssGlobal() {
+	  function onCreateRule(name, styles, options) {
+	    if (name === key) {
+	      return new GlobalContainerRule(name, styles, options);
+	    }
 
-	  if (options.Renderer) return options.Renderer;
-	  return options.virtual || typeof document == 'undefined' ? _VirtualRenderer2.default : _DomRenderer2.default;
+	    if (name[0] === '@' && name.substr(0, prefixKey.length) === prefixKey) {
+	      return new GlobalPrefixedRule(name, styles, options);
+	    }
+
+	    var parent = options.parent;
+
+
+	    if (parent) {
+	      if (parent.type === 'global' || parent.options.parent.type === 'global') {
+	        options.global = true;
+	      }
+	    }
+
+	    if (options.global) {
+	      options.selector = name;
+	      options.generateClassName = null;
+	    }
+
+	    return null;
+	  }
+
+	  function onProcessRule(rule) {
+	    if (rule.type !== 'regular' || !rule.style) return;
+
+	    handleNestedGlobalContainerRule(rule);
+	    handlePrefixedGlobalRule(rule);
+	  }
+
+	  return { onCreateRule: onCreateRule, onProcessRule: onProcessRule };
 	}
 
 /***/ },
-/* 351 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	/**
-	 * DOM rendering backend for StyleSheet.
-	 *
-	 * @api private
-	 */
-
-	var DomRenderer = function () {
-	  _createClass(DomRenderer, null, [{
-	    key: 'style',
-	    value: function style(element, name, value) {
-	      try {
-	        if (value == null) return element.style[name];
-	        element.style[name] = value;
-	      } catch (err) {
-	        // IE8 may throw if property is unknown.
-	        return false;
-	      }
-	      return true;
-	    }
-	  }, {
-	    key: 'setSelector',
-	    value: function setSelector(cssRule, selector) {
-	      cssRule.selectorText = selector;
-
-	      // Return false if setter was not successful.
-	      // Currently works in chrome only.
-	      return cssRule.selectorText === selector;
-	    }
-	  }, {
-	    key: 'getSelector',
-	    value: function getSelector(cssRule) {
-	      return cssRule.selectorText;
-	    }
-	  }]);
-
-	  function DomRenderer(options) {
-	    _classCallCheck(this, DomRenderer);
-
-	    this.head = document.head || document.getElementsByTagName('head')[0];
-	    this.element = options.element || document.createElement('style');
-	    // IE8 will not have `styleSheet` prop without `type and `styleSheet.cssText`
-	    // is the only way to render on IE8.
-	    this.element.type = 'text/css';
-	    if (options.media) this.element.setAttribute('media', options.media);
-	    if (options.meta) this.element.setAttribute('data-meta', options.meta);
-	  }
-
-	  /**
-	   * Insert style element into render tree.
-	   *
-	   * @api private
-	   */
-
-
-	  _createClass(DomRenderer, [{
-	    key: 'attach',
-	    value: function attach() {
-	      if (this.element.parendNode) return;
-	      this.head.appendChild(this.element);
-	    }
-
-	    /**
-	     * Remove style element from render tree.
-	     *
-	     * @api private
-	     */
-
-	  }, {
-	    key: 'detach',
-	    value: function detach() {
-	      this.element.parentNode.removeChild(this.element);
-	    }
-
-	    /**
-	     * Inject CSS string into element.
-	     *
-	     * @param {String} cssStr
-	     * @api private
-	     */
-
-	  }, {
-	    key: 'deploy',
-	    value: function deploy(sheet) {
-	      var css = '\n' + sheet.toString() + '\n';
-	      if ('sheet' in this.element) this.element.innerHTML = css;
-	      // On IE8 the only way to render is `styleSheet.cssText`.
-	      else if ('styleSheet' in this.element) this.element.styleSheet.cssText = css;
-	    }
-
-	    /**
-	     * Insert a rule into element.
-	     *
-	     * @param {Rule} rule
-	     * @return {CSSStyleRule}
-	     * @api private
-	     */
-
-	  }, {
-	    key: 'insertRule',
-	    value: function insertRule(rule) {
-	      // IE8 has only `styleSheet` and `styleSheet.rules`
-	      var sheet = this.element.sheet || this.element.styleSheet;
-	      var cssRules = sheet.cssRules || sheet.rules;
-	      var nextIndex = cssRules.length;
-	      if (sheet.insertRule) sheet.insertRule(rule.toString(), nextIndex);else sheet.addRule(rule.selector, rule.toString({ selector: false }), nextIndex);
-	      return cssRules[nextIndex];
-	    }
-
-	    /**
-	     * Get all rules elements.
-	     *
-	     * @return {Object} rules map, where key is selector, CSSStyleRule is value.
-	     * @api private
-	     */
-
-	  }, {
-	    key: 'getRules',
-	    value: function getRules() {
-	      // IE8 has only `styleSheet` and `styleSheet.rules`
-	      var sheet = this.element.sheet || this.element.styleSheet;
-	      var cssRules = sheet.rules || sheet.cssRules;
-	      var rules = Object.create(null);
-	      for (var index = 0; index < cssRules.length; index++) {
-	        var cssRule = cssRules[index];
-	        rules[cssRule.selectorText] = cssRule;
-	      }
-	      return rules;
-	    }
-	  }]);
-
-	  return DomRenderer;
-	}();
-
-	exports.default = DomRenderer;
-
-/***/ },
-/* 352 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	/**
-	 * Rendering backend to do nothing in nodejs.
-	 */
-
-	var VirtualRenderer = function () {
-	  function VirtualRenderer() {
-	    _classCallCheck(this, VirtualRenderer);
-	  }
-
-	  _createClass(VirtualRenderer, [{
-	    key: "attach",
-	    value: function attach() {}
-	  }, {
-	    key: "detach",
-	    value: function detach() {}
-	  }, {
-	    key: "deploy",
-	    value: function deploy() {}
-	  }, {
-	    key: "insertRule",
-	    value: function insertRule() {}
-	  }, {
-	    key: "getRules",
-	    value: function getRules() {
-	      return {};
-	    }
-	  }], [{
-	    key: "style",
-	    value: function style() {}
-	  }, {
-	    key: "setSelector",
-	    value: function setSelector() {}
-	  }, {
-	    key: "getSelector",
-	    value: function getSelector() {}
-	  }]);
-
-	  return VirtualRenderer;
-	}();
-
-	exports.default = VirtualRenderer;
-
-/***/ },
-/* 353 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	/**
-	 * Register a plugin, run a plugin.
-	 *
-	 * @api public
-	 */
-
-	var PluginsRegistry = function () {
-	  function PluginsRegistry() {
-	    _classCallCheck(this, PluginsRegistry);
-
-	    this.registry = [];
-	  }
-
-	  /**
-	   * Register plugin. Passed function will be invoked with a rule instance.
-	   *
-	   * @param {Function} fn
-	   * @api public
-	   */
-
-
-	  _createClass(PluginsRegistry, [{
-	    key: "use",
-	    value: function use(fn) {
-	      this.registry.push(fn);
-	    }
-
-	    /**
-	     * Execute all registered plugins.
-	     *
-	     * @param {Rule} rule
-	     * @api private
-	     */
-
-	  }, {
-	    key: "run",
-	    value: function run(rule) {
-	      for (var index = 0; index < this.registry.length; index++) {
-	        this.registry[index](rule);
-	      }
-	    }
-	  }]);
-
-	  return PluginsRegistry;
-	}();
-
-	exports.default = PluginsRegistry;
-
-/***/ },
-/* 354 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	/**
-	 * Sheets registry to access them all at one place.
-	 *
-	 * @api public
-	 */
-
-	var SheetsRegistry = function () {
-	  function SheetsRegistry() {
-	    _classCallCheck(this, SheetsRegistry);
-
-	    this.registry = [];
-	  }
-
-	  /**
-	   * Register a style sheet.
-	   *
-	   * @param {StyleSheet} sheet
-	   * @api public
-	   */
-
-
-	  _createClass(SheetsRegistry, [{
-	    key: 'add',
-	    value: function add(sheet) {
-	      this.registry.push(sheet);
-	    }
-
-	    /**
-	     * Returns CSS string with all Style Sheets.
-	     *
-	     * @param {StyleSheet} sheet
-	     * @api public
-	     */
-
-	  }, {
-	    key: 'toString',
-	    value: function toString(options) {
-	      return this.registry.map(function (sheet) {
-	        return sheet.toString(options);
-	      }).join('\n');
-	    }
-	  }]);
-
-	  return SheetsRegistry;
-	}();
-
-	exports.default = SheetsRegistry;
-
-/***/ },
-/* 355 */
+/* 387 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(3);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _jss = __webpack_require__(347);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var SheetsRegistryProvider = function (_Component) {
+	  _inherits(SheetsRegistryProvider, _Component);
+
+	  function SheetsRegistryProvider() {
+	    _classCallCheck(this, SheetsRegistryProvider);
+
+	    return _possibleConstructorReturn(this, (SheetsRegistryProvider.__proto__ || Object.getPrototypeOf(SheetsRegistryProvider)).apply(this, arguments));
+	  }
+
+	  _createClass(SheetsRegistryProvider, [{
+	    key: 'getChildContext',
+	    value: function getChildContext() {
+	      return {
+	        jssSheetsRegistry: this.props.registry
+	      };
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var children = this.props.children;
+
+	      return _react.Children.count(children) > 1 ? _react2['default'].createElement(
+	        'div',
+	        null,
+	        children
+	      ) : children;
+	    }
+	  }]);
+
+	  return SheetsRegistryProvider;
+	}(_react.Component);
+
+	SheetsRegistryProvider.propTypes = {
+	  registry: _react.PropTypes.instanceOf(_jss.SheetsRegistry).isRequired,
+	  children: _react.PropTypes.node.isRequired
+	};
+	SheetsRegistryProvider.childContextTypes = {
+	  jssSheetsRegistry: _react.PropTypes.instanceOf(_jss.SheetsRegistry).isRequired
+	};
+	exports['default'] = SheetsRegistryProvider;
+
+/***/ },
+/* 388 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
@@ -11494,13 +13673,13 @@ webpackJsonp([0],[
 
 	};
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "style.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "style.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 356 */
+/* 389 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
@@ -11508,31 +13687,31 @@ webpackJsonp([0],[
 	  value: true
 	});
 
-	var _extends2 = __webpack_require__(333);
+	var _extends2 = __webpack_require__(341);
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-	var _getPrototypeOf = __webpack_require__(242);
+	var _getPrototypeOf = __webpack_require__(250);
 
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
-	var _classCallCheck2 = __webpack_require__(268);
+	var _classCallCheck2 = __webpack_require__(276);
 
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-	var _createClass2 = __webpack_require__(269);
+	var _createClass2 = __webpack_require__(277);
 
 	var _createClass3 = _interopRequireDefault(_createClass2);
 
-	var _possibleConstructorReturn2 = __webpack_require__(273);
+	var _possibleConstructorReturn2 = __webpack_require__(281);
 
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-	var _inherits2 = __webpack_require__(320);
+	var _inherits2 = __webpack_require__(328);
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
-	var _defineProperty2 = __webpack_require__(330);
+	var _defineProperty2 = __webpack_require__(338);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
@@ -11542,25 +13721,25 @@ webpackJsonp([0],[
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _TodoItem = __webpack_require__(357);
+	var _TodoItem = __webpack_require__(390);
 
 	var _TodoItem2 = _interopRequireDefault(_TodoItem);
 
-	var _Footer = __webpack_require__(360);
+	var _Footer = __webpack_require__(393);
 
 	var _Footer2 = _interopRequireDefault(_Footer);
 
-	var _filters = __webpack_require__(361);
+	var _filters = __webpack_require__(394);
 
-	var _style = __webpack_require__(363);
+	var _style = __webpack_require__(396);
 
 	var _style2 = _interopRequireDefault(_style);
 
-	var _reactJss = __webpack_require__(338);
+	var _reactJss = __webpack_require__(346);
 
 	var _reactJss2 = _interopRequireDefault(_reactJss);
 
-	var _classnames = __webpack_require__(331);
+	var _classnames = __webpack_require__(339);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -11580,7 +13759,7 @@ webpackJsonp([0],[
 	  function MainSection(props, context) {
 	    (0, _classCallCheck3.default)(this, MainSection);
 
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(MainSection).call(this, props, context));
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (MainSection.__proto__ || (0, _getPrototypeOf2.default)(MainSection)).call(this, props, context));
 
 	    _this.state = { filter: _filters.SHOW_ALL };
 	    return _this;
@@ -11604,10 +13783,10 @@ webpackJsonp([0],[
 	  }, {
 	    key: 'renderToggleAll',
 	    value: function renderToggleAll(completedCount) {
-	      var _props = this.props;
-	      var todos = _props.todos;
-	      var actions = _props.actions;
-	      var classes = _props.sheet.classes;
+	      var _props = this.props,
+	          todos = _props.todos,
+	          actions = _props.actions,
+	          classes = _props.sheet.classes;
 
 	      if (todos.length > 0) {
 	        return _react2.default.createElement('input', {
@@ -11636,10 +13815,10 @@ webpackJsonp([0],[
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _props2 = this.props;
-	      var todos = _props2.todos;
-	      var actions = _props2.actions;
-	      var classes = _props2.sheet.classes;
+	      var _props2 = this.props,
+	          todos = _props2.todos,
+	          actions = _props2.actions,
+	          classes = _props2.sheet.classes;
 	      var filter = this.state.filter;
 
 
@@ -11667,13 +13846,13 @@ webpackJsonp([0],[
 	}(_react.Component)) || _class);
 	exports.default = MainSection;
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 357 */
+/* 390 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
@@ -11681,27 +13860,27 @@ webpackJsonp([0],[
 	  value: true
 	});
 
-	var _defineProperty2 = __webpack_require__(330);
+	var _defineProperty2 = __webpack_require__(338);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-	var _getPrototypeOf = __webpack_require__(242);
+	var _getPrototypeOf = __webpack_require__(250);
 
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
-	var _classCallCheck2 = __webpack_require__(268);
+	var _classCallCheck2 = __webpack_require__(276);
 
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-	var _createClass2 = __webpack_require__(269);
+	var _createClass2 = __webpack_require__(277);
 
 	var _createClass3 = _interopRequireDefault(_createClass2);
 
-	var _possibleConstructorReturn2 = __webpack_require__(273);
+	var _possibleConstructorReturn2 = __webpack_require__(281);
 
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-	var _inherits2 = __webpack_require__(320);
+	var _inherits2 = __webpack_require__(328);
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
@@ -11711,19 +13890,19 @@ webpackJsonp([0],[
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _TodoTextInput = __webpack_require__(329);
+	var _TodoTextInput = __webpack_require__(337);
 
 	var _TodoTextInput2 = _interopRequireDefault(_TodoTextInput);
 
-	var _classnames4 = __webpack_require__(331);
+	var _classnames4 = __webpack_require__(339);
 
 	var _classnames5 = _interopRequireDefault(_classnames4);
 
-	var _style = __webpack_require__(358);
+	var _style = __webpack_require__(391);
 
 	var _style2 = _interopRequireDefault(_style);
 
-	var _reactJss = __webpack_require__(338);
+	var _reactJss = __webpack_require__(346);
 
 	var _reactJss2 = _interopRequireDefault(_reactJss);
 
@@ -11735,7 +13914,7 @@ webpackJsonp([0],[
 	  function TodoItem(props, context) {
 	    (0, _classCallCheck3.default)(this, TodoItem);
 
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(TodoItem).call(this, props, context));
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (TodoItem.__proto__ || (0, _getPrototypeOf2.default)(TodoItem)).call(this, props, context));
 
 	    _this.state = {
 	      editing: false
@@ -11764,11 +13943,11 @@ webpackJsonp([0],[
 	      var _this2 = this,
 	          _classnames3;
 
-	      var _props = this.props;
-	      var todo = _props.todo;
-	      var completeTodo = _props.completeTodo;
-	      var deleteTodo = _props.deleteTodo;
-	      var classes = _props.sheet.classes;
+	      var _props = this.props,
+	          todo = _props.todo,
+	          completeTodo = _props.completeTodo,
+	          deleteTodo = _props.deleteTodo,
+	          classes = _props.sheet.classes;
 
 
 	      var element = void 0;
@@ -11813,13 +13992,13 @@ webpackJsonp([0],[
 	}(_react.Component)) || _class);
 	exports.default = TodoItem;
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 358 */
+/* 391 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
@@ -11827,11 +14006,11 @@ webpackJsonp([0],[
 	  value: true
 	});
 
-	var _extends2 = __webpack_require__(333);
+	var _extends2 = __webpack_require__(341);
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-	var _style = __webpack_require__(359);
+	var _style = __webpack_require__(392);
 
 	var _style2 = _interopRequireDefault(_style);
 
@@ -11938,13 +14117,13 @@ webpackJsonp([0],[
 
 	};
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "style.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "style.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 359 */
+/* 392 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
@@ -11971,13 +14150,13 @@ webpackJsonp([0],[
 	  }
 	};
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "style.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "style.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 360 */
+/* 393 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
@@ -11985,27 +14164,27 @@ webpackJsonp([0],[
 	  value: true
 	});
 
-	var _getPrototypeOf = __webpack_require__(242);
+	var _getPrototypeOf = __webpack_require__(250);
 
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
-	var _classCallCheck2 = __webpack_require__(268);
+	var _classCallCheck2 = __webpack_require__(276);
 
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-	var _createClass2 = __webpack_require__(269);
+	var _createClass2 = __webpack_require__(277);
 
 	var _createClass3 = _interopRequireDefault(_createClass2);
 
-	var _possibleConstructorReturn2 = __webpack_require__(273);
+	var _possibleConstructorReturn2 = __webpack_require__(281);
 
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-	var _inherits2 = __webpack_require__(320);
+	var _inherits2 = __webpack_require__(328);
 
 	var _inherits3 = _interopRequireDefault(_inherits2);
 
-	var _defineProperty2 = __webpack_require__(330);
+	var _defineProperty2 = __webpack_require__(338);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
@@ -12015,17 +14194,17 @@ webpackJsonp([0],[
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _filters = __webpack_require__(361);
+	var _filters = __webpack_require__(394);
 
-	var _classnames2 = __webpack_require__(331);
+	var _classnames2 = __webpack_require__(339);
 
 	var _classnames3 = _interopRequireDefault(_classnames2);
 
-	var _reactJss = __webpack_require__(338);
+	var _reactJss = __webpack_require__(346);
 
 	var _reactJss2 = _interopRequireDefault(_reactJss);
 
-	var _style = __webpack_require__(362);
+	var _style = __webpack_require__(395);
 
 	var _style2 = _interopRequireDefault(_style);
 
@@ -12038,15 +14217,15 @@ webpackJsonp([0],[
 
 	  function Footer() {
 	    (0, _classCallCheck3.default)(this, Footer);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Footer).apply(this, arguments));
+	    return (0, _possibleConstructorReturn3.default)(this, (Footer.__proto__ || (0, _getPrototypeOf2.default)(Footer)).apply(this, arguments));
 	  }
 
 	  (0, _createClass3.default)(Footer, [{
 	    key: 'renderTodoCount',
 	    value: function renderTodoCount() {
-	      var _props = this.props;
-	      var activeCount = _props.activeCount;
-	      var classes = _props.sheet.classes;
+	      var _props = this.props,
+	          activeCount = _props.activeCount,
+	          classes = _props.sheet.classes;
 
 	      var itemWord = activeCount === 1 ? 'item' : 'items';
 
@@ -12067,10 +14246,10 @@ webpackJsonp([0],[
 	    key: 'renderFilterLink',
 	    value: function renderFilterLink(filter) {
 	      var title = FILTER_TITLES[filter];
-	      var _props2 = this.props;
-	      var selectedFilter = _props2.filter;
-	      var onShow = _props2.onShow;
-	      var classes = _props2.sheet.classes;
+	      var _props2 = this.props,
+	          selectedFilter = _props2.filter,
+	          onShow = _props2.onShow,
+	          classes = _props2.sheet.classes;
 
 
 	      return _react2.default.createElement(
@@ -12086,10 +14265,10 @@ webpackJsonp([0],[
 	  }, {
 	    key: 'renderClearButton',
 	    value: function renderClearButton() {
-	      var _props3 = this.props;
-	      var completedCount = _props3.completedCount;
-	      var onClearCompleted = _props3.onClearCompleted;
-	      var classes = _props3.sheet.classes;
+	      var _props3 = this.props,
+	          completedCount = _props3.completedCount,
+	          onClearCompleted = _props3.onClearCompleted,
+	          classes = _props3.sheet.classes;
 
 	      if (completedCount > 0) {
 	        return _react2.default.createElement(
@@ -12129,13 +14308,13 @@ webpackJsonp([0],[
 	}(_react.Component)) || _class);
 	exports.default = Footer;
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 361 */
+/* 394 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
@@ -12146,13 +14325,13 @@ webpackJsonp([0],[
 	var SHOW_COMPLETED = exports.SHOW_COMPLETED = 'show_completed';
 	var SHOW_ACTIVE = exports.SHOW_ACTIVE = 'show_active';
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "filters.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "filters.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 362 */
+/* 395 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
@@ -12160,17 +14339,17 @@ webpackJsonp([0],[
 	  value: true
 	});
 
-	var _defineProperty2 = __webpack_require__(330);
+	var _defineProperty2 = __webpack_require__(338);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-	var _extends3 = __webpack_require__(333);
+	var _extends3 = __webpack_require__(341);
 
 	var _extends4 = _interopRequireDefault(_extends3);
 
 	var _extends2, _normal$MediaMaxW;
 
-	var _style = __webpack_require__(359);
+	var _style = __webpack_require__(392);
 
 	var _style2 = _interopRequireDefault(_style);
 
@@ -12262,13 +14441,13 @@ webpackJsonp([0],[
 	  }
 	}), _extends2))), _normal$MediaMaxW);
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "style.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "style.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 363 */
+/* 396 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
@@ -12276,11 +14455,11 @@ webpackJsonp([0],[
 	  value: true
 	});
 
-	var _extends2 = __webpack_require__(333);
+	var _extends2 = __webpack_require__(341);
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-	var _style = __webpack_require__(359);
+	var _style = __webpack_require__(392);
 
 	var _style2 = _interopRequireDefault(_style);
 
@@ -12335,13 +14514,13 @@ webpackJsonp([0],[
 
 	};
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "style.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "style.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 364 */
+/* 397 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
@@ -12350,7 +14529,7 @@ webpackJsonp([0],[
 	});
 	exports.clearCompleted = exports.completeAll = exports.completeTodo = exports.editTodo = exports.deleteTodo = exports.addTodo = undefined;
 
-	var _reduxActions = __webpack_require__(365);
+	var _reduxActions = __webpack_require__(398);
 
 	var addTodo = exports.addTodo = (0, _reduxActions.createAction)('add todo');
 	var deleteTodo = exports.deleteTodo = (0, _reduxActions.createAction)('delete todo');
@@ -12359,10 +14538,10 @@ webpackJsonp([0],[
 	var completeAll = exports.completeAll = (0, _reduxActions.createAction)('complete all');
 	var clearCompleted = exports.clearCompleted = (0, _reduxActions.createAction)('clear complete');
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "todos.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "todos.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 365 */
+/* 398 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12371,15 +14550,15 @@ webpackJsonp([0],[
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _createAction = __webpack_require__(366);
+	var _createAction = __webpack_require__(399);
 
 	var _createAction2 = _interopRequireDefault(_createAction);
 
-	var _handleAction = __webpack_require__(367);
+	var _handleAction = __webpack_require__(400);
 
 	var _handleAction2 = _interopRequireDefault(_handleAction);
 
-	var _handleActions = __webpack_require__(374);
+	var _handleActions = __webpack_require__(407);
 
 	var _handleActions2 = _interopRequireDefault(_handleActions);
 
@@ -12388,7 +14567,7 @@ webpackJsonp([0],[
 	exports.handleActions = _handleActions2['default'];
 
 /***/ },
-/* 366 */
+/* 399 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -12428,7 +14607,7 @@ webpackJsonp([0],[
 	module.exports = exports['default'];
 
 /***/ },
-/* 367 */
+/* 400 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12436,7 +14615,7 @@ webpackJsonp([0],[
 	exports.__esModule = true;
 	exports['default'] = handleAction;
 
-	var _fluxStandardAction = __webpack_require__(368);
+	var _fluxStandardAction = __webpack_require__(401);
 
 	function isFunction(val) {
 	  return typeof val === 'function';
@@ -12464,7 +14643,7 @@ webpackJsonp([0],[
 	module.exports = exports['default'];
 
 /***/ },
-/* 368 */
+/* 401 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12475,7 +14654,7 @@ webpackJsonp([0],[
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _lodashIsplainobject = __webpack_require__(369);
+	var _lodashIsplainobject = __webpack_require__(402);
 
 	var _lodashIsplainobject2 = _interopRequireDefault(_lodashIsplainobject);
 
@@ -12494,7 +14673,7 @@ webpackJsonp([0],[
 	}
 
 /***/ },
-/* 369 */
+/* 402 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -12505,9 +14684,9 @@ webpackJsonp([0],[
 	 * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <https://lodash.com/license>
 	 */
-	var baseFor = __webpack_require__(370),
-	    isArguments = __webpack_require__(371),
-	    keysIn = __webpack_require__(372);
+	var baseFor = __webpack_require__(403),
+	    isArguments = __webpack_require__(404),
+	    keysIn = __webpack_require__(405);
 
 	/** `Object#toString` result references. */
 	var objectTag = '[object Object]';
@@ -12603,7 +14782,7 @@ webpackJsonp([0],[
 
 
 /***/ },
-/* 370 */
+/* 403 */
 /***/ function(module, exports) {
 
 	/**
@@ -12657,16 +14836,16 @@ webpackJsonp([0],[
 
 
 /***/ },
-/* 371 */
+/* 404 */
 /***/ function(module, exports) {
 
 	/**
-	 * lodash 3.0.8 (Custom Build) <https://lodash.com/>
+	 * lodash (Custom Build) <https://lodash.com/>
 	 * Build: `lodash modularize exports="npm" -o ./`
-	 * Copyright 2012-2016 The Dojo Foundation <http://dojofoundation.org/>
+	 * Copyright jQuery Foundation and other contributors <https://jquery.org/>
+	 * Released under MIT license <https://lodash.com/license>
 	 * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
-	 * Copyright 2009-2016 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
-	 * Available under MIT license <https://lodash.com/license>
+	 * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 */
 
 	/** Used as references for various `Number` constants. */
@@ -12684,7 +14863,8 @@ webpackJsonp([0],[
 	var hasOwnProperty = objectProto.hasOwnProperty;
 
 	/**
-	 * Used to resolve the [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
+	 * Used to resolve the
+	 * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
 	 * of values.
 	 */
 	var objectToString = objectProto.toString;
@@ -12693,38 +14873,15 @@ webpackJsonp([0],[
 	var propertyIsEnumerable = objectProto.propertyIsEnumerable;
 
 	/**
-	 * The base implementation of `_.property` without support for deep paths.
-	 *
-	 * @private
-	 * @param {string} key The key of the property to get.
-	 * @returns {Function} Returns the new function.
-	 */
-	function baseProperty(key) {
-	  return function(object) {
-	    return object == null ? undefined : object[key];
-	  };
-	}
-
-	/**
-	 * Gets the "length" property value of `object`.
-	 *
-	 * **Note:** This function is used to avoid a [JIT bug](https://bugs.webkit.org/show_bug.cgi?id=142792)
-	 * that affects Safari on at least iOS 8.1-8.3 ARM64.
-	 *
-	 * @private
-	 * @param {Object} object The object to query.
-	 * @returns {*} Returns the "length" value.
-	 */
-	var getLength = baseProperty('length');
-
-	/**
 	 * Checks if `value` is likely an `arguments` object.
 	 *
 	 * @static
 	 * @memberOf _
+	 * @since 0.1.0
 	 * @category Lang
 	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+	 * @returns {boolean} Returns `true` if `value` is an `arguments` object,
+	 *  else `false`.
 	 * @example
 	 *
 	 * _.isArguments(function() { return arguments; }());
@@ -12734,7 +14891,7 @@ webpackJsonp([0],[
 	 * // => false
 	 */
 	function isArguments(value) {
-	  // Safari 8.1 incorrectly makes `arguments.callee` enumerable in strict mode.
+	  // Safari 8.1 makes `arguments.callee` enumerable in strict mode.
 	  return isArrayLikeObject(value) && hasOwnProperty.call(value, 'callee') &&
 	    (!propertyIsEnumerable.call(value, 'callee') || objectToString.call(value) == argsTag);
 	}
@@ -12746,6 +14903,7 @@ webpackJsonp([0],[
 	 *
 	 * @static
 	 * @memberOf _
+	 * @since 4.0.0
 	 * @category Lang
 	 * @param {*} value The value to check.
 	 * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
@@ -12764,7 +14922,7 @@ webpackJsonp([0],[
 	 * // => false
 	 */
 	function isArrayLike(value) {
-	  return value != null && isLength(getLength(value)) && !isFunction(value);
+	  return value != null && isLength(value.length) && !isFunction(value);
 	}
 
 	/**
@@ -12773,9 +14931,11 @@ webpackJsonp([0],[
 	 *
 	 * @static
 	 * @memberOf _
+	 * @since 4.0.0
 	 * @category Lang
 	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is an array-like object, else `false`.
+	 * @returns {boolean} Returns `true` if `value` is an array-like object,
+	 *  else `false`.
 	 * @example
 	 *
 	 * _.isArrayLikeObject([1, 2, 3]);
@@ -12799,9 +14959,10 @@ webpackJsonp([0],[
 	 *
 	 * @static
 	 * @memberOf _
+	 * @since 0.1.0
 	 * @category Lang
 	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+	 * @returns {boolean} Returns `true` if `value` is a function, else `false`.
 	 * @example
 	 *
 	 * _.isFunction(_);
@@ -12812,8 +14973,7 @@ webpackJsonp([0],[
 	 */
 	function isFunction(value) {
 	  // The use of `Object#toString` avoids issues with the `typeof` operator
-	  // in Safari 8 which returns 'object' for typed array and weak map constructors,
-	  // and PhantomJS 1.9 which returns 'function' for `NodeList` instances.
+	  // in Safari 8-9 which returns 'object' for typed array and other constructors.
 	  var tag = isObject(value) ? objectToString.call(value) : '';
 	  return tag == funcTag || tag == genTag;
 	}
@@ -12821,10 +14981,12 @@ webpackJsonp([0],[
 	/**
 	 * Checks if `value` is a valid array-like length.
 	 *
-	 * **Note:** This function is loosely based on [`ToLength`](http://ecma-international.org/ecma-262/6.0/#sec-tolength).
+	 * **Note:** This method is loosely based on
+	 * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
 	 *
 	 * @static
 	 * @memberOf _
+	 * @since 4.0.0
 	 * @category Lang
 	 * @param {*} value The value to check.
 	 * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
@@ -12848,11 +15010,13 @@ webpackJsonp([0],[
 	}
 
 	/**
-	 * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
-	 * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+	 * Checks if `value` is the
+	 * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+	 * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
 	 *
 	 * @static
 	 * @memberOf _
+	 * @since 0.1.0
 	 * @category Lang
 	 * @param {*} value The value to check.
 	 * @returns {boolean} Returns `true` if `value` is an object, else `false`.
@@ -12881,6 +15045,7 @@ webpackJsonp([0],[
 	 *
 	 * @static
 	 * @memberOf _
+	 * @since 4.0.0
 	 * @category Lang
 	 * @param {*} value The value to check.
 	 * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
@@ -12906,7 +15071,7 @@ webpackJsonp([0],[
 
 
 /***/ },
-/* 372 */
+/* 405 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -12917,8 +15082,8 @@ webpackJsonp([0],[
 	 * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <https://lodash.com/license>
 	 */
-	var isArguments = __webpack_require__(371),
-	    isArray = __webpack_require__(373);
+	var isArguments = __webpack_require__(404),
+	    isArray = __webpack_require__(406);
 
 	/** Used to detect unsigned integer values. */
 	var reIsUint = /^\d+$/;
@@ -13044,7 +15209,7 @@ webpackJsonp([0],[
 
 
 /***/ },
-/* 373 */
+/* 406 */
 /***/ function(module, exports) {
 
 	/**
@@ -13230,7 +15395,7 @@ webpackJsonp([0],[
 
 
 /***/ },
-/* 374 */
+/* 407 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13240,15 +15405,15 @@ webpackJsonp([0],[
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _handleAction = __webpack_require__(367);
+	var _handleAction = __webpack_require__(400);
 
 	var _handleAction2 = _interopRequireDefault(_handleAction);
 
-	var _ownKeys = __webpack_require__(375);
+	var _ownKeys = __webpack_require__(408);
 
 	var _ownKeys2 = _interopRequireDefault(_ownKeys);
 
-	var _reduceReducers = __webpack_require__(376);
+	var _reduceReducers = __webpack_require__(409);
 
 	var _reduceReducers2 = _interopRequireDefault(_reduceReducers);
 
@@ -13266,7 +15431,7 @@ webpackJsonp([0],[
 	module.exports = exports['default'];
 
 /***/ },
-/* 375 */
+/* 408 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -13291,7 +15456,7 @@ webpackJsonp([0],[
 	module.exports = exports['default'];
 
 /***/ },
-/* 376 */
+/* 409 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -13314,10 +15479,10 @@ webpackJsonp([0],[
 	module.exports = exports["default"];
 
 /***/ },
-/* 377 */
+/* 410 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
@@ -13333,118 +15498,13 @@ webpackJsonp([0],[
 	  }
 	};
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "style.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "style.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 378 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var regExp = /([A-Z])/g;
-
-	/**
-	 * Replace a string passed from String#replace.
-	 * @param {String} str
-	 * @return {String}
-	 */
-	function replace(str) {
-	  return '-' + str.toLowerCase();
-	}
-
-	/**
-	 * Convert camel cased properties of a single style to dasherized.
-	 *
-	 * @param {Object} style
-	 * @return {Object} convertedStyle
-	 */
-	function convertCase(style) {
-	  var convertedStyle = {};
-	  for (var prop in style) {
-	    var value = style[prop];
-	    prop = prop.replace(regExp, replace);
-	    convertedStyle[prop] = value;
-	  }
-	  return convertedStyle;
-	}
-
-	/**
-	 * Allow camel cased property names by converting them back to dasherized.
-	 *
-	 * @param {Rule} rule
-	 */
-
-	exports.default = function () {
-	  return function jssCamelCase(rule) {
-	    var style = rule.style;
-
-	    if (!style) return;
-	    if (Array.isArray(style)) {
-	      // Handle rules like @font-face, which can have multiple styles in an array
-	      for (var index = 0; index < style.length; index++) {
-	        style[index] = convertCase(style[index]);
-	      }
-	    } else {
-	      rule.style = convertCase(style);
-	    }
-	  };
-	};
-
-/***/ },
-/* 379 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	exports.default = jssNested;
-	var regExp = /&/g;
-
-	/**
-	 * Convert nested rules to separate, remove them from original styles.
-	 *
-	 * @param {Rule} rule
-	 * @api public
-	 */
-	function jssNested() {
-	  return function (rule) {
-	    if (rule.type !== 'regular') return;
-	    var _rule$options = rule.options;
-	    var sheet = _rule$options.sheet;
-	    var jss = _rule$options.jss;
-	    var parent = _rule$options.parent;
-
-	    var container = sheet || jss;
-	    var options = void 0;
-
-	    if (parent && parent.type === 'conditional') {
-	      container = parent;
-	    }
-
-	    for (var prop in rule.style) {
-	      if (prop[0] === '&') {
-	        if (!options) options = _extends({}, rule.options, { named: false });
-	        var name = prop.replace(regExp, rule.selector);
-	        container.createRule(name, rule.style[prop], options);
-	        delete rule.style[prop];
-	      }
-	    }
-	  };
-	}
-
-/***/ },
-/* 380 */
+/* 411 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
@@ -13455,9 +15515,9 @@ webpackJsonp([0],[
 
 	var _redux = __webpack_require__(227);
 
-	var _middleware = __webpack_require__(381);
+	var _middleware = __webpack_require__(412);
 
-	var _reducers = __webpack_require__(383);
+	var _reducers = __webpack_require__(414);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -13482,13 +15542,13 @@ webpackJsonp([0],[
 	  return store;
 	}
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 381 */
+/* 412 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
@@ -13497,7 +15557,7 @@ webpackJsonp([0],[
 	});
 	exports.logger = undefined;
 
-	var _logger = __webpack_require__(382);
+	var _logger = __webpack_require__(413);
 
 	var _logger2 = _interopRequireDefault(_logger);
 
@@ -13505,13 +15565,13 @@ webpackJsonp([0],[
 
 	exports.logger = _logger2.default;
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 382 */
+/* 413 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	"use strict";
 
@@ -13528,13 +15588,13 @@ webpackJsonp([0],[
 	  };
 	};
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "logger.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "logger.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 383 */
+/* 414 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
@@ -13546,7 +15606,7 @@ webpackJsonp([0],[
 
 	var _redux = __webpack_require__(227);
 
-	var _todos = __webpack_require__(384);
+	var _todos = __webpack_require__(415);
 
 	var _todos2 = _interopRequireDefault(_todos);
 
@@ -13557,13 +15617,13 @@ webpackJsonp([0],[
 	  todos: _todos2.default
 	});
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 384 */
+/* 415 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
@@ -13571,15 +15631,15 @@ webpackJsonp([0],[
 	  value: true
 	});
 
-	var _extends2 = __webpack_require__(333);
+	var _extends2 = __webpack_require__(341);
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-	var _toConsumableArray2 = __webpack_require__(385);
+	var _toConsumableArray2 = __webpack_require__(416);
 
 	var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
-	var _reduxActions = __webpack_require__(365);
+	var _reduxActions = __webpack_require__(398);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -13631,17 +15691,17 @@ webpackJsonp([0],[
 	  }
 	}, initialState);
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/206567/Documents/workspace/scratch/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "todos.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/kof/work/projects/kof/cssinjs/react-todomvc-jss/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "todos.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 385 */
+/* 416 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	exports.__esModule = true;
 
-	var _from = __webpack_require__(386);
+	var _from = __webpack_require__(417);
 
 	var _from2 = _interopRequireDefault(_from);
 
@@ -13660,34 +15720,34 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 386 */
+/* 417 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(387), __esModule: true };
+	module.exports = { "default": __webpack_require__(418), __esModule: true };
 
 /***/ },
-/* 387 */
+/* 418 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(277);
-	__webpack_require__(388);
-	module.exports = __webpack_require__(255).Array.from;
+	__webpack_require__(285);
+	__webpack_require__(419);
+	module.exports = __webpack_require__(263).Array.from;
 
 /***/ },
-/* 388 */
+/* 419 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var ctx            = __webpack_require__(256)
-	  , $export        = __webpack_require__(254)
-	  , toObject       = __webpack_require__(245)
-	  , call           = __webpack_require__(389)
-	  , isArrayIter    = __webpack_require__(390)
-	  , toLength       = __webpack_require__(293)
-	  , createProperty = __webpack_require__(391)
-	  , getIterFn      = __webpack_require__(392);
+	var ctx            = __webpack_require__(264)
+	  , $export        = __webpack_require__(262)
+	  , toObject       = __webpack_require__(253)
+	  , call           = __webpack_require__(420)
+	  , isArrayIter    = __webpack_require__(421)
+	  , toLength       = __webpack_require__(301)
+	  , createProperty = __webpack_require__(422)
+	  , getIterFn      = __webpack_require__(423);
 
-	$export($export.S + $export.F * !__webpack_require__(394)(function(iter){ Array.from(iter); }), 'Array', {
+	$export($export.S + $export.F * !__webpack_require__(425)(function(iter){ Array.from(iter); }), 'Array', {
 	  // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
 	  from: function from(arrayLike/*, mapfn = undefined, thisArg = undefined*/){
 	    var O       = toObject(arrayLike)
@@ -13717,11 +15777,11 @@ webpackJsonp([0],[
 
 
 /***/ },
-/* 389 */
+/* 420 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// call something on iterator step with safe closing on error
-	var anObject = __webpack_require__(260);
+	var anObject = __webpack_require__(268);
 	module.exports = function(iterator, fn, value, entries){
 	  try {
 	    return entries ? fn(anObject(value)[0], value[1]) : fn(value);
@@ -13734,12 +15794,12 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 390 */
+/* 421 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// check on default Array iterator
-	var Iterators  = __webpack_require__(283)
-	  , ITERATOR   = __webpack_require__(298)('iterator')
+	var Iterators  = __webpack_require__(291)
+	  , ITERATOR   = __webpack_require__(306)('iterator')
 	  , ArrayProto = Array.prototype;
 
 	module.exports = function(it){
@@ -13747,12 +15807,12 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 391 */
+/* 422 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var $defineProperty = __webpack_require__(259)
-	  , createDesc      = __webpack_require__(267);
+	var $defineProperty = __webpack_require__(267)
+	  , createDesc      = __webpack_require__(275);
 
 	module.exports = function(object, index, value){
 	  if(index in object)$defineProperty.f(object, index, createDesc(0, value));
@@ -13760,25 +15820,25 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 392 */
+/* 423 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var classof   = __webpack_require__(393)
-	  , ITERATOR  = __webpack_require__(298)('iterator')
-	  , Iterators = __webpack_require__(283);
-	module.exports = __webpack_require__(255).getIteratorMethod = function(it){
+	var classof   = __webpack_require__(424)
+	  , ITERATOR  = __webpack_require__(306)('iterator')
+	  , Iterators = __webpack_require__(291);
+	module.exports = __webpack_require__(263).getIteratorMethod = function(it){
 	  if(it != undefined)return it[ITERATOR]
 	    || it['@@iterator']
 	    || Iterators[classof(it)];
 	};
 
 /***/ },
-/* 393 */
+/* 424 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// getting tag from 19.1.3.6 Object.prototype.toString()
-	var cof = __webpack_require__(291)
-	  , TAG = __webpack_require__(298)('toStringTag')
+	var cof = __webpack_require__(299)
+	  , TAG = __webpack_require__(306)('toStringTag')
 	  // ES3 wrong here
 	  , ARG = cof(function(){ return arguments; }()) == 'Arguments';
 
@@ -13801,10 +15861,10 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 394 */
+/* 425 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var ITERATOR     = __webpack_require__(298)('iterator')
+	var ITERATOR     = __webpack_require__(306)('iterator')
 	  , SAFE_CLOSING = false;
 
 	try {

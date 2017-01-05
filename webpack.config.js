@@ -14,7 +14,7 @@ module.exports = {
     env === 'development' ? { html: './index.html' } : {}
   ),
   output: {
-    path: path.join(__dirname, './static'),
+    path: path.join(__dirname, './docs'),
     filename: 'bundle.js',
   },
   module: {

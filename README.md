@@ -12,10 +12,9 @@ npm start
 
 ## Production Build and Run
 
-The following commands will build the app to `static/` with the styles dehydrated and included inline in the html, and run it:
+The following commands will build the app to `docs/` with the styles dehydrated and included inline in the html, and run it:
 
 ```
 npm run build
-cd static/
-python -m SimpleHTTPServer 3001
+static docs
 ```
